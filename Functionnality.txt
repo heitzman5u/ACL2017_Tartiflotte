@@ -1,0 +1,34 @@
+Jeu de type RPG 2D.
+Le joueur contrôle un héros vu du dessus, qui peut se déplacer librement dans le niveau constitué de tiles.
+Les déplacements sont effectués tiles par tiles sans transitions.
+La caméra est fixe, on voit le monde dans son intégralité.
+Des monstres peuvent attaquer et se faire attaquer par le héros.
+Le jeu aura un brouillard de guerre pour diminuer la vision du joueur.
+
+
+Fonctionnalités:
+
+Le jeu possède une interface graphique.
+Le héros peut se déplacer dans les 4 directions.
+Le héros / les monstres ne peut pas se déplacer sur un obstacle.
+Le héros / les monstres possède une image.
+Le héros / les monstres possède une image animée.
+Le héros attaque sur la case en face de lui.
+Les tiles ont des images (avec canal alpha).
+Les monstres peuvent attaquer le joueur sur la case adjacente.
+Les monstres peuvent se déplacer aléatoirement.
+Les monstres ont une intelligence artificielle.
+Il existe différents types de monstres avec différents types d'attaques, de points de vie.
+Le héros/monstre possède une barre de vie.
+La carte est lue depuis un fichier.
+Le jeu possède plusieurs niveaux.
+Le héros/les monstres peut mourir.
+Le brouillard de guerre bloque la vision du joueur à partir de X cases de distance.
+Le brouillard de guerre est progressif.
+Le joueur peut ramasser des fioles lorsqu'il marche dessus.
+Les fioles ramassées donnent X de points de vie.
+Le niveau contient une/des échelle.
+Lorsque le héros marche sur une échelle, il change de niveau.
+Entre les niveaux, on se souvient de l'état des niveaux précédents.
+Le niveau contient des feux de camp.
+Lorsque le héros marche sur un feu de camp, les monstres, la vie, les fioles reviennent.
