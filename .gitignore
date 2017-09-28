@@ -1,0 +1,3 @@
+#Fichiers ignorés par git
+bin
+bin/*
