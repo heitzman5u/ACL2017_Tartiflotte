@@ -32,3 +32,6 @@ Lorsque le héros marche sur une échelle, il change de niveau.
 Entre les niveaux, on se souvient de l'état des niveaux précédents.
 Le niveau contient des feux de camp.
 Lorsque le héros marche sur un feu de camp, les monstres, la vie, les fioles reviennent.
+Le héros possède une barre d'expérience.
+Le héros gagne de l'expérience en tuant des monstres.
+Le héros gagne un niveau lorsque sa barre d'expérience est remplie.
