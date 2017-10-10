@@ -1,37 +1,43 @@
-Jeu de type RPG 2D.
-Le joueur contrôle un héros vu du dessus, qui peut se déplacer librement dans le niveau constitué de tiles.
-Les déplacements sont effectués tiles par tiles sans transitions.
-La caméra est fixe, on voit le monde dans son intégralité.
-Des monstres peuvent attaquer et se faire attaquer par le héros.
-Le jeu aura un brouillard de guerre pour diminuer la vision du joueur.
+RPG 2D game.
+The player handles a character seen from above, who can move freely in levels made of tiles.
+The camera is fixed, and displays the entire level.
+Monsters can hit the character, and vice-versa.
+The game features a war fog, which restricts the player's view.
 
 
-Fonctionnalités:
+Functionnalities:
 
-Le jeu possède une interface graphique.
-Le héros peut se déplacer dans les 4 directions.
-Le héros / les monstres ne peut pas se déplacer sur un obstacle.
-Le héros / les monstres possède une image.
-Le héros / les monstres possède une image animée.
-Le héros attaque sur la case en face de lui.
-Les tiles ont des images (avec canal alpha).
-Les monstres peuvent attaquer le joueur sur la case adjacente.
-Les monstres peuvent se déplacer aléatoirement.
-Les monstres ont une intelligence artificielle.
-Il existe différents types de monstres avec différents types d'attaques, de points de vie.
-Le héros/monstre possède une barre de vie.
-La carte est lue depuis un fichier.
-Le jeu possède plusieurs niveaux.
-Le héros/les monstres peut mourir.
-Le brouillard de guerre bloque la vision du joueur à partir de X cases de distance.
-Le brouillard de guerre est progressif.
-Le joueur peut ramasser des fioles lorsqu'il marche dessus.
-Les fioles ramassées donnent X de points de vie.
-Le niveau contient une/des échelle.
-Lorsque le héros marche sur une échelle, il change de niveau.
-Entre les niveaux, on se souvient de l'état des niveaux précédents.
+There are different tiles types{
+	grass, wall, ladder
+}
+
+The character can move on 4 directions, with constant speed.
+The character cannot move on walls.
+The character has a life bar.
+There are (identical) monsters on the level.
+The monsters have life bars.
+The monsters can attack the character with a 1-tile ranged attack every second.
+The players loses a constant amount of life when hit.
+When the player's life goes under 0, he dies, and "YOU DIED" appears on screen for a few seconds before restarting the level as on first launch.
+The player can attack monsters by hitting the left, bottom, right, up buttons. A 1-tile ranged attack occurs.
+The monster loses a constant amount of life when hit.
+When the monster's life goes under 0, he dies, and disappears until the level restarts.
+A fog of war is implemented{
+	A box around the character's current tile is displayed, all other tiles are black.
+	The box is updated when the character's center is above a new tile.
+}
+When the player reaches a ladder, a new level is loaded{
+	The player spawns next to a ladder.
+	When moving on this ladder, the previous level is loaded.
+	The player and monsters keep their life between levels.
+}
+Levels are read from files.
+
+
+/*
 Le niveau contient des feux de camp.
-Lorsque le héros marche sur un feu de camp, les monstres, la vie, les fioles reviennent.
-Le héros possède une barre d'expérience.
-Le héros gagne de l'expérience en tuant des monstres.
-Le héros gagne un niveau lorsque sa barre d'expérience est remplie.
+Lorsque le hﾃｩros marche sur un feu de camp, les monstres, la vie, les fioles reviennent.
+Le hﾃｩros possﾃｨde une barre d'expﾃｩrience.
+Le hﾃｩros gagne de l'expﾃｩrience en tuant des monstres.
+Le hﾃｩros gagne un niveau lorsque sa barre d'expﾃｩrience est remplie.
+*/
