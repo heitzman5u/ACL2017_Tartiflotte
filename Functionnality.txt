@@ -11,17 +11,12 @@ There are different tiles types{
 	grass, wall, ladder
 }
 
-The character can move on 4 directions, with constant speed.
-The character cannot move on walls.
-The character has a life bar.
-There are (identical) monsters on the level.
-The monsters have life bars.
-The monsters can attack the character with a 1-tile ranged attack every second.
-The players loses a constant amount of life when hit.
-When the player's life goes under 0, he dies, and "YOU DIED" appears on screen for a few seconds before restarting the level as on first launch.
-The player can attack monsters by hitting the left, bottom, right, up buttons. A 1-tile ranged attack occurs.
-The monster loses a constant amount of life when hit.
-When the monster's life goes under 0, he dies, and disappears until the level restarts.
+The character can move on 4 directions (z, q, s, d), with constant speed. A cannot leave the map.
+The character cannot move through walls.
+There are monsters on the level. Monsters can attack the player and kill him, restarting the level
+The monsters move towards the player when he is close enough.
+Instead of instantly dying, the player has a life bar. He dies when it reaches 0. Monsters deal a constant amount of damage to the player when they attack.
+The monsters have a life bar. The player can attack them (arrow buttons), dealing a constant amount of damage and killing them if their life goes under 0. And they disappear.
 A fog of war is implemented{
 	A box around the character's current tile is displayed, all other tiles are black.
 	The box is updated when the character's center is above a new tile.
@@ -33,11 +28,5 @@ When the player reaches a ladder, a new level is loaded{
 }
 Levels are read from files.
 
-
-/*
-Le niveau contient des feux de camp.
-Lorsque le hﾃｩros marche sur un feu de camp, les monstres, la vie, les fioles reviennent.
-Le hﾃｩros possﾃｨde une barre d'expﾃｩrience.
-Le hﾃｩros gagne de l'expﾃｩrience en tuant des monstres.
-Le hﾃｩros gagne un niveau lorsque sa barre d'expﾃｩrience est remplie.
-*/
+When moving on a bonfire, all monsters are reset, and the life of the player too.
+These are save points, restarting the game will lead the player to that point.
