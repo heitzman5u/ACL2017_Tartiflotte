@@ -32,12 +32,12 @@ public class Main extends BasicGame{
 	
 	
 	public static void main(String[] args){
-		try {
+		/*try {
 			new AppGameContainer(new Main("title"), 640, 480, false).start();
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 
