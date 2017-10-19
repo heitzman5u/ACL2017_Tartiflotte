@@ -1,7 +1,39 @@
 <project name="ACL2017_Tartiflotte">
-	<target name="run">
+	<property name="src.dir" value="src"/>
+	<property name="bin.dir" value="bin"/>
+	<property name="jar.dir" value="exe"/>
+	<property name="main-class" value="model.Main"/>
+	<property name="jar.name" value="Tartiflotte.jar"/>
+	<property name="native.path" value="lib/natives"/>
+	<property name="lib.path" value="lib"/>
+	
+	<target name="run" depends="jar">
 		<java jar="Tartiflotte.jar" fork="true">
 			<jvmarg value="-Djava.library.path=lib/natives" />
 		</java>
 	</target>
+	<target name="clean">
+		<delete dir="${jar.dir}"/>
+		<delete dir="${bin.dir}"/>
+		<echo message="nettoyage terminé"/>
+	</target>
+	<target name="compile">
+		<mkdir dir="${bin.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}">
+			<classpath>
+	        	<pathelement path="${lib.path}/*.jar"/>
+	    	</classpath>
+		</javac>
+		<echo message="compilation terminée"/>
+	</target>
+	<target name="jar" depends="compile">
+		<mkdir dir="${jar.dir}"/>
+		<jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}"/>
+			</manifest>
+		</jar>
+		<echo message="Creation du fichier jar terminée"/>
+	</target>
+	
 </project>
