@@ -38,7 +38,15 @@ public class Main extends BasicGame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		
+		//main game loop
+		Game g = new Game();
+		g.render();
+		while(!g.isWon()){
+			g.update();
+			g.render();
+		}
+		System.out.println("You won");
 	}
-
 
 }

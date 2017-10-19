@@ -13,7 +13,7 @@ public class World {
 		width=x;
 		
 		ladder=new Vector2f(0,0);
-		hero=new Hero(width,height);
+		hero=new Hero(width/2,height/2);
 	}
 	
 	private void setHero(int x, int y){
@@ -30,16 +30,20 @@ public class World {
 		return false;
 	}
 
-	private void render(){
-		System.out.println("( "+hero.getPos().getX()+" ; "+hero.getPos().getY()+" )\n");
+	public void render(){
+		hero.render();
+		//System.out.println("( "+hero.getPos().getX()+" ; "+hero.getPos().getY()+" )\n");
 	}
 	
-	private int getPosHero(){
+	private Vector2f getPosHero(){
 		return hero.getPos();
 	}
 	
-	private int getPosLadder(){
+	private Vector2f getPosLadder(){
 		return ladder;
 	}
 	
+	public Hero getHero(){
+		return hero;
+	}
 }
