@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -39,11 +41,15 @@ public class Main extends BasicGame{
 		}*/
 		
 		//main game loop
-		Game g = new Game();
-		g.render();
-		while(!g.isWon()){
-			g.update();
+		try(Game g = new Game()){ //try with statement to ensure correct resource close (Scanner)
 			g.render();
+			while(!g.isWon()){
+				g.update();
+				g.render();
+			}
+		}catch(IOException e){
+			System.err.println("IO error:");
+			e.printStackTrace();
 		}
 		System.out.println("You won");
 	}
