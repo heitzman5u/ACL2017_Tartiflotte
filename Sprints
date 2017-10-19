@@ -1,0 +1,19 @@
+Sprint 1 : (2h)
+
+_ this sprint works with order lines.
+_ creation of a hero which move in 4 directions with the following keys (Z,Q,S,D).
+_ creation of a empty world ; the hero can go outside the world.
+
+
+
+Sprint 2 : (3 weeks)
+
+_ this sprint works with a graphic interface.
+_ creation of a map with tiles.
+_ the world contains some walls.
+_ the world contains an exit ; when the player reaches the exit, he win.
+_ the hero can not go outside the world.
+_ the hero can not move through walls.
+_ creation of monsters.
+_ when the hero is close enough to monsters, monsters goes towards the hero.
+_ when a monster attack the hero, they instantly kill him.
