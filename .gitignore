@@ -1,3 +1,5 @@
 #Fichiers ignorés par git
 bin
 bin/*
+exe
+exe/*
