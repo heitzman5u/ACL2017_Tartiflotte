@@ -41,6 +41,7 @@ public class Main extends BasicGame{
 		
 		//main game loop
 		Game g = new Game();
+		g.render();
 		while(!g.isWon()){
 			g.update();
 			g.render();
