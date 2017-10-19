@@ -5,8 +5,8 @@ import org.newdawn.slick.geom.Vector2f;
 public class Hero {
 	private Vector2f pos;
 	
-	public Hero(){
-		pos = new Vector2f(0,0);
+	public Hero(float x, float y){
+		pos = new Vector2f(x,y);
 	}
 	
 	public void move(float x, float y){
@@ -22,7 +22,7 @@ public class Hero {
 	}
 	
 	public static void main(String[] args){
-		Hero h = new Hero();
+		Hero h = new Hero(0,0);
 		h.render();
 		h.move(2.0f, 3.0f);
 		h.render();
