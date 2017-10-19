@@ -2,13 +2,13 @@
 	<property name="src.dir" value="src"/>
 	<property name="bin.dir" value="bin"/>
 	<property name="jar.dir" value="exe"/>
+	<property name="lib.dir" value="lib"/>
 	<property name="main-class" value="model.Main"/>
 	<property name="jar.name" value="Tartiflotte.jar"/>
 	<property name="native.path" value="lib/natives"/>
-	<property name="lib.path" value="lib"/>
 	
 	<target name="run" depends="jar">
-		<java jar="Tartiflotte.jar" fork="true">
+		<java jar="${jar.dir}/${jar.name}" fork="true">
 			<jvmarg value="-Djava.library.path=lib/natives" />
 		</java>
 	</target>
@@ -19,16 +19,20 @@
 	</target>
 	<target name="compile">
 		<mkdir dir="${bin.dir}"/>
+		<echo message="lib.path : ${lib.dir}/*.jar"/>
 		<javac srcdir="${src.dir}" destdir="${bin.dir}">
 			<classpath>
-	        	<pathelement path="${lib.path}/*.jar"/>
-	    	</classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
 		</javac>
 		<echo message="compilation terminée"/>
 	</target>
 	<target name="jar" depends="compile">
 		<mkdir dir="${jar.dir}"/>
 		<jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
+			<zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
 			<manifest>
 				<attribute name="Main-Class" value="${main-class}"/>
 			</manifest>
