@@ -1,0 +1,7 @@
+<project name="ACL2017_Tartiflotte">
+	<target name="run">
+		<java jar="Tartiflotte.jar" fork="true">
+			<jvmarg value="-Djava.library.path=lib/natives" />
+		</java>
+	</target>
+</project>
