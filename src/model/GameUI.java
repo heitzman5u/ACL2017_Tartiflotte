@@ -28,7 +28,7 @@ public class GameUI extends BasicGame {
 	
 	@Override
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
-		//game.render(g);
+		game.render(g);
 	}
 	
 	@Override

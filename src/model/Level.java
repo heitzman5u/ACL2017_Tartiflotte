@@ -22,6 +22,10 @@ public class Level {
 		map = new TiledMap(file.getFile());
 	}
 	
+	public TiledMap getMap(){
+		return map;
+	}
+	
 	public Hero getHero(){
 		return hero;
 	}

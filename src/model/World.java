@@ -19,6 +19,8 @@ public class World {
 		ladder=new Vector2f(5,5);
 		URL res = getClass().getResource("/maps/main.tmx");
 		level = new Level(res);
+		hero = level.getHero();
+		map = level.getMap();
 	}
 	
 	private void setHero(int x, int y){
@@ -37,7 +39,7 @@ public class World {
 
 	public void render(Graphics g){
 		map.render(0, 0);
-		//hero.render(g);
+		hero.render(g);
 	}
 	
 	public void update(int delta){
