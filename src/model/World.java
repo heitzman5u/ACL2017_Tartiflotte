@@ -1,8 +1,11 @@
 package model;
 
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class World {
+	
+	private TiledMap map;
 	
 	private int height, width;
 	private Vector2f ladder;
