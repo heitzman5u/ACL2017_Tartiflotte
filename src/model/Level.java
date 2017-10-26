@@ -18,7 +18,6 @@ public class Level {
 	}
 
 	private void loadMap(URL file) throws SlickException{
-		System.out.println(file.getFile());
 		map = new TiledMap(file.getFile());
 	}
 	
