@@ -1,22 +1,24 @@
 package model;
 
+import java.net.URL;
+
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class World {
 	
 	private TiledMap map;
+	private Level level;
 	
-	private int height, width;
 	private Vector2f ladder;
 	private Hero hero;
 	
-	public World(int x, int y) {
-		height=y;
-		width=x;
-		
-		ladder=new Vector2f(0,0);
-		hero=new Hero(width/2,height/2);
+	public World(int x, int y) throws SlickException {
+		ladder=new Vector2f(5,5);
+		URL res = getClass().getResource("/maps/main.tmx");
+		level = new Level(res);
 	}
 	
 	private void setHero(int x, int y){
@@ -27,15 +29,19 @@ public class World {
 		ladder=new Vector2f(x,y);
 	}
 	
-	private boolean collideTo(Hero h){
+	private boolean collideToMonster(Hero h){
 		if(h.getPos().distance(getPosLadder())<=4)
 			return true;
 		return false;
 	}
 
-	public void render(){
-		hero.render();
-		//System.out.println("( "+hero.getPos().getX()+" ; "+hero.getPos().getY()+" )\n");
+	public void render(Graphics g){
+		map.render(0, 0);
+		//hero.render(g);
+	}
+	
+	public void update(int delta){
+		hero.update(delta);
 	}
 	
 	private Vector2f getPosHero(){

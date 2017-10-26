@@ -3,6 +3,9 @@ package model;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
 public class Game implements AutoCloseable {
 	public static final int WIN = 1;
 	public static final int IN_GAME = 0;
@@ -16,7 +19,7 @@ public class Game implements AutoCloseable {
 	private static Scanner sc = new Scanner(System.in);
 	
 	
-	public Game(){
+	public Game() throws SlickException{
 		world = new World(30,30);
 		hero = world.getHero();
 	}
@@ -26,8 +29,8 @@ public class Game implements AutoCloseable {
 		
 	}
 	
-	public void update(){
-		String str = sc.nextLine();
+	public void update(int delta){
+		/*String str = sc.nextLine();
 		if(str.length() > 0){
 			char carac = str.charAt(0);
 			if (carac == 'z' || carac == 'Z'){
@@ -42,11 +45,12 @@ public class Game implements AutoCloseable {
 			if (carac == 'd' || carac == 'D'){
 				hero.move(1, 0);
 			}
-		}
+		}*/
+		world.update(delta);
 	}
 	
-	public void render(){
-		world.render();
+	public void render(Graphics g){
+		world.render(g);
 	}
 
 	@Override
