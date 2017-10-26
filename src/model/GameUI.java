@@ -11,6 +11,7 @@ public class GameUI extends BasicGame {
 	private Game game;
 	private GameContainer container;
 
+
 	public GameUI(String title) throws SlickException {
 		super(title);
 	}
