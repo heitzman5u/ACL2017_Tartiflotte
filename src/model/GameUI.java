@@ -6,9 +6,11 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 public class GameUI extends BasicGame {
+	private Game game;
 
 	public GameUI(String title) {
 		super(title);
+		game = new Game();
 	}
 
 	@Override
