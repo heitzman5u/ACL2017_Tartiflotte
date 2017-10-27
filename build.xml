@@ -8,6 +8,11 @@
 	<property name="native.path" value="lib/natives"/>
 	<property name="resources.dir" value="res"/>
 	
+	<path id="project.class.path">
+		<pathelement location="src/"/>
+		<pathelement location="res/"/>
+	</path>
+	
 	<target name="run" depends="jar">
 		<java jar="${jar.dir}/${jar.name}" fork="true">
 			<jvmarg value="-Djava.library.path=lib/natives" />
@@ -20,11 +25,12 @@
 	</target>
 	<target name="compile">
 		<mkdir dir="${bin.dir}"/>
-		<echo message="lib.path : ${lib.dir}/*.jar"/>
 		<javac srcdir="${src.dir}" destdir="${bin.dir}">
 			<classpath>
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar"/>
+				</fileset>
+				<fileset dir="${resources.dir}">
 				</fileset>
 			</classpath>
 		</javac>
@@ -32,11 +38,13 @@
 	</target>
 	<target name="jar" depends="compile">
 		<mkdir dir="${jar.dir}"/>
+		<echo message="Resources : ${resources.dir}"/>
 		<jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
 			<zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
 			<fileset dir="${resources.dir}" />
 			<manifest>
 				<attribute name="Main-Class" value="${main-class}"/>
+				<attribute name="Class-Path" value="images/ maps/ tilesets/"/>
 			</manifest>
 		</jar>
 		<echo message="Creation du fichier jar terminée"/>
