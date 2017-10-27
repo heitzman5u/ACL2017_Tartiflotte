@@ -1,5 +1,6 @@
 package model;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Iterator;
 
@@ -12,14 +13,17 @@ public class Level {
 	private TiledMap map;
 	private Hero hero;
 	
-	public Level(URL file) throws SlickException{
-		loadMap(file);
+	public Level(InputStream file) throws SlickException{
+		map = new TiledMap(file);
 		hero = new Hero(0,  0);
 	}
-
-	private void loadMap(URL file) throws SlickException{
+	
+	public Level(URL file) throws SlickException{
 		map = new TiledMap(file.getFile());
+		hero = new Hero(0, 0);
 	}
+	
+	
 	
 	public TiledMap getMap(){
 		return map;

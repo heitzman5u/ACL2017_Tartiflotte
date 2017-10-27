@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 
 import org.newdawn.slick.Graphics;
@@ -18,9 +19,9 @@ public class World {
 	
 	public World(int x, int y) throws SlickException {
 		ladder=new Vector2f(5,5);
-		URL res = getClass().getResource("/maps/main.tmx");
-		System.out.println(new File(res.getFile()).exists() ? "==================================" : "**********************************");
-		level = new Level(res);
+		level = new Level(getClass().getResourceAsStream("/maps/main.tmx"));
+		//level = new Level(getClass().getResource("/maps/main.tmx"));
+		//level = new Level(ClassLoader.getSystemResource("maps/main.tmx"));
 		hero = level.getHero();
 		map = level.getMap();
 	}

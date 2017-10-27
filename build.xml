@@ -30,15 +30,16 @@
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar"/>
 				</fileset>
-				<fileset dir="${resources.dir}">
-				</fileset>
+				<fileset dir="${resources.dir}"/>
 			</classpath>
 		</javac>
 		<echo message="compilation terminée"/>
 	</target>
 	<target name="jar" depends="compile">
 		<mkdir dir="${jar.dir}"/>
-		<echo message="Resources : ${resources.dir}"/>
+		<copy todir="${jar.dir}">
+			<fileset dir="${resources.dir}" />
+		</copy>
 		<jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
 			<zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
 			<fileset dir="${resources.dir}" />
