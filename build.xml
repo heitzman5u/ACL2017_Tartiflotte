@@ -37,9 +37,6 @@
 	</target>
 	<target name="jar" depends="compile">
 		<mkdir dir="${jar.dir}"/>
-		<copy todir="${jar.dir}">
-			<fileset dir="${resources.dir}" />
-		</copy>
 		<jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
 			<zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
 			<fileset dir="${resources.dir}" />
