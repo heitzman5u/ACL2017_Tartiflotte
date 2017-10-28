@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" source="../tilesets/mountains.tsx"/>
- <tileset firstgid="109" source="../tilesets/grass.tsx"/>
+ <tileset firstgid="1" source="mountains.tsx"/>
+ <tileset firstgid="109" source="grass.tsx"/>
  <layer name="Calque 1" width="10" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACxNmYGAQHsWDBgMA9CmQ3ZABAAA=

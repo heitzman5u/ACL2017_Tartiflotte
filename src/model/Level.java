@@ -13,8 +13,8 @@ public class Level {
 	private TiledMap map;
 	private Hero hero;
 	
-	public Level(InputStream file) throws SlickException{
-		map = new TiledMap(file);
+	public Level(InputStream file, String tilesetLoc) throws SlickException{
+		map = new TiledMap(file, tilesetLoc);
 		hero = new Hero(0,  0);
 	}
 	

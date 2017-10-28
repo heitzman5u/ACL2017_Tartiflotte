@@ -19,8 +19,8 @@ public class World {
 	
 	public World(int x, int y) throws SlickException {
 		ladder=new Vector2f(5,5);
-		//level = new Level(getClass().getResourceAsStream("/maps/main.tmx"));
-		level = new Level(getClass().getResource("/maps/main.tmx"));
+		level = new Level(getClass().getResourceAsStream("/maps/main.tmx"), "maps");
+		//level = new Level(getClass().getResource("/maps/main.tmx"));
 		hero = level.getHero();
 		map = level.getMap();
 	}
