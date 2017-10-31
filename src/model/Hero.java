@@ -11,11 +11,22 @@ public class Hero extends Character {
 		playerController = new PlayerController();
 	}
 	
+	public Hero(Hero other){
+		super(other.getX(), other.getY(), 1);
+		playerController = other.playerController;
+	}
+	
 	public void move(){
 		if (playerController.isMoving()){
 			pos.add(playerController.getMovement().scale(speed));
 		}
 		
+	}
+	
+	public Hero futurePos(){
+		Hero h = new Hero(this);
+		h.move();
+		return h;
 	}
 	
 	public void render(Graphics g){
@@ -24,7 +35,10 @@ public class Hero extends Character {
 	}
 	
 	public void update(int delta){
-		move();
+		if( playerController.isMoving() 
+				&& !world.collideToWall(futurePos()) ){
+			move();
+		}
 	}
 	
 	public PlayerController getPlayerController(){
