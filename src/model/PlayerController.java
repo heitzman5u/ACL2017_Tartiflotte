@@ -64,7 +64,7 @@ public class PlayerController implements KeyListener {
 	}
 
 	public Vector2f getMovement(){
-		return movement;
+		return new Vector2f(movement);
 	}
 
 	public boolean isMoving() {

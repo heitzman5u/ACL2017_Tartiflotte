@@ -10,6 +10,8 @@ public class GameUI extends BasicGame {
 	
 	private Game game;
 	private GameContainer container;
+	
+	private static final int FRAME_RATE = 60;
 
 
 	public GameUI(String title) throws SlickException {
@@ -21,6 +23,7 @@ public class GameUI extends BasicGame {
 		container = arg0;
 		game = new Game();
 		container.getInput().addKeyListener(game.getPlayerController());
+		container.setTargetFrameRate(FRAME_RATE);
 	}
 
 	@Override
