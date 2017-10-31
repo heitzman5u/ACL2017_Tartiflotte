@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class Character {
 	protected SpriteSheet spriteSheet;
 	protected Animation animation;
+	protected World world;
 	
 	protected Vector2f pos;
 	protected float speed;
@@ -22,5 +23,9 @@ public class Character {
 	
 	public void move(float x, float y){
 		pos.add(new Vector2f(x,y));
+	}
+	
+	public void setWorld(World w){
+		world = w;
 	}
 }

@@ -26,12 +26,9 @@ public class Hero extends Character {
 	public void update(int delta){
 		move();
 	}
-		
-	public static void main(String[] args){
-//		Hero h = new Hero(0,0);
-//		h.render();
-//		h.move(2.0f, 3.0f);
-//		h.render();
+	
+	public PlayerController getPlayerController(){
+		return playerController;
 	}
-
+		
 }

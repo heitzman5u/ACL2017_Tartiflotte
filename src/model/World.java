@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Set;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -15,13 +16,17 @@ public class World {
 	private Level level;
 	
 	private Vector2f ladder;
+	
 	private Hero hero;
+	private Set<Monster> lmonsters;
 	
 	public World(int x, int y) throws SlickException {
 		ladder=new Vector2f(5,5);
 		level = new Level(getClass().getResourceAsStream("/maps/main.tmx"), "maps");
-		//level = new Level(getClass().getResource("/maps/main.tmx"));
+		
 		hero = level.getHero();
+		hero.setWorld(this);
+		
 		map = level.getMap();
 	}
 	
@@ -58,5 +63,9 @@ public class World {
 	
 	public Hero getHero(){
 		return hero;
+	}
+	
+	public PlayerController getPlayerController(){
+		return hero.getPlayerController();
 	}
 }

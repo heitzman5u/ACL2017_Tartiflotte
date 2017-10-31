@@ -6,7 +6,7 @@ import java.util.Scanner;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-public class Game implements AutoCloseable {
+public class Game {
 	public static final int WIN = 1;
 	public static final int IN_GAME = 0;
 	public static final int LOOSE = -1;
@@ -15,9 +15,7 @@ public class Game implements AutoCloseable {
 	
 	private Hero hero;
 	private World world;
-	
-	private static Scanner sc = new Scanner(System.in);
-	
+		
 	
 	public Game() throws SlickException{
 		world = new World(30,30);
@@ -30,32 +28,15 @@ public class Game implements AutoCloseable {
 	}
 	
 	public void update(int delta){
-		/*String str = sc.nextLine();
-		if(str.length() > 0){
-			char carac = str.charAt(0);
-			if (carac == 'z' || carac == 'Z'){
-				hero.move(0, -1);
-			}
-			if (carac == 'q' || carac == 'Q'){
-				hero.move(-1, 0);
-			}
-			if (carac == 's' || carac == 'S'){
-				hero.move(0, 1);
-			}
-			if (carac == 'd' || carac == 'D'){
-				hero.move(1, 0);
-			}
-		}*/
 		world.update(delta);
 	}
 	
 	public void render(Graphics g){
 		world.render(g);
 	}
-
-	@Override
-	public void close() throws IOException {
-		sc.close();
+	
+	public PlayerController getPlayerController(){
+		return world.getPlayerController();
 	}
 	
 }

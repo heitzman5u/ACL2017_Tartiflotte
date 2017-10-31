@@ -20,11 +20,12 @@ public class GameUI extends BasicGame {
 	public void init(GameContainer arg0) throws SlickException {
 		container = arg0;
 		game = new Game();
+		container.getInput().addKeyListener(game.getPlayerController());
 	}
 
 	@Override
 	public void update(GameContainer arg0, int delta) throws SlickException {
-		//game.update(delta);
+		game.update(delta);
 	}
 	
 	@Override
