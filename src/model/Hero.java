@@ -1,6 +1,7 @@
 package model;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -43,8 +44,9 @@ public class Hero extends Character {
 	}
 	
 	public void render(Graphics g){
-		g.fillOval(pos.x-16, pos.y-16, 32, 32);
-		g.drawAnimation(animations[3], pos.x, pos.y);
+		g.setColor(new Color(48,48,48));
+		g.fillOval(pos.x-20, pos.y, 40, 16);
+		g.drawAnimation(animations[4], pos.x-40, pos.y-65);
 
 	}
 	
