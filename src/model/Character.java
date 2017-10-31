@@ -5,8 +5,6 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Character {
-	protected SpriteSheet spriteSheet;
-	protected Animation animation;
 	protected World world;
 	
 	protected Vector2f pos;
