@@ -1,5 +1,9 @@
 package model;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.geom.Vector2f;
@@ -7,12 +11,23 @@ import org.newdawn.slick.geom.Vector2f;
 public class PlayerController implements KeyListener {
 	
 	private boolean moving;
-	
-	private Vector2f movement;
+		
+	private Map<Integer, Boolean> pressed = new TreeMap<>();
+	private Map<Integer, Vector2f> movement = new TreeMap<>();
+	private int lastPressed = -1;
 	
 	public PlayerController(){
 		moving = false;
-		movement = new Vector2f(0,0);
+		
+		pressed.put(Input.KEY_Z, false);
+		pressed.put(Input.KEY_S, false);
+		pressed.put(Input.KEY_Q, false);
+		pressed.put(Input.KEY_D, false);
+		
+		movement.put(Input.KEY_Z, new Vector2f(0f, -1f));
+		movement.put(Input.KEY_S, new Vector2f(0f, 1f));
+		movement.put(Input.KEY_Q, new Vector2f(-1f, 0f));
+		movement.put(Input.KEY_D, new Vector2f(1f, 0f));
 	}
 
 	@Override
@@ -34,41 +49,34 @@ public class PlayerController implements KeyListener {
 	
 	@Override
 	public void keyPressed(int key, char arg1) {
-		if (key == Input.KEY_Z){
-			moving = true;
-			movement.x = 0;
-			movement.y = -1;
-		}
-		if (key == Input.KEY_Q){
-			moving = true;
-			movement.x = -1;
-			movement.y = 0;			
-		}
-		if (key == Input.KEY_S){
-			moving = true;
-			movement.x = 0;
-			movement.y = 1;	
-		}
-		if (key == Input.KEY_D){
-			moving = true;
-			movement.x = 1;
-			movement.y = 0;	
+		if(pressed.containsKey(key)){
+			pressed.put(key, true);
+			lastPressed = key;
 		}
 	}
 
 	@Override
-	public void keyReleased(int arg0, char arg1) {
-		moving = false;
-		movement.x = 0;
-		movement.y = 0;
+	public void keyReleased(int key, char arg1) {
+		if(pressed.containsKey(key)){
+			pressed.put(key, false);
+		}
 	}
 
 	public Vector2f getMovement(){
-		return new Vector2f(movement);
+		Boolean moving = pressed.get(lastPressed);
+		if(moving != null && moving){
+			return new Vector2f(movement.get(lastPressed));
+		}
+		return new Vector2f(0f, 0f);
 	}
 
 	public boolean isMoving() {
-		return moving;
+		for(Entry<Integer, Boolean> e : pressed.entrySet()){
+			if(e.getValue() == true){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
