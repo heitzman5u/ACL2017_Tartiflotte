@@ -46,9 +46,15 @@ public class World {
 	}
 	
 	public boolean collideToWall(Hero h){
+		//out of map
+		if((int)h.getX() < 0 || (int)h.getX() >= map.getWidth()*map.getTileWidth()
+				|| (int)h.getY() < 0 || (int)h.getY() >= map.getHeight()*map.getTileHeight()){
+			return true;
+		}
+		//on a wall
 		Image tile = map.getTileImage((int)h.getX()/map.getTileWidth(), 
 				(int)h.getY()/map.getTileHeight(), 
-				map.getLayerIndex("logic"));
+				map.getLayerIndex("solid"));
 		return tile != null;
 	}
 
