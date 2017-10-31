@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Set;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
@@ -42,6 +43,19 @@ public class World {
 		if(h.getPos().distance(getPosLadder())<=4)
 			return true;
 		return false;
+	}
+	
+	public boolean collideToWall(Hero h){
+		//out of map
+		if((int)h.getX() < 0 || (int)h.getX() >= map.getWidth()*map.getTileWidth()
+				|| (int)h.getY() < 0 || (int)h.getY() >= map.getHeight()*map.getTileHeight()){
+			return true;
+		}
+		//on a wall
+		Image tile = map.getTileImage((int)h.getX()/map.getTileWidth(), 
+				(int)h.getY()/map.getTileHeight(), 
+				map.getLayerIndex("solid"));
+		return tile != null;
 	}
 
 	public void render(Graphics g){

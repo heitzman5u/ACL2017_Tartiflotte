@@ -19,6 +19,14 @@ public class Character {
 		return pos;
 	}
 	
+	public float getX(){
+		return pos.x;
+	}
+	
+	public float getY(){
+		return pos.y;
+	}
+	
 	public void move(float x, float y){
 		pos.add(new Vector2f(x,y));
 	}

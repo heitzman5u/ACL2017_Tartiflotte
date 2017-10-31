@@ -13,9 +13,10 @@ public class Hero extends Character {
 	private static final int NB_SPRITE_W = 4;
 	private Animation[] animations = new Animation[NB_SPRITE_H];
 	
+	private static final float SPEED = 0.2f;
 	
 	public Hero(float x, float y){
-		super(x, y, 1);
+		super(x, y, SPEED);
 		playerController = new PlayerController();
 		try {
 			creationAnimations();
@@ -25,21 +26,33 @@ public class Hero extends Character {
 		
 	}
 	
-	public void move(){
-		if (playerController.isMoving()){
-			pos.add(playerController.getMovement().scale(speed));
-		}
-		
+	public Hero(Hero other){
+		super(other.getX(), other.getY(), SPEED);
+		playerController = other.playerController;
+	}
+	
+	public void move(int delta){
+		Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
+		pos.add(vspeed);
+	}
+	
+	public Hero futurePos(int delta){
+		Hero h = new Hero(this);
+		h.move(delta);
+		return h;
 	}
 	
 	public void render(Graphics g){
-		//System.out.println("[ " + pos.getX() + ", " + pos.getY() + " ]\n");
-		g.fillOval(pos.x, pos.y, 32, 32);
+		g.fillOval(pos.x-16, pos.y-16, 32, 32);
 		g.drawAnimation(animations[5], pos.x, pos.y);
+
 	}
 	
 	public void update(int delta){
-		move();
+		if( playerController.isMoving() 
+				&& !world.collideToWall(futurePos(delta)) ){
+			move(delta);
+		}
 	}
 	
 	public PlayerController getPlayerController(){
