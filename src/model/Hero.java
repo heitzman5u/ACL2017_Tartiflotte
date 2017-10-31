@@ -9,15 +9,15 @@ import org.newdawn.slick.geom.Vector2f;
 public class Hero extends Character {
 	private PlayerController playerController;
 	
-	private static final int NB_SPRITE_H = 11; 
-	private static final int NB_SPRITE_W = 4;
-	private Animation[] animations = new Animation[NB_SPRITE_H];
+	private Animation[] animations;
 	
 	private static final float SPEED = 0.2f;
 	
 	public Hero(float x, float y){
 		super(x, y, SPEED);
 		playerController = new PlayerController();
+		
+		animations = new Animation[8];
 		try {
 			creationAnimations();
 		} catch (SlickException e) {
@@ -44,7 +44,7 @@ public class Hero extends Character {
 	
 	public void render(Graphics g){
 		g.fillOval(pos.x-16, pos.y-16, 32, 32);
-		g.drawAnimation(animations[5], pos.x, pos.y);
+		g.drawAnimation(animations[3], pos.x, pos.y);
 
 	}
 	
@@ -60,21 +60,25 @@ public class Hero extends Character {
 	}
 	
 	private void creationAnimations() throws SlickException{
-		SpriteSheet spriteSheet = new SpriteSheet("hero", getClass().getResourceAsStream("/hero/images/hero.png"), 74, 56);
+		SpriteSheet spriteSheet = new SpriteSheet("hero", getClass().getResourceAsStream("/hero/images/hero.png"), 80, 80);
 				
 		// STOP POSITIONS
 		int nbDirections = 4;
 		for (int i = 0 ; i < nbDirections ; i++){
 			Animation animation = new Animation();
-			animation.addFrame(spriteSheet.getSprite(0, i), 100);
+			if (i == 1){
+				animation.addFrame(spriteSheet.getSprite(5, i), 100);
+			} else {
+				animation.addFrame(spriteSheet.getSprite(0, i), 100);
+			}
 			animations[i] = animation;
 		}
 		
 		// MOVING POSITIONS
-		for (int j = 0 ; j < NB_SPRITE_W ; j++){
+		for (int j = 0 ; j < 4 ; j++){
 			Animation animation = new Animation();
-			for (int i = 0 ; i < NB_SPRITE_H ; i++){
-				animation.addFrame(spriteSheet.getSprite(j, i), 100);
+			for (int i = 0 ; i < 6 ; i++){
+				animation.addFrame(spriteSheet.getSprite(i, j), 100);
 			}
 			animations[j+nbDirections] = animation;
 		}
