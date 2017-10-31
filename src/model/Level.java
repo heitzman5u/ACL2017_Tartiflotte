@@ -12,18 +12,19 @@ public class Level {
 	
 	private TiledMap map;
 	private Hero hero;
+	private Monster monster;
 	
 	public Level(InputStream file, String tilesetLoc) throws SlickException{
 		map = new TiledMap(file, tilesetLoc);
-		hero = new Hero(0,  0);
+		monster = new Monster(150, 150);
+		hero = new Hero(0, 0);
 	}
 	
 	public Level(URL file) throws SlickException{
 		map = new TiledMap(file.getFile());
+		monster = new Monster(150, 150);
 		hero = new Hero(0, 0);
 	}
-	
-	
 	
 	public TiledMap getMap(){
 		return map;
@@ -31,6 +32,10 @@ public class Level {
 	
 	public Hero getHero(){
 		return hero;
+	}
+	
+	public Monster getMonster(){
+		return monster;
 	}
 	
 	public Iterator<Monster> getMonsters(){

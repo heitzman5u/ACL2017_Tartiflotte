@@ -19,7 +19,7 @@ public class World {
 	private Vector2f ladder;
 	
 	private Hero hero;
-	private Set<Monster> lmonsters;
+	private Monster monster;
 	
 	public World(int x, int y) throws SlickException {
 		ladder=new Vector2f(5,5);
@@ -27,6 +27,9 @@ public class World {
 		
 		hero = level.getHero();
 		hero.setWorld(this);
+		
+		monster = level.getMonster();
+		monster.setWorld(this);
 		
 		map = level.getMap();
 	}
@@ -61,6 +64,7 @@ public class World {
 	public void render(Graphics g){
 		map.render(0, 0);
 		hero.render(g);
+		monster.render(g);
 	}
 	
 	public void update(int delta){

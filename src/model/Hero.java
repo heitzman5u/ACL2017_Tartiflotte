@@ -47,7 +47,6 @@ public class Hero extends Character {
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
 		g.drawAnimation(animations[4], pos.x-40, pos.y-65);
-
 	}
 	
 	public void update(int delta){
