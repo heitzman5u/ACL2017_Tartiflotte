@@ -5,6 +5,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Monster extends Character {
 	
@@ -21,6 +22,14 @@ public class Monster extends Character {
 		}
 	}
 
+	public void move(int delta){
+		//TODO
+	}
+	
+	public void update(int delta){
+		world.distanceWithHero(this);
+		move(delta);
+	}
 	
 	public void render(Graphics g){
 		g.setColor(new Color(48,48,48));

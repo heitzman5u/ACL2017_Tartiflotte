@@ -69,6 +69,7 @@ public class World {
 	
 	public void update(int delta){
 		hero.update(delta);
+		monster.update(delta);
 	}
 	
 	private Vector2f getPosHero(){
@@ -81,6 +82,10 @@ public class World {
 	
 	public Hero getHero(){
 		return hero;
+	}
+	
+	public Vector2f distanceWithHero(Monster m){
+		return new Vector2f(hero.pos.x - m.pos.x, hero.pos.y - m.pos.y);
 	}
 	
 	public PlayerController getPlayerController(){
