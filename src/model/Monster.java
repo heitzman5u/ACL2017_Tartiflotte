@@ -33,7 +33,7 @@ public class Monster extends Character {
 		float xHero = world.distanceWithHero(this).x;
 		float yHero = world.distanceWithHero(this).y;
 		
-		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= 20000) && ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= 600)){
+		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= 80000) && ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= 600)){
 			moving = true;
 			pos.add(direction(xHero, yHero).scale(speed));	
 		} else {

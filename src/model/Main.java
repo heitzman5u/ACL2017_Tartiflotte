@@ -13,7 +13,7 @@ public class Main {
 	
 	public static void main(String[] args){
 		try {
-			new AppGameContainer(new GameUI("title"), 320, 320, false).start();
+			new AppGameContainer(new GameUI("title"), 1120, 800, false).start();
 		} catch (SlickException e) {
 			System.err.println("SlickException!");
 			e.printStackTrace();
@@ -21,22 +21,6 @@ public class Main {
 			System.err.println("Exception");
 			t.printStackTrace();
 		}
-		
-		//main game loop
-//		try(Game g = new Game()){ //try with statement to ensure correct resource close (Scanner)
-//			g.render();
-//			while(!g.isWon()){
-//				g.update();
-//				g.render();
-//			}
-//		}catch(IOException e){
-//			System.err.println("IO error:");
-//			e.printStackTrace();
-//		}catch(SlickException e){
-//			System.err.println("Slick exception");
-//			e.printStackTrace();
-//		}
-//		System.out.println("You won");
 	}
 	
 
