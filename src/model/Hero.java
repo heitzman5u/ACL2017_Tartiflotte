@@ -12,13 +12,14 @@ public class Hero extends Character {
 	
 	private Animation[] animations;
 	
-	private static final float SPEED = 0.2f;
+	private static final float SPEED = 0.2f;	
 	
 	public Hero(float x, float y){
 		super(x, y, SPEED);
 		playerController = new PlayerController();
 		
-		animations = new Animation[8];
+		
+		animations = new Animation[9];
 		try {
 			creationAnimations();
 		} catch (SlickException e) {
@@ -33,8 +34,10 @@ public class Hero extends Character {
 	}
 	
 	public void move(int delta){
-		Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
-		pos.add(vspeed);
+		if (isAlive()){
+			Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
+			pos.add(vspeed);
+		}
 	}
 	
 	public Hero futurePos(int delta){
@@ -46,7 +49,12 @@ public class Hero extends Character {
 	public void render(Graphics g){
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
-		g.drawAnimation(animations[4], pos.x-40, pos.y-65);
+		if (isAlive()){
+			g.drawAnimation(animations[4], pos.x-40, pos.y-65);
+		} else {
+			g.drawAnimation(animations[8], pos.x-40, pos.y-65);
+		}
+
 	}
 	
 	public void update(int delta){
@@ -83,6 +91,11 @@ public class Hero extends Character {
 			}
 			animations[j+nbDirections] = animation;
 		}
+		
+		// DEAD POSITIONS
+		Animation animation = new Animation();
+		animation.addFrame(spriteSheet.getSprite(0, 4), 100);
+		animations[8] = animation;		
 		//--
 	}
 		

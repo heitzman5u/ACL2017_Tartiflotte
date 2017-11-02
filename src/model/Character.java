@@ -10,9 +10,12 @@ public class Character {
 	protected Vector2f pos;
 	protected float speed;
 	
+	protected boolean alive;
+	
 	protected Character(float x, float y, float speed){
 		pos = new Vector2f(x,y);
 		this.speed = speed;
+		alive = true;
 	}
 	
 	public Vector2f getPos(){
@@ -30,7 +33,15 @@ public class Character {
 	public void move(float x, float y){
 		pos.add(new Vector2f(x,y));
 	}
-	
+		
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
 	public void setWorld(World w){
 		world = w;
 	}

@@ -17,7 +17,7 @@ public class Level {
 	public Level(InputStream file, String tilesetLoc) throws SlickException{
 		map = new TiledMap(file, tilesetLoc);
 		monster = new Monster(150, 150);
-		hero = new Hero(0, 0);
+		hero = new Hero(30, 60);
 	}
 	
 	public Level(URL file) throws SlickException{

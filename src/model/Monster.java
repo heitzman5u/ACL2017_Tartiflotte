@@ -79,16 +79,6 @@ public class Monster extends Character {
 		g.drawAnimation(animations[direction + (moving ? 4 : 0)], pos.x-40, pos.y-65);
 	}
 	
-//	private void selectAnimation(){
-//		if (moving == false){
-//			
-//		}
-//		if (direction.y == 1){
-//			
-//		}
-//		
-//	}
-	
 	private void creationAnimations() throws SlickException{
 		SpriteSheet spriteSheet = new SpriteSheet("lycan", getClass().getResourceAsStream("/monsters/images/lycan.png"), 80, 80);
 				
