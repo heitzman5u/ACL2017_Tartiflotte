@@ -14,6 +14,8 @@ public class Monster extends Character {
 	private boolean moving;
 	private int direction;
 	
+	private boolean attack;
+	
 	private static final float SPEED = 2.0f;
 	
 	public Monster(float x, float y){
@@ -21,6 +23,8 @@ public class Monster extends Character {
 		
 		moving = false;
 		direction = 0;
+		
+		attack = false;
 		
 		animations = new Animation[8];
 		try {
@@ -40,6 +44,17 @@ public class Monster extends Character {
 		} else {
 			moving = false;
 		}
+	}
+	
+	public void attack(){
+		float xHero = world.distanceWithHero(this).getX();
+		float yHero = world.distanceWithHero(this).getY();
+
+		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= 600)){
+			attack = true;
+			world.getHero().setAlive(false);
+		}
+
 	}
 	
 	private Vector2f direction(float xHero, float yHero){
@@ -72,13 +87,28 @@ public class Monster extends Character {
 	
 	public void update(int delta){
 			move(delta);
-		
+			attack();
 	}
 	
 	public void render(Graphics g){
+		// MONSTER ANIMATION
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
 		g.drawAnimation(animations[direction + (moving ? 4 : 0)], pos.x-40, pos.y-65);
+		
+		// ATTACK ANIMATION
+		if (attack == true){
+			try {
+				SpriteSheet spriteSheet;
+				spriteSheet = new SpriteSheet("griffure", getClass().getResourceAsStream("/monsters/images/griffure.png"), 60, 60);
+				Animation attackAnim = new Animation();
+				attackAnim.addFrame(spriteSheet.getSprite(0, 0), 100);
+				g.drawAnimation(attackAnim, world.getHero().getX()-30, world.getHero().getY()-30);
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		}
+		// --
 	}
 	
 	private void creationAnimations() throws SlickException{
