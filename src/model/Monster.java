@@ -30,8 +30,8 @@ public class Monster extends Character {
 	}
 
 	public void move(int delta){
-		float xHero = world.distanceWithHero(this).x;
-		float yHero = world.distanceWithHero(this).y;
+		float xHero = world.distanceWithHero(this).getX();
+		float yHero = world.distanceWithHero(this).getY();
 		
 		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= 80000) && ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= 600)){
 			moving = true;
