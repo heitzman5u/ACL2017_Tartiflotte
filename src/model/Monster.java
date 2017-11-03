@@ -11,9 +11,7 @@ public class Monster extends Character {
 	
 	private Animation[] animations;
 	
-	private boolean moving;
-	private int direction;
-	
+	private boolean moving;	
 	private boolean attack;
 	
 	private static final float SPEED = 2.0f;

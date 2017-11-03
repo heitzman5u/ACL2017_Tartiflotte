@@ -40,6 +40,20 @@ public class Hero extends Character {
 		}
 	}
 	
+	private void setDirection(){
+		Vector2f vspeed = playerController.getMovement();
+		float x = vspeed.getX();
+		float y = vspeed.getY();
+		if (x == -1)
+			direction = 1;
+		if (x == 1)
+			direction = 0;
+		if (y == -1)
+			direction = 2;
+		if (y == 1)
+			direction = 3;
+	}
+	
 	public Hero futurePos(int delta){
 		Hero h = new Hero(this);
 		h.move(delta);
@@ -50,7 +64,7 @@ public class Hero extends Character {
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
 		if (isAlive()){
-			g.drawAnimation(animations[4], pos.x-40, pos.y-65);
+			g.drawAnimation(animations[direction + (playerController.isMoving() ? 4 : 0)], pos.x-40, pos.y-65);
 		} else {
 			g.drawAnimation(animations[8], pos.x-40, pos.y-65);
 		}
@@ -60,6 +74,7 @@ public class Hero extends Character {
 	public void update(int delta){
 		if(playerController.isMoving() 
 				&& !world.collideToWall(futurePos(delta)) ){
+			setDirection();
 			move(delta);
 		}
 	}
