@@ -100,7 +100,7 @@ public class Monster extends Character {
 		if (attack == true){
 			try {
 				SpriteSheet spriteSheet;
-				spriteSheet = new SpriteSheet("griffure", getClass().getResourceAsStream("/monsters/images/griffure.png"), 60, 60);
+				spriteSheet = new SpriteSheet("griffure", getClass().getResourceAsStream("/monsters/images/scratch.png"), 60, 60);
 				Animation attackAnim = new Animation();
 				attackAnim.addFrame(spriteSheet.getSprite(0, 0), 100);
 				g.drawAnimation(attackAnim, world.getHero().getX()-30, world.getHero().getY()-30);
