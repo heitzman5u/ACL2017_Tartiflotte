@@ -58,7 +58,7 @@ public class Hero extends Character {
 	}
 	
 	public void update(int delta){
-		if( playerController.isMoving() 
+		if(playerController.isMoving() 
 				&& !world.collideToWall(futurePos(delta)) ){
 			move(delta);
 		}

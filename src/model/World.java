@@ -48,7 +48,7 @@ public class World {
 		return false;
 	}
 	
-	public boolean collideToWall(Hero h){
+	public boolean collideToWall(Character h){
 		//out of map
 		if((int)h.getX() < 0 || (int)h.getX() >= map.getWidth()*map.getTileWidth()
 				|| (int)h.getY() < 0 || (int)h.getY() >= map.getHeight()*map.getTileHeight()){

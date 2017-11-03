@@ -14,9 +14,10 @@ public class Monster extends Character {
 	private boolean moving;
 	private int direction;
 	
+	private static final float SPEED = 2.0f;
 	
 	public Monster(float x, float y){
-		super(x, y, 2.0f);
+		super(x, y, SPEED);
 		
 		moving = false;
 		direction = 0;
@@ -28,7 +29,7 @@ public class Monster extends Character {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void move(int delta){
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
@@ -70,7 +71,8 @@ public class Monster extends Character {
 	}
 	
 	public void update(int delta){
-		move(delta);
+			move(delta);
+		
 	}
 	
 	public void render(Graphics g){
