@@ -15,6 +15,8 @@ public class Monster extends Character {
 	private boolean attack;
 	
 	private static final float SPEED = 2.0f;
+	private static final float ATTACK_DISTANCE = 600f;
+	private static final float VIEW_DISTANCE = 80_000f;
 	
 	public Monster(float x, float y){
 		super(x, y, SPEED);
@@ -36,7 +38,9 @@ public class Monster extends Character {
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
 		
-		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= 80000) && ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= 600)){
+		//move only if within his view range
+		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= VIEW_DISTANCE) 
+				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= ATTACK_DISTANCE)){
 			moving = true;
 			pos.add(direction(xHero, yHero).scale(speed));	
 		} else {
@@ -48,7 +52,8 @@ public class Monster extends Character {
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
 
-		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= 600)){
+		//attack only if within the range
+		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= ATTACK_DISTANCE)){
 			attack = true;
 			world.getHero().setAlive(false);
 		}

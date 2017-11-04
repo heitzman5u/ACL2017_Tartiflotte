@@ -35,6 +35,7 @@ public class Hero extends Character {
 	
 	public void move(int delta){
 		if (isAlive()){
+			//scale to have constant speed
 			Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
 			pos.add(vspeed);
 		}

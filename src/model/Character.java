@@ -12,7 +12,7 @@ public class Character {
 	
 	protected boolean alive;
 	
-	protected int direction;
+	protected int direction; //direction the character faces
 	
 	protected Character(float x, float y, float speed){
 		pos = new Vector2f(x,y);

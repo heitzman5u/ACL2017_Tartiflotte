@@ -12,18 +12,20 @@ public class PlayerController implements KeyListener {
 	
 	private boolean moving;
 		
-	private Map<Integer, Boolean> pressed = new TreeMap<>();
-	private Map<Integer, Vector2f> movement = new TreeMap<>();
+	private Map<Integer, Boolean> pressed = new TreeMap<>(); //whether a key is pressed or not
+	private Map<Integer, Vector2f> movement = new TreeMap<>(); //associate a key with a speed vector
 	private int lastPressed = -1;
 	
 	public PlayerController(){
 		moving = false;
 		
+		//fill map with default values (non moving)
 		pressed.put(Input.KEY_Z, false);
 		pressed.put(Input.KEY_S, false);
 		pressed.put(Input.KEY_Q, false);
 		pressed.put(Input.KEY_D, false);
 		
+		//fill map with default values (1 unit vectors with good direction)
 		movement.put(Input.KEY_Z, new Vector2f(0f, -1f));
 		movement.put(Input.KEY_S, new Vector2f(0f, 1f));
 		movement.put(Input.KEY_Q, new Vector2f(-1f, 0f));
@@ -64,6 +66,7 @@ public class PlayerController implements KeyListener {
 
 	public Vector2f getMovement(){
 		Boolean moving = pressed.get(lastPressed);
+		//check if we are moving, and get a copy of the speed vector
 		if(moving != null && moving){
 			return new Vector2f(movement.get(lastPressed));
 		}
