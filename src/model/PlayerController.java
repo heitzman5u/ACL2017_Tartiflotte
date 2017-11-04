@@ -2,6 +2,7 @@ package model;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import org.newdawn.slick.Input;
@@ -9,15 +10,13 @@ import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.geom.Vector2f;
 
 public class PlayerController implements KeyListener {
-	
-	private boolean moving;
 		
 	private Map<Integer, Boolean> pressed = new TreeMap<>(); //whether a key is pressed or not
 	private Map<Integer, Vector2f> movement = new TreeMap<>(); //associate a key with a speed vector
-	private int lastPressed = -1;
+	private Map<Integer, Integer> direction = new TreeMap<>(); //associate a key with a direction
+	private int lastPressed = Input.KEY_S; //facing south by default
 	
 	public PlayerController(){
-		moving = false;
 		
 		//fill map with default values (non moving)
 		pressed.put(Input.KEY_Z, false);
@@ -30,6 +29,12 @@ public class PlayerController implements KeyListener {
 		movement.put(Input.KEY_S, new Vector2f(0f, 1f));
 		movement.put(Input.KEY_Q, new Vector2f(-1f, 0f));
 		movement.put(Input.KEY_D, new Vector2f(1f, 0f));
+		
+		//fill map with default values (good directions)
+		direction.put(Input.KEY_Z, 2);
+		direction.put(Input.KEY_S, 3);
+		direction.put(Input.KEY_Q, 1);
+		direction.put(Input.KEY_D, 0);
 	}
 
 	@Override
@@ -80,6 +85,10 @@ public class PlayerController implements KeyListener {
 			}
 		}
 		return false;
+	}
+	
+	public int getDirection(){
+		return direction.get(lastPressed);
 	}
 	
 }
