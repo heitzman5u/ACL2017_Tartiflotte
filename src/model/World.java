@@ -20,6 +20,7 @@ public class World {
 	
 	private Hero hero;
 	private Monster monster;
+	private Exit exit;
 	
 	public World(int x, int y) throws SlickException {
 		ladder=new Vector2f(5,5);
@@ -30,6 +31,9 @@ public class World {
 		
 		monster = level.getMonster();
 		monster.setWorld(this);
+		
+		exit = level.getExit();
+		exit.setWorld(this);
 		
 		map = level.getMap();
 	}
@@ -64,11 +68,13 @@ public class World {
 	public void render(Graphics g){
 		map.render(0, 0);
 		hero.render(g);
+		exit.render(g);
 		monster.render(g);
 	}
 	
 	public void update(int delta){
 		hero.update(delta);
+		exit.update(delta);
 		monster.update(delta);
 	}
 	
@@ -85,7 +91,19 @@ public class World {
 	}
 	
 	public Vector2f distanceWithHero(Monster m){
-		return new Vector2f(hero.pos.x - m.pos.x, hero.pos.y - m.pos.y);
+		return new Vector2f(hero.getX() - m.getX(), hero.getY() - m.getY());
+	}
+
+	public boolean heroOnExitCase(Exit e){
+		float xLeft = e.getTopLeft().getX();
+		float xRight = e.getBottomRight().getX();
+		float yTop = e.getTopLeft().getY();
+		float yBot = e.getBottomRight().getY();
+		
+		if(hero.getX() >= xLeft && hero.getX() <= xRight && hero.getY() >= yTop && hero.getY() <= yBot){
+			return true;
+		}
+		return false;
 	}
 	
 	public PlayerController getPlayerController(){

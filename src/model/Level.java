@@ -1,11 +1,13 @@
 package model;
 
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Iterator;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Level {
@@ -15,16 +17,21 @@ public class Level {
 	
 	private Monster monster;
 	
+	private Exit exit;
+	
 	public Level(InputStream file, String tilesetLoc) throws SlickException{
 		map = new TiledMap(file, tilesetLoc);
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
+		exit = new Exit(new Point(840, 350), new Point(900, 370));
+		
 	}
 	
 	public Level(URL file) throws SlickException{
 		map = new TiledMap(file.getFile());
-		monster = new Monster(150, 150);
-		hero = new Hero(0, 0);
+		monster = new Monster(30, 260);
+		hero = new Hero(30, 260);
+		exit = new Exit(new Point(850, 350), new Point(900, 370));
 	}
 	
 	public TiledMap getMap(){
@@ -37,6 +44,10 @@ public class Level {
 	
 	public Monster getMonster(){
 		return monster;
+	}
+	
+	public Exit getExit(){
+		return exit;
 	}
 	
 	public Iterator<Monster> getMonsters(){
