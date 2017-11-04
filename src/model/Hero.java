@@ -42,7 +42,7 @@ public class Hero extends Character {
 	}
 	
 	private void setDirection(){
-		Vector2f vspeed = playerController.getMovement();
+		/*Vector2f vspeed = playerController.getMovement();
 		float x = vspeed.getX();
 		float y = vspeed.getY();
 		if (x == -1)
@@ -52,7 +52,8 @@ public class Hero extends Character {
 		if (y == -1)
 			direction = 2;
 		if (y == 1)
-			direction = 3;
+			direction = 3;*/
+		direction = playerController.getDirection();
 	}
 	
 	public Hero futurePos(int delta){
@@ -73,9 +74,9 @@ public class Hero extends Character {
 	}
 	
 	public void update(int delta){
+		setDirection();
 		if(playerController.isMoving() 
 				&& !world.collideToWall(futurePos(delta)) ){
-			setDirection();
 			move(delta);
 		}
 	}

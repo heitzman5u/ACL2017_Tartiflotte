@@ -20,6 +20,12 @@ public class Character {
 		alive = true;
 	}
 	
+	protected Character(float x, float y, float speed, int d, World w){
+		this(x, y, speed);
+		direction = d;
+		world = w;
+	}
+	
 	public Vector2f getPos(){
 		return pos;
 	}
