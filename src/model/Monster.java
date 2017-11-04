@@ -34,11 +34,21 @@ public class Monster extends Character {
 		}
 	}
 	
+	private Monster(Monster other){
+		super(other.getX(), other.getY(), SPEED, other.direction, other.world);
+		
+		moving = other.moving;
+		attack = other.attack;
+		
+		//shallow copy of animations (because they should share the same animations, no deep copy needed)
+		animations = other.animations;
+	}
+	
 	public void move(int delta){
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
 		
-		//move only if within his view range
+		//move only if the hero is within his view range, and no collisions will occur
 		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= VIEW_DISTANCE) 
 				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= ATTACK_DISTANCE)){
 			moving = true;
@@ -46,6 +56,12 @@ public class Monster extends Character {
 		} else {
 			moving = false;
 		}
+	}
+	
+	private Monster futurePos(int delta){
+		Monster m = new Monster(this);
+		m.move(delta);
+		return m;
 	}
 	
 	public void attack(){
@@ -89,8 +105,10 @@ public class Monster extends Character {
 	}
 	
 	public void update(int delta){
+		if(!world.collideToWall(futurePos(delta))){
 			move(delta);
-			attack();
+		}
+		attack();
 	}
 	
 	public void render(Graphics g){
