@@ -7,6 +7,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+/**
+ * main character of the game ; character that the player control
+ * @author Tartiflotte
+ */
 public class Hero extends Character {
 	private PlayerController playerController;
 	
@@ -28,6 +32,11 @@ public class Hero extends Character {
 		
 	}
 	
+	/**
+	 * 
+	 * @param delta
+	 * Allow the hero to move towards the hero
+	 */
 	public Hero(Hero other){
 		super(other.getX(), other.getY(), SPEED);
 		playerController = other.playerController;
@@ -41,27 +50,22 @@ public class Hero extends Character {
 		}
 	}
 	
-	private void setDirection(){
-		/*Vector2f vspeed = playerController.getMovement();
-		float x = vspeed.getX();
-		float y = vspeed.getY();
-		if (x == -1)
-			direction = 1;
-		if (x == 1)
-			direction = 0;
-		if (y == -1)
-			direction = 2;
-		if (y == 1)
-			direction = 3;*/
-		direction = playerController.getDirection();
-	}
-	
+
+	/**
+	 * 
+	 * @param delta
+	 * @return the future position of the Hero ; needed to the collisions
+	 */
 	public Hero futurePos(int delta){
 		Hero h = new Hero(this);
 		h.move(delta);
 		return h;
 	}
 	
+	/**
+	 * 
+	 * @see Game.render()
+	 */
 	public void render(Graphics g){
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
@@ -73,6 +77,10 @@ public class Hero extends Character {
 
 	}
 	
+	/**
+	 * 
+	 * @see Game.update()
+	 */
 	public void update(int delta){
 		setDirection();
 		if(playerController.isMoving() 
@@ -81,10 +89,10 @@ public class Hero extends Character {
 		}
 	}
 	
-	public PlayerController getPlayerController(){
-		return playerController;
-	}
-	
+	/**
+	 * 
+	 * create the differents animations of the hero thanks to his SpriteSheet
+	 */
 	private void creationAnimations() throws SlickException{
 		SpriteSheet spriteSheet = new SpriteSheet("hero", getClass().getResourceAsStream("/hero/images/hero.png"), 80, 80);
 				
@@ -115,6 +123,13 @@ public class Hero extends Character {
 		animations[8] = animation;		
 		//--
 	}
-		
+	
+	public PlayerController getPlayerController(){
+		return playerController;
+	}
+	
+	private void setDirection(){
+		direction = playerController.getDirection();
+	}
 		
 }

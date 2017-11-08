@@ -6,6 +6,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+/**
+ * graphic interfacce of the game
+ * @author Tartiflotte
+ */
 public class GameUI extends BasicGame {
 	
 	private Game game;
@@ -27,11 +31,17 @@ public class GameUI extends BasicGame {
 	}
 
 	@Override
+	/**
+	 * @see Game.update()
+	 */
 	public void update(GameContainer arg0, int delta) throws SlickException {
 		game.update(delta);
 	}
 	
 	@Override
+	/**
+	 * @see Game.render()
+	 */
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		game.render(g);
 	}

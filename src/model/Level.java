@@ -10,6 +10,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
+/**
+ * load the elements of the map
+ * @author Tartiflotte
+ */
 public class Level {
 	
 	private TiledMap map;
@@ -27,11 +31,26 @@ public class Level {
 		
 	}
 	
-	public Level(URL file) throws SlickException{
-		map = new TiledMap(file.getFile());
-		monster = new Monster(30, 260);
-		hero = new Hero(30, 260);
-		exit = new Exit(new Point(850, 350), new Point(900, 370));
+	/**
+	 * 
+	 * @param x abscissa of the character
+	 * @param y ordinate of the character
+	 * @return true if the character collides to a wall ; false if not
+	 */
+	public boolean collides(float x, float y){
+		Image tile = this.map.getTileImage( //tile wich corresponds with the hero's position
+                (int) x / this.map.getTileWidth(), 
+                (int) y / this.map.getTileHeight(), 
+                this.map.getLayerIndex("logic"));
+		return tile != null; //null if no "logic" tile found there
+	}
+	
+	public int getWidth(){
+		return map.getWidth();
+	}
+	
+	public int getHeight(){
+		return map.getHeight();
 	}
 	
 	public TiledMap getMap(){
@@ -52,22 +71,6 @@ public class Level {
 	
 	public Iterator<Monster> getMonsters(){
 		return null; //TODO
-	}
-	
-	public boolean collides(float x, float y){
-		Image tile = this.map.getTileImage( //tile wich corresponds with the hero's position
-                (int) x / this.map.getTileWidth(), 
-                (int) y / this.map.getTileHeight(), 
-                this.map.getLayerIndex("logic"));
-		return tile != null; //null if no "logic" tile found there
-	}
-	
-	public int getWidth(){
-		return map.getWidth();
-	}
-	
-	public int getHeight(){
-		return map.getHeight();
 	}
 	
 }

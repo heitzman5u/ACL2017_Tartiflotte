@@ -11,6 +11,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+/**
+ * represents the elements which will be displayed on the graphic interface
+ * @author Tartiflotte
+ */
 public class World {
 	
 	private TiledMap map;
@@ -38,20 +42,22 @@ public class World {
 		map = level.getMap();
 	}
 	
-	private void setHero(int x, int y){
-		hero=new Hero(x,y);
-	}
-	
-	private void setLadder(int x, int y){
-		ladder=new Vector2f(x,y);
-	}
-	
+	/**
+	 * 
+	 * @param h Hero
+	 * @return true if the hero collide to monster ; false if not
+	 */
 	private boolean collideToMonster(Hero h){
 		if(h.getPos().distance(getPosLadder())<=4)
 			return true;
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param h Character (monster or hero)
+	 * @return true if the character is out of the map or collide to a wall
+	 */
 	public boolean collideToWall(Character h){
 		//out of map
 		if((int)h.getX() < 0 || (int)h.getX() >= map.getWidth()*map.getTileWidth()
@@ -65,6 +71,10 @@ public class World {
 		return tile != null;
 	}
 
+	/**
+	 * 
+	 * @see Game.render()
+	 */
 	public void render(Graphics g){
 		map.render(0, 0);
 		hero.render(g);
@@ -72,10 +82,40 @@ public class World {
 		monster.render(g);
 	}
 	
+	/**
+	 * 
+	 * @see Game.update()
+	 */
 	public void update(int delta){
 		hero.update(delta);
 		exit.update(delta);
 		monster.update(delta);
+	}
+	
+	/**
+	 * 
+	 * @param m Monster
+	 * @return the distance between the monster m and the hero
+	 */
+	public Vector2f distanceWithHero(Monster m){
+		return new Vector2f(hero.getX() - m.getX(), hero.getY() - m.getY());
+	}
+	
+	/**
+	 * 
+	 * @param e Exit zone
+	 * @return true if the hero is on an Exit zone ; false if not
+	 */
+	public boolean heroOnExitCase(Exit e){
+		float xLeft = e.getTopLeft().getX();
+		float xRight = e.getBottomRight().getX();
+		float yTop = e.getTopLeft().getY();
+		float yBot = e.getBottomRight().getY();
+		
+		if(hero.getX() >= xLeft && hero.getX() <= xRight && hero.getY() >= yTop && hero.getY() <= yBot){
+			return true;
+		}
+		return false;
 	}
 	
 	private Vector2f getPosHero(){
@@ -90,23 +130,15 @@ public class World {
 		return hero;
 	}
 	
-	public Vector2f distanceWithHero(Monster m){
-		return new Vector2f(hero.getX() - m.getX(), hero.getY() - m.getY());
-	}
-
-	public boolean heroOnExitCase(Exit e){
-		float xLeft = e.getTopLeft().getX();
-		float xRight = e.getBottomRight().getX();
-		float yTop = e.getTopLeft().getY();
-		float yBot = e.getBottomRight().getY();
-		
-		if(hero.getX() >= xLeft && hero.getX() <= xRight && hero.getY() >= yTop && hero.getY() <= yBot){
-			return true;
-		}
-		return false;
-	}
-	
 	public PlayerController getPlayerController(){
 		return hero.getPlayerController();
+	}
+	
+	private void setHero(int x, int y){
+		hero=new Hero(x,y);
+	}
+	
+	private void setLadder(int x, int y){
+		ladder=new Vector2f(x,y);
 	}
 }
