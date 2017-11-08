@@ -27,6 +27,7 @@ public class PlayerController implements KeyListener {
 	private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
 	private int lastPressed = Input.KEY_S; //facing south by default
+	private int lastDirection = 3;
 	
 	/**
 	 * The constructor initializes the attribute inputs.
@@ -111,7 +112,32 @@ public class PlayerController implements KeyListener {
 	 * @return
 	 */
 	public int getDirection(){
-		return inputs.get(lastPressed).getDirection();
+		//return inputs.get(lastPressed).getDirection();
+		double angle=getMovement().getTheta();
+		double demiQuart=360/8;
+		int dir=lastDirection;
+		
+		if(getMovement().length()==0){
+			return lastDirection;
+		}
+		
+		if((angle<demiQuart) || angle>7*demiQuart){
+			dir=0;
+		}
+		else if(angle>=demiQuart && angle<=3*demiQuart){
+			dir=3; 
+		}
+		else if(angle>3*demiQuart && angle<5*demiQuart){
+			dir=1;
+		}
+		else if(angle>=5*demiQuart && angle<=7*demiQuart){
+			dir=2;
+		}
+		else{
+			return lastDirection;
+		}
+		lastDirection=dir;
+		return dir;
 	}
 	
 }
