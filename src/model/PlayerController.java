@@ -26,8 +26,7 @@ public class PlayerController implements KeyListener {
 	
 	private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
-	private int lastPressed = Input.KEY_S; //facing south by default
-	private int lastDirection = 3;
+	private int lastDirection = 3;//facing south by default
 	
 	/**
 	 * The constructor initializes the attribute inputs.
@@ -67,7 +66,6 @@ public class PlayerController implements KeyListener {
 	public void keyPressed(int key, char arg1) {
 		if(inputs.containsKey(key)){
 			inputs.get(key).setPressed(true);
-			lastPressed = key;
 		}
 	}
 	
