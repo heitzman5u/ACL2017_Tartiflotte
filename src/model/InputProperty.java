@@ -14,6 +14,12 @@ public class InputProperty {
 	//mutable
 	private boolean pressed; //whether the input is pressed or not
 
+	/**
+	 * 
+	 * @param x x param of speed vector
+	 * @param y y param of speed vector
+	 * @param direction
+	 */
 	public InputProperty(float x, float y, int direction) {
 		this.movement = new Vector2f(x, y);
 		this.direction = direction;
@@ -21,18 +27,35 @@ public class InputProperty {
 		this.pressed = false;
 	}
 	
+	/**
+	 * Set this input to pressed (or not)
+	 * @param value
+	 */
 	public void setPressed(boolean value){
 		pressed = value;
 	}
 	
+	/**
+	 * 
+	 * @return whether this input is pressed or not
+	 */
 	public boolean pressed(){
 		return pressed;
 	}
 	
+	/**
+	 * 
+	 * @return the speed vector associated to this input
+	 */
 	public Vector2f getMovement(){
 		return new Vector2f(movement);
 	}
 	
+	/**
+	 * 
+	 * @return the direction associated to this input
+	 * @see Hero
+	 */
 	public int getDirection(){
 		return direction;
 	}
