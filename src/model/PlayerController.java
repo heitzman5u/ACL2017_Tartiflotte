@@ -1,9 +1,12 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 import org.newdawn.slick.Input;
@@ -20,7 +23,8 @@ import org.newdawn.slick.geom.Vector2f;
  * Helper class that converts input into data usable by the hero
  */
 public class PlayerController implements KeyListener {
-		
+	
+	private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
 	private int lastPressed = Input.KEY_S; //facing south by default
 	
@@ -82,12 +86,15 @@ public class PlayerController implements KeyListener {
 	 * @return
 	 */
 	public Vector2f getMovement(){
-		InputProperty prop = inputs.get(lastPressed);
-		if(prop == null || !prop.pressed()){
-			return new Vector2f(0f, 0f);
-		}
 		//here, prop is set and pressed
-		return new Vector2f(prop.getMovement());
+		Vector2f sum = new Vector2f(0,0);
+		for(Entry<Integer, InputProperty> e : inputs.entrySet()){
+			InputProperty prop= e.getValue();
+			if(prop.pressed()){
+				sum.add(prop.getMovement());
+			}
+		}
+		return sum.getNormal();
 	}
 
 	/**
@@ -96,12 +103,7 @@ public class PlayerController implements KeyListener {
 	 * @return
 	 */
 	public boolean isMoving() {
-		for(Entry<Integer, InputProperty> e : inputs.entrySet()){
-			if(e.getValue().pressed()){
-				return true;
-			}
-		}
-		return false;
+		return getMovement().length()!=0f;
 	}
 	
 	/**
