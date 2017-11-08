@@ -6,7 +6,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
-
+/**
+ * enemies of the player
+ * @author Tartiflotte
+ */
 public class Monster extends Character {
 	
 	private Animation[] animations;
@@ -44,6 +47,11 @@ public class Monster extends Character {
 		animations = other.animations;
 	}
 	
+	/**
+	 * 
+	 * @param delta
+	 * Allow the monster to move towards the hero
+	 */
 	public void move(int delta){
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
@@ -58,12 +66,20 @@ public class Monster extends Character {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param delta
+	 * @return the future position of the Monster ; needed to the collisions
+	 */
 	private Monster futurePos(int delta){
 		Monster m = new Monster(this);
 		m.move(delta);
 		return m;
 	}
 	
+	/**
+	 * allows the monster to attack the hero
+	 */
 	public void attack(){
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
@@ -75,7 +91,11 @@ public class Monster extends Character {
 		}
 
 	}
-	
+	/**
+	 * @param xHero abscissa of the hero
+	 * @param yHero ordinate of the hero
+	 * @return a direction vector needed to the displacement of the monster towards the hero
+	 */
 	private Vector2f direction(float xHero, float yHero){
 		int signX, signY;
 		if (xHero <= 0){
@@ -89,7 +109,6 @@ public class Monster extends Character {
 				direction = 2;
 			}
 		}
-		
 		if (yHero <= 0){
 			signY = -1;
 			if (!(Math.abs(yHero) <= 3 && Math.abs(yHero) >= 0)){
@@ -104,6 +123,10 @@ public class Monster extends Character {
 		 return new Vector2f(signX, signY);
 	}
 	
+	/**
+	 * 
+	 * @see Game.update()
+	 */
 	public void update(int delta){
 		if(!world.collideToWall(futurePos(delta))){
 			move(delta);
@@ -111,6 +134,10 @@ public class Monster extends Character {
 		attack();
 	}
 	
+	/**
+	 * 
+	 * @see Game.render()
+	 */
 	public void render(Graphics g){
 		// MONSTER ANIMATION
 		g.setColor(new Color(48,48,48));
@@ -132,6 +159,10 @@ public class Monster extends Character {
 		// --
 	}
 	
+	/**
+	 * create the differents animations of the monster thanks to his SpriteSheet
+	 * 
+	 */
 	private void creationAnimations() throws SlickException{
 		SpriteSheet spriteSheet = new SpriteSheet("lycan", getClass().getResourceAsStream("/monsters/images/lycan.png"), 80, 80);
 				

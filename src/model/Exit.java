@@ -6,6 +6,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Point;
 
+/**
+ * 
+ * @author Tartiflotte
+ * Represent an exit on the map
+ */
 public class Exit {
 	protected World world;
 	
@@ -21,13 +26,20 @@ public class Exit {
 		setAnimation();
 	}
 
-	
+	/**
+	 * 
+	 * @see Game.render()
+	 */
 	public void render(Graphics g){
 		float xArrow = (topLeft.getX() + bottomRight.getX())/2;
 		float yArrow = topLeft.getY() - 90;
 		g.drawAnimation(animation, xArrow, yArrow);
 	}
 	
+	/**
+	 * 
+	 * @see Game.update()
+	 */
 	public void update(int delta){
 		if(world.heroOnExitCase(this)){
 			System.out.println("you win !!!");
@@ -35,6 +47,9 @@ public class Exit {
 
 	}
 	
+	/**
+	 * create the animation of the arrow to indicate the exit zone
+	 */
 	private void setAnimation(){
 		try {
 			SpriteSheet spriteSheet = new SpriteSheet("exit_arrow", getClass().getResourceAsStream("/maps/images/exit_case_arrow.png"), 20, 25);
