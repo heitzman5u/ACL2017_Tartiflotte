@@ -10,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.NullArgumentException;
+
 /**
  * load the elements of the map
  * @author Tartiflotte
@@ -31,7 +33,7 @@ public class Level {
 	 */
 	public Level(InputStream file, String tilesetLoc) throws SlickException{
 		if(file == null || tilesetLoc == null){
-			throw new IllegalArgumentException();
+			throw new NullArgumentException();
 		}
 		
 		map = new TiledMap(file, tilesetLoc);
