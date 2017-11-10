@@ -12,7 +12,7 @@ public class IllegalInstanceStateException extends IllegalStateException {
 	private static final long serialVersionUID = 6050927848816198529L;
 
 	public IllegalInstanceStateException() {
-		super("The object is not in an appropriate state to call the method");
+		super("The instance is not in an appropriate state to call the method");
 	}
 
 	public IllegalInstanceStateException(String s) {
