@@ -6,6 +6,8 @@ import java.util.Scanner;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import exception.NullArgumentException;
+
 /**
  * represents the model of the game 
  * @author Tartiflotte
@@ -41,6 +43,7 @@ public class Game {
 	 * update the game state (calculate the new positions of the characters for example)
 	 */
 	public void update(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		world.update(delta);
 	}
 	
@@ -49,6 +52,7 @@ public class Game {
 	 * @param g
 	 */
 	public void render(Graphics g){
+		if(g == null) throw new NullArgumentException();
 		world.render(g);
 	}
 	

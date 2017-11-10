@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.NullArgumentException;
+
 /**
  * represents the elements which will be displayed on the graphic interface
  * @author Tartiflotte
@@ -19,15 +21,12 @@ public class World {
 	
 	private TiledMap map;
 	private Level level;
-	
-	private Vector2f ladder;
-	
+		
 	private Hero hero;
 	private Monster monster;
 	private Exit exit;
 	
 	public World(int x, int y) throws SlickException {
-		ladder=new Vector2f(5,5);
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
 		
 		hero = level.getHero();
@@ -42,16 +41,6 @@ public class World {
 		map = level.getMap();
 	}
 	
-	/**
-	 * 
-	 * @param h Hero
-	 * @return true if the hero collide to monster ; false if not
-	 */
-	private boolean collideToMonster(Hero h){
-		if(h.getPos().distance(getPosLadder())<=4)
-			return true;
-		return false;
-	}
 	
 	/**
 	 * 
@@ -59,6 +48,7 @@ public class World {
 	 * @return true if the character is out of the map or collide to a wall
 	 */
 	public boolean collideToWall(Character h){
+		if(h == null) return false;
 		//out of map
 		if((int)h.getX() < 0 || (int)h.getX() >= map.getWidth()*map.getTileWidth()
 				|| (int)h.getY() < 0 || (int)h.getY() >= map.getHeight()*map.getTileHeight()){
@@ -76,6 +66,7 @@ public class World {
 	 * @see Game.render()
 	 */
 	public void render(Graphics g){
+		if(g == null) throw new NullArgumentException();
 		map.render(0, 0);
 		hero.render(g);
 		exit.render(g);
@@ -87,6 +78,7 @@ public class World {
 	 * @see Game.update()
 	 */
 	public void update(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		hero.update(delta);
 		exit.update(delta);
 		monster.update(delta);
@@ -98,6 +90,7 @@ public class World {
 	 * @return the distance between the monster m and the hero
 	 */
 	public Vector2f distanceWithHero(Monster m){
+		if(m == null) throw new NullArgumentException();
 		return new Vector2f(hero.getX() - m.getX(), hero.getY() - m.getY());
 	}
 	
@@ -107,6 +100,7 @@ public class World {
 	 * @return true if the hero is on an Exit zone ; false if not
 	 */
 	public boolean heroOnExitCase(Exit e){
+		if(e == null) return false;
 		float xLeft = e.getTopLeft().getX();
 		float xRight = e.getBottomRight().getX();
 		float yTop = e.getTopLeft().getY();
@@ -118,13 +112,6 @@ public class World {
 		return false;
 	}
 	
-	private Vector2f getPosHero(){
-		return hero.getPos();
-	}
-	
-	private Vector2f getPosLadder(){
-		return ladder;
-	}
 	
 	public Hero getHero(){
 		return hero;
@@ -132,13 +119,5 @@ public class World {
 	
 	public PlayerController getPlayerController(){
 		return hero.getPlayerController();
-	}
-	
-	private void setHero(int x, int y) throws SlickException{
-		hero=new Hero(x,y);
-	}
-	
-	private void setLadder(int x, int y){
-		ladder=new Vector2f(x,y);
 	}
 }
