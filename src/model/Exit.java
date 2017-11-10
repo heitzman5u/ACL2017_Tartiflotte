@@ -6,6 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Point;
 
+import exception.NullArgumentException;
+
 /**
  * 
  * @author Tartiflotte
@@ -19,7 +21,11 @@ public class Exit {
 	
 	private Animation animation;
 	
-	public Exit(Point tl, Point br){
+	public Exit(Point tl, Point br) throws SlickException{
+		if(tl == null || br == null) throw new NullArgumentException();
+		if(tl.getX() > br.getX() || tl.getY() > br.getY()){
+			throw new IllegalArgumentException("top-left isn't right positionned beside bottom-right");
+		}
 		topLeft = tl;
 		bottomRight = br;
 		
@@ -31,6 +37,7 @@ public class Exit {
 	 * @see Game.render()
 	 */
 	public void render(Graphics g){
+		if(g == null) throw new NullArgumentException();
 		float xArrow = (topLeft.getX() + bottomRight.getX())/2;
 		float yArrow = topLeft.getY() - 90;
 		g.drawAnimation(animation, xArrow, yArrow);
@@ -41,6 +48,7 @@ public class Exit {
 	 * @see Game.update()
 	 */
 	public void update(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		if(world.heroOnExitCase(this)){
 			System.out.println("you win !!!");
 		}
@@ -49,16 +57,13 @@ public class Exit {
 	
 	/**
 	 * create the animation of the arrow to indicate the exit zone
+	 * @throws SlickException 
 	 */
-	private void setAnimation(){
-		try {
-			SpriteSheet spriteSheet = new SpriteSheet("exit_arrow", getClass().getResourceAsStream("/maps/images/exit_case_arrow.png"), 20, 25);
-			animation = new Animation();
-			for(int i = 0 ; i < 4 ; i++){
-				animation.addFrame(spriteSheet.getSprite(i, 0), 150);
-			}
-		} catch (SlickException e) {
-			e.printStackTrace();
+	private void setAnimation() throws SlickException{
+		SpriteSheet spriteSheet = new SpriteSheet("exit_arrow", getClass().getResourceAsStream("/maps/images/exit_case_arrow.png"), 20, 25);
+		animation = new Animation();
+		for(int i = 0 ; i < 4 ; i++){
+			animation.addFrame(spriteSheet.getSprite(i, 0), 150);
 		}
 	}
 

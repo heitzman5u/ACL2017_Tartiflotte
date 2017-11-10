@@ -134,7 +134,7 @@ public class World {
 		return hero.getPlayerController();
 	}
 	
-	private void setHero(int x, int y){
+	private void setHero(int x, int y) throws SlickException{
 		hero=new Hero(x,y);
 	}
 	

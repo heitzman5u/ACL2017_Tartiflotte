@@ -6,6 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
+
+import exception.NullArgumentException;
 /**
  * enemies of the player
  * @author Tartiflotte
@@ -21,7 +23,7 @@ public class Monster extends Character {
 	private static final float ATTACK_DISTANCE = 600f;
 	private static final float VIEW_DISTANCE = 80_000f;
 	
-	public Monster(float x, float y){
+	public Monster(float x, float y) throws SlickException{
 		super(x, y, SPEED);
 		
 		moving = false;
@@ -30,11 +32,8 @@ public class Monster extends Character {
 		attack = false;
 		
 		animations = new Animation[8];
-		try {
-			creationAnimations();
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
+
+		creationAnimations();
 	}
 	
 	private Monster(Monster other){
@@ -53,6 +52,7 @@ public class Monster extends Character {
 	 * Allow the monster to move towards the hero
 	 */
 	public void move(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		float xHero = world.distanceWithHero(this).getX();
 		float yHero = world.distanceWithHero(this).getY();
 		
@@ -72,6 +72,7 @@ public class Monster extends Character {
 	 * @return the future position of the Monster ; needed to the collisions
 	 */
 	private Monster futurePos(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		Monster m = new Monster(this);
 		m.move(delta);
 		return m;
@@ -128,6 +129,7 @@ public class Monster extends Character {
 	 * @see Game.update()
 	 */
 	public void update(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		if(!world.collideToWall(futurePos(delta))){
 			move(delta);
 		}
@@ -139,6 +141,7 @@ public class Monster extends Character {
 	 * @see Game.render()
 	 */
 	public void render(Graphics g){
+		if(g == null) throw new NullArgumentException();
 		// MONSTER ANIMATION
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);

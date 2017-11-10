@@ -7,6 +7,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import exception.NullArgumentException;
+
 /**
  * main character of the game ; character that the player control
  * @author Tartiflotte
@@ -18,18 +20,19 @@ public class Hero extends Character {
 	
 	private static final float SPEED = 0.2f;	
 	
-	public Hero(float x, float y){
+	public Hero(float x, float y) throws SlickException{
 		super(x, y, SPEED);
 		playerController = new PlayerController();
 		
 		
 		animations = new Animation[9];
-		try {
-			creationAnimations();
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-		
+		creationAnimations();
+	}
+	
+	
+	public Hero(Hero other){
+		super(other.getX(), other.getY(), SPEED);
+		playerController = other.playerController;
 	}
 	
 	/**
@@ -37,12 +40,8 @@ public class Hero extends Character {
 	 * @param delta
 	 * Allow the hero to move towards the hero
 	 */
-	public Hero(Hero other){
-		super(other.getX(), other.getY(), SPEED);
-		playerController = other.playerController;
-	}
-	
 	public void move(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		if (isAlive()){
 			//scale to have constant speed
 			Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
@@ -57,6 +56,7 @@ public class Hero extends Character {
 	 * @return the future position of the Hero ; needed to the collisions
 	 */
 	public Hero futurePos(int delta){
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		Hero h = new Hero(this);
 		h.move(delta);
 		return h;
@@ -67,6 +67,7 @@ public class Hero extends Character {
 	 * @see Game.render()
 	 */
 	public void render(Graphics g){
+		if(g == null) throw new NullArgumentException();
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
 		if (isAlive()){
