@@ -23,7 +23,17 @@ public class Level {
 	
 	private Exit exit;
 	
+	/**
+	 * Load a level
+	 * @param file file to load the map from
+	 * @param tilesetLoc path to the tileset location
+	 * @throws SlickException
+	 */
 	public Level(InputStream file, String tilesetLoc) throws SlickException{
+		if(file == null || tilesetLoc == null){
+			throw new IllegalArgumentException();
+		}
+		
 		map = new TiledMap(file, tilesetLoc);
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
@@ -33,11 +43,16 @@ public class Level {
 	
 	/**
 	 * 
-	 * @param x abscissa of the character
-	 * @param y ordinate of the character
+	 * @param x abscissa of the character x must be within the map
+	 * @param y ordinate of the character y must be within the map
 	 * @return true if the character collides to a wall ; false if not
 	 */
 	public boolean collides(float x, float y){
+		if(x < 0f || x >= (float)(map.getWidth()*map.getTileWidth()) 
+				|| y < 0f || y >= (float)(map.getHeight()*map.getTileHeight()) ){
+			throw new IllegalArgumentException();
+		}
+		
 		Image tile = this.map.getTileImage( //tile wich corresponds with the hero's position
                 (int) x / this.map.getTileWidth(), 
                 (int) y / this.map.getTileHeight(), 
