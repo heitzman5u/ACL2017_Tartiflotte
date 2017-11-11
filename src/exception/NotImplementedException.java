@@ -4,7 +4,6 @@ package exception;
  * This exception should be thrown when a method is not implemented, but will likely be in the future.
  * Such an operation should be marked as "deprecated"!;
  * @author Tartiflotte
- *
  */
 public class NotImplementedException extends UnsupportedOperationException {
 

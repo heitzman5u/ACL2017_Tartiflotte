@@ -9,7 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import exception.NullArgumentException;
 /**
- * enemies of the player
+ * Enemies of the player
  * @author Tartiflotte
  */
 public class Monster extends Character {

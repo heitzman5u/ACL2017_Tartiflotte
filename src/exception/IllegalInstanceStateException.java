@@ -5,7 +5,6 @@ package exception;
  * This exception should be thrown when a call to a method cannot complete properly 
  * because the instance isn't in a required state.
  * @author Tartiflotte
- *
  */
 public class IllegalInstanceStateException extends IllegalStateException {
 

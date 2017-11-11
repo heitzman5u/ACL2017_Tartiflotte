@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 import exception.NullArgumentException;
 
 /**
- * represents the model of the game 
+ * Represents the model of the game 
  * @author Tartiflotte
  */
 public class Game {
@@ -33,7 +33,7 @@ public class Game {
 	}
 	
 	/**
-	 * update the game state (calculate the new positions of the characters for example)
+	 * Update the game state (calculate the new positions of the characters for example)
 	 * @param delta
 	 */
 	public void update(int delta){

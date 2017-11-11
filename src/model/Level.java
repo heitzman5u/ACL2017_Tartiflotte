@@ -13,7 +13,7 @@ import exception.NullArgumentException;
 import exception.NotImplementedException;
 
 /**
- * load the elements of the map
+ * Load the elements of the map
  * @author Tartiflotte
  */
 public class Level {

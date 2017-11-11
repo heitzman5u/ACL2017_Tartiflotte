@@ -7,7 +7,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
- * graphic interfacce of the game
+ * Graphic interface of the game
  * @author Tartiflotte
  */
 public class GameUI extends BasicGame {

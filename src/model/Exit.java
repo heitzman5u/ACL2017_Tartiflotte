@@ -9,9 +9,8 @@ import org.newdawn.slick.geom.Point;
 import exception.NullArgumentException;
 
 /**
- * 
+ * Represents an exit on the map, ie: space where the hero will move to the next stage
  * @author Tartiflotte
- * Represent an exit on the map
  */
 public class Exit {
 	protected World world;

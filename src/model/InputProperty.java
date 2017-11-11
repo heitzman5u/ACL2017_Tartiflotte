@@ -2,7 +2,7 @@ package model;
 
 import org.newdawn.slick.geom.Vector2f;
 
-/*
+/**
  * Descriptor of properties of an input. Used by PlayerController
  */
 public class InputProperty {

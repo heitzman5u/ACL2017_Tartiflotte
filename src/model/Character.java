@@ -88,24 +88,21 @@ public class Character {
 	}
 
 	/**
-	 * set this character to alive or dead
-	 * @param alive
+	 * Set this character to alive or dead
 	 */
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
 
 	/**
-	 * associate a world with this character
-	 * @param w
+	 * Associate a world to this character
 	 */
 	public void setWorld(World w){
 		world = w;
 	}
 	
 	/**
-	 * get the world this character is in
-	 * @return
+	 * Get the world this character is in
 	 */
 	public World getWorld(){
 		return world;

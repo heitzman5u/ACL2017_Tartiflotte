@@ -10,7 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 import exception.NullArgumentException;
 
 /**
- * main character of the game ; character that the player control
+ * Main character of the game ; character that the player control
  * @author Tartiflotte
  */
 public class Hero extends Character {

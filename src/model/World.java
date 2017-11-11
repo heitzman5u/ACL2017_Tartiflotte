@@ -9,7 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import exception.NullArgumentException;
 
 /**
- * represents the elements which will be displayed on the graphic interface
+ * Represents the elements which will be displayed on the graphic interface
  * @author Tartiflotte
  */
 public class World {
