@@ -2,7 +2,6 @@ package model;
 
 
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Iterator;
 
 import org.newdawn.slick.Image;
@@ -11,6 +10,7 @@ import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
 import exception.NullArgumentException;
+import exception.NotImplementedException;
 
 /**
  * load the elements of the map
@@ -44,7 +44,7 @@ public class Level {
 	}
 	
 	/**
-	 * 
+	 * Determines if the given position is on a "logic" block of the map
 	 * @param x abscissa of the character x must be within the map
 	 * @param y ordinate of the character y must be within the map
 	 * @return true if the character collides to a wall ; false if not
@@ -62,10 +62,16 @@ public class Level {
 		return tile != null; //null if no "logic" tile found there
 	}
 	
+	/**
+	 * @return width in tiles
+	 */
 	public int getWidth(){
 		return map.getWidth();
 	}
 	
+	/**
+	 * @return height in tiles
+	 */
 	public int getHeight(){
 		return map.getHeight();
 	}
@@ -86,8 +92,13 @@ public class Level {
 		return exit;
 	}
 	
+	/**
+	 * Access level's monsters
+	 * @deprecated Not implemented yet
+	 */
+	@Deprecated
 	public Iterator<Monster> getMonsters(){
-		return null; //TODO
+		throw new NotImplementedException();
 	}
 	
 }

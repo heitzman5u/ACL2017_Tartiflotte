@@ -20,6 +20,12 @@ public class Hero extends Character {
 	
 	private static final float SPEED = 0.2f;	
 	
+	/**
+	 * create a new Hero at the given position
+	 * @param x abscissa
+	 * @param y ordinate
+	 * @throws SlickException
+	 */
 	public Hero(float x, float y) throws SlickException{
 		super(x, y, SPEED);
 		playerController = new PlayerController();
@@ -30,15 +36,19 @@ public class Hero extends Character {
 	}
 	
 	
+	/**
+	 * Copy a Hero. Deep copy of position and orientation
+	 * Shallow copy of other objects
+	 * @param other
+	 */
 	public Hero(Hero other){
 		super(other.getX(), other.getY(), SPEED);
 		playerController = other.playerController;
 	}
 	
 	/**
-	 * 
-	 * @param delta
 	 * Allow the hero to move towards the hero
+	 * @param delta milliseconds since last frame
 	 */
 	public void move(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
@@ -51,9 +61,9 @@ public class Hero extends Character {
 	
 
 	/**
-	 * 
-	 * @param delta
-	 * @return the future position of the Hero ; needed to the collisions
+	 * Get copy of the Hero, after this frame, if nothing blocks his path
+	 * @param delta milliseconds since last frame
+	 * @return the future position of the Hero ; needed for the collisions
 	 */
 	public Hero futurePos(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
@@ -63,7 +73,6 @@ public class Hero extends Character {
 	}
 	
 	/**
-	 * 
 	 * @see Game.render()
 	 */
 	public void render(Graphics g){
@@ -79,7 +88,6 @@ public class Hero extends Character {
 	}
 	
 	/**
-	 * 
 	 * @see Game.update()
 	 */
 	public void update(int delta){
@@ -91,7 +99,6 @@ public class Hero extends Character {
 	}
 	
 	/**
-	 * 
 	 * create the differents animations of the hero thanks to his SpriteSheet
 	 */
 	private void creationAnimations() throws SlickException{

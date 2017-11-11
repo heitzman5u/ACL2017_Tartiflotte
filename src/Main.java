@@ -1,17 +1,11 @@
 
 
-import java.io.IOException;
-
 import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import model.GameUI;
 
 public class Main {
-	private GameUI gameUI;
 	
 	public static void main(String[] args){
 		try {

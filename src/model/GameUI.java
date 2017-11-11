@@ -18,6 +18,11 @@ public class GameUI extends BasicGame {
 	private static final int FRAME_RATE = 60;
 
 
+	/**
+	 * create a new GameUI, where the game will run
+	 * @param title title of the window
+	 * @throws SlickException
+	 */
 	public GameUI(String title) throws SlickException {
 		super(title);
 	}
@@ -31,17 +36,11 @@ public class GameUI extends BasicGame {
 	}
 
 	@Override
-	/**
-	 * @see Game.update()
-	 */
 	public void update(GameContainer arg0, int delta) throws SlickException {
 		game.update(delta);
 	}
 	
 	@Override
-	/**
-	 * @see Game.render()
-	 */
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		game.render(g);
 	}

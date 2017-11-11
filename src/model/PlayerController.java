@@ -1,13 +1,8 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.Stack;
-import java.util.TreeMap;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
@@ -24,7 +19,7 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public class PlayerController implements KeyListener {
 	
-	private Stack<InputProperty> keyPressed;
+	//private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
 	private int lastDirection = 3;//facing south by default
 	
@@ -80,9 +75,8 @@ public class PlayerController implements KeyListener {
 	}
 
 	/**
-	 * Return a vector corresponding to the key pressed 
+	 * @return vector corresponding to the key pressed 
 	 * and the direction associated 
-	 * @return
 	 */
 	public Vector2f getMovement(){
 		//here, prop is set and pressed

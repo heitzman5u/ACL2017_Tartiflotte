@@ -1,7 +1,5 @@
 package model;
 
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 /**

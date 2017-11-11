@@ -23,6 +23,12 @@ public class Monster extends Character {
 	private static final float ATTACK_DISTANCE = 600f;
 	private static final float VIEW_DISTANCE = 80_000f;
 	
+	/**
+	 * Create a monster at the given position
+	 * @param x abscissa
+	 * @param y ordinate
+	 * @throws SlickException
+	 */
 	public Monster(float x, float y) throws SlickException{
 		super(x, y, SPEED);
 		
@@ -36,6 +42,10 @@ public class Monster extends Character {
 		creationAnimations();
 	}
 	
+	/**
+	 * Create a copy of a monster
+	 * @param monster copied
+	 */
 	private Monster(Monster other){
 		super(other.getX(), other.getY(), SPEED, other.direction, other.world);
 		
@@ -47,9 +57,8 @@ public class Monster extends Character {
 	}
 	
 	/**
-	 * 
-	 * @param delta
 	 * Allow the monster to move towards the hero
+	 * @param delta
 	 */
 	public void move(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
@@ -67,8 +76,8 @@ public class Monster extends Character {
 	}
 	
 	/**
-	 * 
-	 * @param delta
+	 * Get copy of the Monster, after this frame, if nothing blocks his path
+	 * @param delta milliseconds since last frame
 	 * @return the future position of the Monster ; needed to the collisions
 	 */
 	private Monster futurePos(int delta){
@@ -79,7 +88,7 @@ public class Monster extends Character {
 	}
 	
 	/**
-	 * allows the monster to attack the hero
+	 * Allows the monster to attack the hero
 	 */
 	public void attack(){
 		float xHero = world.distanceWithHero(this).getX();
@@ -164,7 +173,7 @@ public class Monster extends Character {
 	
 	/**
 	 * create the differents animations of the monster thanks to his SpriteSheet
-	 * 
+	 * @throws SlickException
 	 */
 	private void creationAnimations() throws SlickException{
 		SpriteSheet spriteSheet = new SpriteSheet("lycan", getClass().getResourceAsStream("/monsters/images/lycan.png"), 80, 80);

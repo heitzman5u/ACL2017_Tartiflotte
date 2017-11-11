@@ -1,7 +1,5 @@
 package model;
 
-import java.io.IOException;
-import java.util.Scanner;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -19,13 +17,11 @@ public class Game {
 	
 	private int gameState;
 	
-	private Hero hero;
 	private World world;
 		
 	
 	public Game() throws SlickException{
 		world = new World(30,30);
-		hero = world.getHero();
 	}
 	
 	/**
@@ -34,13 +30,11 @@ public class Game {
 	 */
 	public boolean isWon(){
 		return gameState == WIN;
-		
 	}
 	
 	/**
-	 * 
-	 * @param delta
 	 * update the game state (calculate the new positions of the characters for example)
+	 * @param delta
 	 */
 	public void update(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");

@@ -1,10 +1,5 @@
 package model;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Set;
-
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
