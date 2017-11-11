@@ -3,6 +3,7 @@
 	<property name="bin.dir" value="bin"/>
 	<property name="jar.dir" value="exe"/>
 	<property name="lib.dir" value="lib"/>
+	<property name="doc.dir" value="doc"/>
 	<property name="main-class" value="Main"/>
 	<property name="jar.name" value="Tartiflotte.jar"/>
 	<property name="native.path" value="lib/natives"/>
@@ -21,6 +22,7 @@
 	<target name="clean">
 		<delete dir="${jar.dir}"/>
 		<delete dir="${bin.dir}"/>
+		<delete dir="${doc.dir}"/>
 		<echo message="nettoyage terminé"/>
 	</target>
 	<target name="compile">
@@ -46,5 +48,10 @@
 		</jar>
 		<echo message="Creation du fichier jar terminée"/>
 	</target>
+	
+	<target name="javadoc">
+		<mkdir dir="${doc.dir}"/>
+        <javadoc access="protected" author="true" classpath="lib/slick.jar;lib/jinput.jar;lib/lwjgl.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="exception,model" source="1.8" sourcefiles="src/Main.java" sourcepath="src;res" splitindex="true" use="true" version="true"/>
+    </target>
 	
 </project>
