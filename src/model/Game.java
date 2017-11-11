@@ -34,7 +34,7 @@ public class Game {
 	
 	/**
 	 * Update the game state (calculate the new positions of the characters for example)
-	 * @param delta
+	 * @param delta milliseconds since last frame
 	 */
 	public void update(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
@@ -42,8 +42,8 @@ public class Game {
 	}
 	
 	/**
-	 * display the graphic elements of the game
-	 * @param g
+	 * Display the graphic elements of the game
+	 * @param g graphic object to write in
 	 */
 	public void render(Graphics g){
 		if(g == null) throw new NullArgumentException();

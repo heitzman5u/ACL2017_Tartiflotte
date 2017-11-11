@@ -58,7 +58,7 @@ public class Monster extends Character {
 	
 	/**
 	 * Allow the monster to move towards the hero
-	 * @param delta
+	 * @param delta milliseconds since last frame
 	 */
 	public void move(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");

@@ -90,18 +90,12 @@ public class PlayerController implements KeyListener {
 		return sum.getNormal();
 	}
 
-	/**
-	 * Return true if a key is pressed, 
-	 * else return false.
-	 * @return
-	 */
 	public boolean isMoving() {
 		return getMovement().length()!=0f;
 	}
 	
 	/**
-	 * return the current direction of the last button pressed
-	 * @return
+	 * @return the current direction of the last button pressed
 	 */
 	public int getDirection(){
 		//return inputs.get(lastPressed).getDirection();

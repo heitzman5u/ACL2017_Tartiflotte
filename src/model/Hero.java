@@ -39,7 +39,7 @@ public class Hero extends Character {
 	/**
 	 * Copy a Hero. Deep copy of position and orientation
 	 * Shallow copy of other objects
-	 * @param other
+	 * @param other the copied hero
 	 */
 	public Hero(Hero other){
 		super(other.getX(), other.getY(), SPEED);

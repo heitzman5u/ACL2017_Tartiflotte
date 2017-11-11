@@ -95,6 +95,7 @@ public class Level {
 	/**
 	 * Access level's monsters
 	 * @deprecated Not implemented yet
+	 * @return null
 	 */
 	@Deprecated
 	public Iterator<Monster> getMonsters(){

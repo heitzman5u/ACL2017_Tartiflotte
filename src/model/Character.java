@@ -79,31 +79,19 @@ public class Character {
 		pos.add(new Vector2f(x,y));
 	}
 	
-	/**
-	 * 
-	 * @return whether this character is alive or dead
-	 */
 	public boolean isAlive() {
 		return alive;
 	}
 
-	/**
-	 * Set this character to alive or dead
-	 */
+
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
 
-	/**
-	 * Associate a world to this character
-	 */
 	public void setWorld(World w){
 		world = w;
 	}
 	
-	/**
-	 * Get the world this character is in
-	 */
 	public World getWorld(){
 		return world;
 	}
