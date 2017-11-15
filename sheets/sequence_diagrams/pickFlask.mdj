@@ -42,19 +42,13 @@
 									"_parent": {
 										"$ref": "AAAAAAFfwOxbvrWGF5I="
 									},
-									"name": "PickFlask",
+									"name": "Main",
 									"visible": true,
 									"defaultDiagram": false,
 									"ownedViews": [
 										{
 											"_type": "UMLActivationView",
 											"_id": "AAAAAAFfwPn9Osgll2c=",
-											"_parent": {
-												"$ref": "AAAAAAFfwPn9Ocgh7rY="
-											},
-											"model": {
-												"$ref": "AAAAAAFfwPn9Ocgg23k="
-											},
 											"visible": true,
 											"enabled": true,
 											"lineColor": "#000000",
@@ -97,11 +91,11 @@
 													"containerExtending": false,
 													"left": 70.97900390625,
 													"top": 5,
-													"width": 56.6181640625,
+													"width": 29.17724609375,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
-													"text": "PickFlask",
+													"text": "Main",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -583,7 +577,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 64.72998046875,
+													"left": 69.07177734375,
 													"top": 205,
 													"width": 146.24072265625,
 													"height": 13,
@@ -611,11 +605,11 @@
 													"containerExtending": false,
 													"left": 45,
 													"top": 205,
-													"width": 14.72998046875,
+													"width": 19.07177734375,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
-													"text": "alt",
+													"text": "opt",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -765,7 +759,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "1 : w.distanceWithHero(f)",
+													"text": "1 : distanceWithHero(f)",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -1125,19 +1119,19 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 441,
-													"top": 112,
+													"left": 439,
+													"top": 103,
 													"width": 78.04443359375,
 													"height": 13,
 													"autoResize": false,
-													"alpha": 1.5707963267948966,
-													"distance": 10,
+													"alpha": -4.601732307991315,
+													"distance": 18.110770276274835,
 													"hostEdge": {
 														"$ref": "AAAAAAFfwROCTMmDcbE="
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "2 : h.getPos",
+													"text": "2 : getPos",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -1295,9 +1289,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 448,
+													"left": 447,
 													"top": 156,
-													"width": 62.87353515625,
+													"width": 65,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -1647,7 +1641,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "5 : w.pickFlask(f)",
+													"text": "5 : pickFlask(f)",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -1741,7 +1735,7 @@
 													"left": 350,
 													"top": 272,
 													"width": 14,
-													"height": 29,
+													"height": 97,
 													"autoResize": false
 												}
 											],
@@ -1911,7 +1905,7 @@
 													"left": 357,
 													"top": 300,
 													"width": 14,
-													"height": 53,
+													"height": 29,
 													"autoResize": false
 												}
 											],
@@ -1975,9 +1969,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 440,
+													"left": 436,
 													"top": 327,
-													"width": 83.08447265625,
+													"width": 84,
 													"height": 13,
 													"autoResize": false,
 													"alpha": -4.514994382073455,
@@ -1987,7 +1981,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "7 : h.pickFlask",
+													"text": "7 : pickFlask",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -2010,7 +2004,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 483,
+													"left": 480,
 													"top": 313,
 													"width": 0,
 													"height": 13,
@@ -2044,7 +2038,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 483,
+													"left": 480,
 													"top": 348,
 													"width": 0,
 													"height": 13,
@@ -2101,7 +2095,7 @@
 												"$ref": "AAAAAAFfwOxuEbWcvfU="
 											},
 											"lineStyle": 0,
-											"points": "370:344;597:344",
+											"points": "363:344;597:344",
 											"nameLabel": {
 												"$ref": "AAAAAAFfwRFMrclmx+M="
 											},
@@ -2132,7 +2126,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFfwOxbvrWGF5I="
 									},
-									"name": "w.distanceWithHero",
+									"name": "distanceWithHero",
 									"source": {
 										"$ref": "AAAAAAFfwPaIWcfdA7c="
 									},
@@ -2150,7 +2144,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFfwOxbvrWGF5I="
 									},
-									"name": "h.getPos",
+									"name": "getPos",
 									"source": {
 										"$ref": "AAAAAAFfwOxuELWVuPU="
 									},
@@ -2201,7 +2195,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFfwOxbvrWGF5I="
 									},
-									"name": "w.pickFlask",
+									"name": "pickFlask",
 									"source": {
 										"$ref": "AAAAAAFfwPaIWcfdA7c="
 									},
@@ -2237,7 +2231,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFfwOxbvrWGF5I="
 									},
-									"name": "h.pickFlask",
+									"name": "pickFlask",
 									"source": {
 										"$ref": "AAAAAAFfwOxuELWVuPU="
 									},
@@ -2300,7 +2294,7 @@
 									"name": "distance is over 25 pixels",
 									"visibility": "public",
 									"isReentrant": true,
-									"interactionOperator": "alt",
+									"interactionOperator": "opt",
 									"operands": [
 										{
 											"_type": "UMLInteractionOperand",
