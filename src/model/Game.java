@@ -18,10 +18,12 @@ public class Game {
 	private int gameState;
 	
 	private World world;
+	private HudMessage victory;
 		
 	
 	public Game() throws SlickException{
 		world = new World(30,30);
+		victory = new HudMessage("/hud/victory_achieved.jpg", this);
 	}
 	
 	/**
@@ -48,6 +50,7 @@ public class Game {
 	public void render(Graphics g){
 		if(g == null) throw new NullArgumentException();
 		world.render(g);
+		//victory.render(g);
 	}
 	
 	public PlayerController getPlayerController(){
