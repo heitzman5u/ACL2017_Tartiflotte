@@ -21,7 +21,7 @@ public class World {
 	private Monster monster;
 	private Exit exit;
 	
-	public World(int x, int y) throws SlickException {
+	public World() throws SlickException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
 		
 		hero = level.getHero();

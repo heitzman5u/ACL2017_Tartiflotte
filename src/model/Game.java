@@ -7,10 +7,12 @@ import org.newdawn.slick.SlickException;
 import exception.NullArgumentException;
 
 /**
- * Represents the model of the game 
+ * Represents the model of the game
+ * Singleton: there won't be two games running in the same time
  * @author Tartiflotte
  */
 public class Game {
+	
 	public static final int WIN = 1;
 	public static final int IN_GAME = 0;
 	public static final int LOOSE = -1;
@@ -22,9 +24,10 @@ public class Game {
 		
 	
 	public Game() throws SlickException{
-		world = new World(30,30);
-		victory = new HudMessage("/hud/victory_achieved.jpg", this);
+		world = new World();
+		victory = new HudMessage("/hud/victory_achieved.png");
 	}
+
 	
 	/**
 	 * 
@@ -32,6 +35,13 @@ public class Game {
 	 */
 	public boolean isWon(){
 		return gameState == WIN;
+	}
+	
+	/**
+	 * Tell the model that the player won
+	 */
+	public void win(){
+		gameState = WIN;
 	}
 	
 	/**
@@ -50,7 +60,9 @@ public class Game {
 	public void render(Graphics g){
 		if(g == null) throw new NullArgumentException();
 		world.render(g);
-		//victory.render(g);
+		if(isWon()){
+			victory.render(g);
+		}
 	}
 	
 	public PlayerController getPlayerController(){

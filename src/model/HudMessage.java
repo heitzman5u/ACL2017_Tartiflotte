@@ -21,13 +21,13 @@ public class HudMessage {
 	 * @param g game associated to this message
 	 * @throws SlickException 
 	 */
-	public HudMessage(String path, Game g) throws SlickException {
-		if(path == null || g == null) throw new NullArgumentException();
+	public HudMessage(String path) throws SlickException {
+		if(path == null) throw new NullArgumentException();
 		img = new Image(getClass().getResourceAsStream(path), "victory_achieved", false, 0);
 	}
 	
 	public void render(Graphics g){
-		g.drawImage(img, 0, 0);
+		g.drawImage(img,1120/2 - img.getWidth()/2, 800/2 -img. getHeight()/2);
 	}
 
 }
