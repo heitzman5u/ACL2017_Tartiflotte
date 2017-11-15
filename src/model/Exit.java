@@ -49,7 +49,7 @@ public class Exit {
 	public void update(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		if(world.heroOnExitCase(this)){
-			//TODO
+			Game.getInstance().win();
 		}
 
 	}

@@ -12,7 +12,6 @@ import org.newdawn.slick.SlickException;
  */
 public class GameUI extends BasicGame {
 	
-	private Game game;
 	private GameContainer container;
 	
 	private static final int FRAME_RATE = 60;
@@ -30,19 +29,18 @@ public class GameUI extends BasicGame {
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		container = arg0;
-		game = new Game();
-		container.getInput().addKeyListener(game.getPlayerController());
+		container.getInput().addKeyListener(Game.getInstance().getPlayerController());
 		container.setTargetFrameRate(FRAME_RATE);
 	}
 
 	@Override
 	public void update(GameContainer arg0, int delta) throws SlickException {
-		game.update(delta);
+		Game.getInstance().update(delta);
 	}
 	
 	@Override
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
-		game.render(g);
+		Game.getInstance().render(g);
 	}
 	
 	@Override

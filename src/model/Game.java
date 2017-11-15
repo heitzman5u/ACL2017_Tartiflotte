@@ -13,6 +13,8 @@ import exception.NullArgumentException;
  */
 public class Game {
 	
+	private static Game instance = new Game();
+	
 	public static final int WIN = 1;
 	public static final int IN_GAME = 0;
 	public static final int LOOSE = -1;
@@ -23,9 +25,24 @@ public class Game {
 	private HudMessage victory;
 		
 	
-	public Game() throws SlickException{
-		world = new World();
-		victory = new HudMessage("/hud/victory_achieved.png");
+	
+	private Game(){
+		try{
+			world = new World();
+			victory = new HudMessage("/hud/victory_achieved.png");
+		}catch(SlickException e){
+			System.err.println("SlickException: " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * @return only instance of Game
+	 */
+	public static Game getInstance(){
+		return instance;
 	}
 
 	
