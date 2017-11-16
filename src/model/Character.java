@@ -9,10 +9,9 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Tartiflotte
  *
  */
-public class Character {
+public class Character extends WorldObject {
 	protected World world;
 	
-	protected Vector2f pos;
 	protected float speed;
 	
 	protected boolean alive;
@@ -26,7 +25,7 @@ public class Character {
 	 * @param speed initial speed (pixels per second)
 	 */
 	protected Character(float x, float y, float speed){
-		pos = new Vector2f(x,y);
+		super(x,y);
 		this.speed = speed;
 		alive = true;
 	}
