@@ -34,7 +34,7 @@ public class Monster extends Character {
 		
 		moving = false;
 		direction = 0;
-		
+		life = 10;
 		attack = false;
 		
 		animations = new Animation[8];
@@ -47,7 +47,7 @@ public class Monster extends Character {
 	 * @param monster copied
 	 */
 	private Monster(Monster other){
-		super(other.getX(), other.getY(), SPEED, other.direction, other.world);
+		super(other);
 		
 		moving = other.moving;
 		attack = other.attack;
