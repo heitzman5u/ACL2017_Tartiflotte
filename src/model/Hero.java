@@ -20,7 +20,8 @@ public class Hero extends Character {
 	
 	private static final float SPEED = 0.2f;
 	private static final int FULL_LIFE = 10;
-	
+
+	private HudLifeFlask hudLifeFlask;
 	private int nbFlasks;
 	
 	/**
@@ -37,6 +38,8 @@ public class Hero extends Character {
 		life = FULL_LIFE;
 		animations = new Animation[9];
 		creationAnimations();
+		
+		hudLifeFlask = new HudLifeFlask();
 	}
 	
 	
@@ -91,7 +94,7 @@ public class Hero extends Character {
 		} else {
 			g.drawAnimation(animations[8], pos.x-40, pos.y-65);
 		}
-
+		hudLifeFlask.render(g);
 	}
 	
 	/**
@@ -103,6 +106,7 @@ public class Hero extends Character {
 				&& !world.collideToWall(futurePos(delta)) ){
 			move(delta);
 		}
+		hudLifeFlask.update(delta, nbFlasks);
 	}
 	
 	/**
