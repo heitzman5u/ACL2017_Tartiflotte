@@ -2,6 +2,11 @@ package model;
 
 import org.newdawn.slick.geom.Vector2f;
 
+/**
+ * An object that is in the world map, and can interact with it
+ * @author Tartiflotte
+ *
+ */
 public class WorldObject {
 	protected World world;
 	protected Vector2f pos;
