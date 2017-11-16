@@ -1,7 +1,7 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -24,9 +24,9 @@ public class World {
 
 	private Hero hero;
 	private Exit exit;
-	
-	//TODO
-	//private List<LifeFlask> flasks;
+
+	private List<LifeFlask> flasks;
+	private List<Monster> monsters;
 
 	public World() throws SlickException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
@@ -38,21 +38,14 @@ public class World {
 		exit.setWorld(this);
 
 		map = level.getMap();
-		
-		//setWorld on flasks
-		Iterator<LifeFlask> it = level.getFlasks();
-		LifeFlask f;
-		while (it.hasNext()) {
-			f = it.next();
+
+		flasks = level.flasksInLevel();
+		for (LifeFlask f : flasks)
 			f.setWorld(this);
-		}
-		
-		Iterator<Monster> itMonster = level.getMonsters();
-		Monster m;
-		while (itMonster.hasNext()) {
-			m = itMonster.next();
-			m.setWorld(this);;
-		}
+
+		monsters = level.monstersInLevel();
+		for (Monster munch : monsters)
+			munch.setWorld(this);
 	}
 
 	/**
@@ -84,21 +77,13 @@ public class World {
 			throw new NullArgumentException();
 		map.render(0, 0);
 
-		// call render of all flasks in level
-		Iterator<LifeFlask> it = level.getFlasks();
-		LifeFlask f;
-		while (it.hasNext()) {
-			f = it.next();
+		// call render of all flasks
+		for (LifeFlask f : flasks)
 			f.render(g);
-		}
 
-		// call render of all monsters in level
-		Iterator<Monster> itMonster = level.getMonsters();
-		Monster m;
-		while (itMonster.hasNext()) {
-			m = itMonster.next();
+		// call render of all monsters
+		for (Monster m : monsters)
 			m.render(g);
-		}
 
 		hero.render(g);
 		exit.render(g);
@@ -113,21 +98,13 @@ public class World {
 		if (delta < 0)
 			throw new IllegalArgumentException("delta >= 0");
 
-		// call update of all flasks in level
-		Iterator<LifeFlask> it = level.getFlasks();
-		LifeFlask f;
-		while (it.hasNext()) {
-			f = it.next();
+		// call update of all flasks
+		for (LifeFlask f : flasks)
 			f.update(delta);
-		}
 
-		// call update of all monsters in level
-		Iterator<Monster> itMonster = level.getMonsters();
-		Monster m;
-		while (itMonster.hasNext()) {
-			m = itMonster.next();
+		// call update of all monsters
+		for (Monster m : monsters)
 			m.update(delta);
-		}
 
 		hero.update(delta);
 		exit.update(delta);
@@ -164,14 +141,16 @@ public class World {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Remove a flask from the world and att it to the character
-	 * @param f flask to pick
+	 * 
+	 * @param f
+	 *            flask to pick
 	 * @deprecated not implemented yet
 	 */
 	@Deprecated
-	public void pickFlask(LifeFlask f){
+	public void pickFlask(LifeFlask f) {
 		throw new NotImplementedException();
 	}
 
@@ -183,8 +162,7 @@ public class World {
 		return hero.getPlayerController();
 	}
 
-	public Iterator getMonsters() {
-		return level.getMonsters();
+	public Iterator<Monster> getMonsters() {
+		return monsters.iterator();
 	}
-
 }

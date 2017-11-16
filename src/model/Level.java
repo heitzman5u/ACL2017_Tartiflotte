@@ -2,7 +2,7 @@ package model;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -20,15 +20,9 @@ public class Level {
 
 	private TiledMap map;
 	private Hero hero;
-	
-	private ArrayList<Monster> monsters;
-
-	private Monster monster;
 
 	private Exit exit;
-
-	private ArrayList<LifeFlask> listFlask;
-
+	
 	/**
 	 * Load a level
 	 * 
@@ -44,11 +38,8 @@ public class Level {
 		}
 
 		map = new TiledMap(file, tilesetLoc);
-		monsters= monstersInLevel();
 		hero = getHeroInTmx();
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
-
-		listFlask = flasksInLevel();
 	}
 
 	/**
@@ -72,14 +63,13 @@ public class Level {
 	}
 
 	/**
-	 * return list of objects in type obj in the level.tmx
-	 * 
-	 * @param obj
+	 * return list of LifeFlask in the map.tmx
+	 *
 	 * @throws SlickException
 	 */
-	private ArrayList<LifeFlask> flasksInLevel() throws SlickException {
+	public List<LifeFlask> flasksInLevel() throws SlickException {
 		Image tile;
-		ArrayList<LifeFlask> listFlask = new ArrayList<LifeFlask>();
+		List<LifeFlask> listFlask = new ArrayList<LifeFlask>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
@@ -91,9 +81,14 @@ public class Level {
 		return listFlask;
 	}
 	
-	private ArrayList<Monster> monstersInLevel() throws SlickException {
+	/**
+	 * return list of monster in the map.tmx
+	 * @return
+	 * @throws SlickException
+	 */
+	public List<Monster> monstersInLevel() throws SlickException {
 		Image tile;
-		ArrayList<Monster> monsters = new ArrayList<Monster>();
+		List<Monster> monsters = new ArrayList<Monster>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("monster"));
@@ -137,25 +132,7 @@ public class Level {
 		return hero;
 	}
 
-	public Monster getMonster() {
-		return monster;
-	}
-
 	public Exit getExit() {
 		return exit;
-	}
-
-	public Iterator<LifeFlask> getFlasks() {
-		return listFlask.iterator();
-	}
-
-	/**
-	 * Access level's monsters
-	 * 
-	 * @return null
-	 */
-
-	public Iterator<Monster> getMonsters(){
-		return monsters.iterator();
 	}
 }
