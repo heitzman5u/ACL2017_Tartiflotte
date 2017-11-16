@@ -25,6 +25,8 @@ public class Level {
 	
 	private Exit exit;
 	
+	private ArrayList<Flask> listFlask;
+	
 	/**
 	 * Load a level
 	 * @param file file to load the map from
@@ -40,6 +42,7 @@ public class Level {
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
+		flask = flaskInLevel();
 		
 	}
 	
@@ -60,6 +63,24 @@ public class Level {
                 (int) y / this.map.getTileHeight(), 
                 this.map.getLayerIndex("logic"));
 		return tile != null; //null if no "logic" tile found there
+	}
+	
+	/**
+	 * return list of objects in type obj in the level.tmx 
+	 * @param obj
+	 */
+	public ArrayList<Flask> flaskInLevel() {
+		Image tile;
+		int cpt = 0;
+		ArrayList<Flask> listFlask = new ArrayList<Flask>();
+		for(int x=0; x < this.map.getWidth(); x++) {
+			for(int y=0; y < this.map.getHeight(); y++) {
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
+				if(tile != null) {
+					//remplir liste
+				}
+			}
+		}
 	}
 	
 	/**
@@ -101,5 +122,4 @@ public class Level {
 	public Iterator<Monster> getMonsters(){
 		throw new NotImplementedException();
 	}
-	
 }
