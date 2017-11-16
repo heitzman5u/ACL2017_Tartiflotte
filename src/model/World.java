@@ -81,12 +81,12 @@ public class World {
 	
 	/**
 	 * 
-	 * @param m Monster
+	 * @param o world object
 	 * @return the distance between the monster m and the hero
 	 */
-	public Vector2f distanceWithHero(Monster m){
-		if(m == null) throw new NullArgumentException();
-		return new Vector2f(hero.getX() - m.getX(), hero.getY() - m.getY());
+	public Vector2f trajectoryToHero(WorldObject o){
+		if(o == null) throw new NullArgumentException();
+		return new Vector2f(hero.getX() - o.getX(), hero.getY() - o.getY());
 	}
 	
 	/**
