@@ -45,6 +45,10 @@ public class Character extends WorldObject {
 	}
 	
 	
+	/**
+	 * Copy constructor that returns a deep copy of the character
+	 * @param other other to copy
+	 */
 	protected Character(Character other){
 		super(other);
 		speed = other.speed;
