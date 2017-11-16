@@ -1,4 +1,6 @@
 <project name="ACL2017_Tartiflotte">
+	<property name="test.src.dir" value="src/test"/>
+	<property name="test.bin.dir" value="bin/test"/>
 	<property name="src.dir" value="src"/>
 	<property name="bin.dir" value="bin"/>
 	<property name="jar.dir" value="exe"/>
@@ -13,6 +15,14 @@
 		<pathelement location="src/"/>
 		<pathelement location="res/"/>
 	</path>
+	
+	
+	<path id="class.path.test">
+	    <pathelement location="lib/junit-4.12.jar"/>
+	    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+		<pathelement location="${bin.dir}"/>
+	</path>
+	
 	
 	<target name="run" depends="jar">
 		<java jar="${jar.dir}/${jar.name}" fork="true">
@@ -53,5 +63,18 @@
 		<mkdir dir="${doc.dir}"/>
         <javadoc access="protected" author="true" classpath="lib/slick.jar;lib/jinput.jar;lib/lwjgl.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="exception,model" source="1.8" sourcefiles="src/Main.java" sourcepath="src;res" splitindex="true" use="true" version="true"/>
     </target>
+	
+	<target name="test" depends="compile">
+    	<junit printsummary="on" haltonfailure="yes" fork="true">
+	        <classpath>
+	         	<path refid="class.path.test"/>
+	    		<pathelement location="${test.bin.dir}"/>
+	        </classpath>
+	        <formatter type="brief" usefile="false" />
+	        <batchtest>
+	            <fileset dir="${test.src.dir}" includes="**/*.java" />
+        	</batchtest>
+    	</junit>
+  	</target>
 	
 </project>
