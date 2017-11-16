@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Iterator;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -15,7 +17,6 @@ import exception.NullArgumentException;
  */
 public class Hero extends Character {
 	private PlayerController playerController;
-	
 	private Animation[] animations;
 	
 	private static final float SPEED = 0.2f;
@@ -30,7 +31,7 @@ public class Hero extends Character {
 	 */
 	public Hero(float x, float y) throws SlickException{
 		super(x, y, SPEED);
-		playerController = new PlayerController();
+		playerController = new PlayerController(this);
 		
 		nbFlasks = 0;
 		animations = new Animation[9];
@@ -140,6 +141,17 @@ public class Hero extends Character {
 	
 	private void setDirection(){
 		direction = playerController.getDirection();
+	}
+	
+	public void attackMonsters(){
+		Iterator<Monster> it = world.getMonsters();
+		
+		while(it.hasNext()){
+		Monster m = it.next();
+			if(distance(m)<=1200f){
+				m.setAlive(false);
+			}
+		}
 	}
 		
 }

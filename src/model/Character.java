@@ -94,4 +94,5 @@ public class Character extends WorldObject {
 	public World getWorld(){
 		return world;
 	}
+
 }

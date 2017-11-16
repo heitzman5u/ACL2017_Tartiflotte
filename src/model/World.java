@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Iterator;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -112,7 +114,16 @@ public class World {
 		return hero;
 	}
 	
+	public Monster getMonster(){
+		return monster;
+	}
+	
 	public PlayerController getPlayerController(){
 		return hero.getPlayerController();
 	}
+	
+	public Iterator getMonsters(){
+		return level.getMonsters();
+	}
+	
 }

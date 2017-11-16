@@ -25,4 +25,8 @@ public class WorldObject {
 	public void setWorld(World w){
 		world = w;
 	}
+	
+	public float distance(WorldObject wo){
+		return this.getPos().distance(wo.getPos());
+	}
 }
