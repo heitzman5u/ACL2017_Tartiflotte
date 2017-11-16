@@ -5,11 +5,15 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import exception.NullArgumentException;
+
 public class LifeFlask extends WorldObject {
 	
 	private Animation animationLittleFlask;
 	
-	private static float hp = 120; 
+	private static float hp = 120f; 
+	
+	private static float PICK_UP_DISTANCE = 25f;
 
 	protected LifeFlask(float x, float y) throws SlickException {
 		super(x, y);
@@ -19,10 +23,16 @@ public class LifeFlask extends WorldObject {
 	}
 	
 	public void update(int delta){
-		
+		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		/*final float d = world.trajectoryToHero(this).length();
+		if(d < PICK_UP_DISTANCE){
+			world.pickFlask(this);
+		}*/
+		//TODO
 	}
 	
 	public void render(Graphics g){
+		if(g == null) throw new NullArgumentException();
 		g.drawAnimation(animationLittleFlask, pos.x, pos.y);
 	}
 	
