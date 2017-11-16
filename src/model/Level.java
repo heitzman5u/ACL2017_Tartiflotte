@@ -29,8 +29,6 @@ public class Level {
 
 	private ArrayList<LifeFlask> listFlask;
 
-	private LifeFlask lifeFlask;
-
 	/**
 	 * Load a level
 	 * @param file file to load the map from
@@ -47,11 +45,7 @@ public class Level {
 		hero = new Hero(30, 260);
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
 
-		listFlask = flaskInLevel();
-
-		lifeFlask = new LifeFlask(200,200);
-
-		
+		listFlask = objectsInLevel("flask");		
 	}
 	
 	/**
@@ -76,16 +70,16 @@ public class Level {
 	/**
 	 * return list of objects in type obj in the level.tmx 
 	 * @param obj
+	 * @throws SlickException 
 	 */
-	public ArrayList<LifeFlask> flaskInLevel() {
+	public ArrayList<LifeFlask> objectsInLevel(String obj) throws SlickException {
 		Image tile;
-		int cpt = 0;
 		ArrayList<LifeFlask> listFlask = new ArrayList<LifeFlask>();
 		for(int x=0; x < this.map.getWidth(); x++) {
 			for(int y=0; y < this.map.getHeight(); y++) {
-				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex(obj));
 				if(tile != null) {
-					//remplir liste
+					listFlask.add(new LifeFlask(x*this.map.getTileWidth(),y*this.map.getTileHeight()));
 				}
 			}
 		}
@@ -122,8 +116,8 @@ public class Level {
 		return exit;
 	}
 	
-	public LifeFlask getLifeFlask() {
-		return lifeFlask;
+	public Iterator<LifeFlask> getFlasks(){
+		return listFlask.iterator();
 	}
 
 	/**
