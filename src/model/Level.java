@@ -22,6 +22,7 @@ public class Level {
 	private TiledMap map;
 	private Hero hero;
 	
+	private ArrayList<Monster> monsters;
 	private Monster monster;
 	
 	private Exit exit;
@@ -41,6 +42,7 @@ public class Level {
 		}
 		
 		map = new TiledMap(file, tilesetLoc);
+		monsters=new ArrayList<Monster>();
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
@@ -127,6 +129,6 @@ public class Level {
 	 */
 	@Deprecated
 	public Iterator<Monster> getMonsters(){
-		throw new NotImplementedException();
+		return monsters.iterator();
 	}
 }

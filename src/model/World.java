@@ -157,4 +157,9 @@ public class World {
 	public PlayerController getPlayerController() {
 		return hero.getPlayerController();
 	}
+	
+	public Iterator getMonsters(){
+		return level.getMonsters();
+	}
+	
 }

@@ -87,5 +87,5 @@ public class Character extends WorldObject {
 		if(dmg < 0) dmg = 0;
 		life -= dmg;
 	}
-	
+
 }
