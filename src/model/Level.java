@@ -2,6 +2,7 @@ package model;
 
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.newdawn.slick.Image;
@@ -25,8 +26,11 @@ public class Level {
 	
 	private Exit exit;
 	
-	private ArrayList<Flask> listFlask;
-	
+
+	private ArrayList<LifeFlask> listFlask;
+
+	private LifeFlask lifeFlask;
+
 	/**
 	 * Load a level
 	 * @param file file to load the map from
@@ -42,7 +46,11 @@ public class Level {
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
-		flask = flaskInLevel();
+
+		listFlask = flaskInLevel();
+
+		lifeFlask = new LifeFlask(200,200);
+
 		
 	}
 	
@@ -69,10 +77,10 @@ public class Level {
 	 * return list of objects in type obj in the level.tmx 
 	 * @param obj
 	 */
-	public ArrayList<Flask> flaskInLevel() {
+	public ArrayList<LifeFlask> flaskInLevel() {
 		Image tile;
 		int cpt = 0;
-		ArrayList<Flask> listFlask = new ArrayList<Flask>();
+		ArrayList<LifeFlask> listFlask = new ArrayList<LifeFlask>();
 		for(int x=0; x < this.map.getWidth(); x++) {
 			for(int y=0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
@@ -81,6 +89,7 @@ public class Level {
 				}
 			}
 		}
+		return listFlask;
 	}
 	
 	/**
@@ -113,6 +122,10 @@ public class Level {
 		return exit;
 	}
 	
+	public LifeFlask getLifeFlask() {
+		return lifeFlask;
+	}
+
 	/**
 	 * Access level's monsters
 	 * @deprecated Not implemented yet

@@ -20,6 +20,7 @@ public class World {
 	private Hero hero;
 	private Monster monster;
 	private Exit exit;
+	private LifeFlask lifeFlask;
 	
 	public World() throws SlickException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
@@ -32,6 +33,9 @@ public class World {
 		
 		exit = level.getExit();
 		exit.setWorld(this);
+		
+		lifeFlask = level.getLifeFlask();
+		lifeFlask.setWorld(this);
 		
 		map = level.getMap();
 	}
@@ -63,6 +67,7 @@ public class World {
 	public void render(Graphics g){
 		if(g == null) throw new NullArgumentException();
 		map.render(0, 0);
+		lifeFlask.render(g);
 		hero.render(g);
 		exit.render(g);
 		monster.render(g);
@@ -74,6 +79,7 @@ public class World {
 	 */
 	public void update(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		lifeFlask.update(delta);
 		hero.update(delta);
 		exit.update(delta);
 		monster.update(delta);
@@ -81,12 +87,12 @@ public class World {
 	
 	/**
 	 * 
-	 * @param m Monster
+	 * @param o world object
 	 * @return the distance between the monster m and the hero
 	 */
-	public Vector2f distanceWithHero(Monster m){
-		if(m == null) throw new NullArgumentException();
-		return new Vector2f(hero.getX() - m.getX(), hero.getY() - m.getY());
+	public Vector2f trajectoryToHero(WorldObject o){
+		if(o == null) throw new NullArgumentException();
+		return new Vector2f(hero.getX() - o.getX(), hero.getY() - o.getY());
 	}
 	
 	/**

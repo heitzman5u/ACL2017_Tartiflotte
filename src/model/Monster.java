@@ -34,7 +34,7 @@ public class Monster extends Character {
 		
 		moving = false;
 		direction = 0;
-		
+		life = 10;
 		attack = false;
 		
 		animations = new Animation[8];
@@ -47,7 +47,7 @@ public class Monster extends Character {
 	 * @param monster copied
 	 */
 	private Monster(Monster other){
-		super(other.getX(), other.getY(), SPEED, other.direction, other.world);
+		super(other);
 		
 		moving = other.moving;
 		attack = other.attack;
@@ -62,8 +62,8 @@ public class Monster extends Character {
 	 */
 	public void move(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
-		float xHero = world.distanceWithHero(this).getX();
-		float yHero = world.distanceWithHero(this).getY();
+		float xHero = world.trajectoryToHero(this).getX();
+		float yHero = world.trajectoryToHero(this).getY();
 		
 		//move only if the hero is within his view range, and no collisions will occur
 		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= VIEW_DISTANCE) 
@@ -91,8 +91,8 @@ public class Monster extends Character {
 	 * Allows the monster to attack the hero
 	 */
 	public void attack(){
-		float xHero = world.distanceWithHero(this).getX();
-		float yHero = world.distanceWithHero(this).getY();
+		float xHero = world.trajectoryToHero(this).getX();
+		float yHero = world.trajectoryToHero(this).getY();
 
 		//attack only if within the range
 		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= ATTACK_DISTANCE)){

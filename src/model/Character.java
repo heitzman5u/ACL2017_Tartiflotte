@@ -9,12 +9,12 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Tartiflotte
  *
  */
-public class Character extends WorldObject {
-	protected World world;
-	
+public class Character extends WorldObject {	
 	protected float speed;
 	
 	protected boolean alive;
+	protected int life;
+	protected int damage;
 	
 	protected int direction; //direction the character faces
 	
@@ -44,29 +44,20 @@ public class Character extends WorldObject {
 		world = w;
 	}
 	
-	/**
-	 * 
-	 * @return position of this character
-	 */
-	public Vector2f getPos(){
-		return pos;
-	}
 	
 	/**
-	 * 
-	 * @return abscissa of this character
+	 * Copy constructor that returns a deep copy of the character
+	 * @param other other to copy
 	 */
-	public float getX(){
-		return pos.x;
+	protected Character(Character other){
+		super(other);
+		speed = other.speed;
+		alive  = other.alive;
+		life = other.life;
+		damage = other.damage;
+		direction = other.direction;
 	}
 	
-	/**
-	 * 
-	 * @return ordinate of this character
-	 */
-	public float getY(){
-		return pos.y;
-	}
 	
 	/**
 	 * 
@@ -86,12 +77,15 @@ public class Character extends WorldObject {
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
-
-	public void setWorld(World w){
-		world = w;
+	
+	/**
+	 * Deal damage to this character.
+	 * No damage taken if dmg <= 0
+	 * @param dmg damage taken
+	 */
+	public void receiveDamage(int dmg){
+		if(dmg < 0) dmg = 0;
+		life -= dmg;
 	}
 	
-	public World getWorld(){
-		return world;
-	}
 }
