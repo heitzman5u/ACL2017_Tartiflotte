@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.newdawn.slick.Graphics;
@@ -8,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.NotImplementedException;
 import exception.NullArgumentException;
 
 /**
@@ -23,6 +25,9 @@ public class World {
 	private Hero hero;
 	private Monster monster;
 	private Exit exit;
+	
+	//TODO
+	//private List<LifeFlask> flasks;
 
 	public World() throws SlickException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
@@ -133,6 +138,16 @@ public class World {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Remove a flask from the world and att it to the character
+	 * @param f flask to pick
+	 * @deprecated not implemented yet
+	 */
+	@Deprecated
+	public void pickFlask(LifeFlask f){
+		throw new NotImplementedException();
 	}
 
 	public Hero getHero() {
