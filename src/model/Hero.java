@@ -168,5 +168,12 @@ public class Hero extends Character {
 	public int getNbFlasks() {
 		return nbFlasks;
 	}
+	
+	/**
+	 * Add a flask to the hero's inventory
+	 */
+	public void pickFlask(){
+		nbFlasks++;
+	}
 		
 }

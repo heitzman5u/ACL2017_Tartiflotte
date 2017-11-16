@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.newdawn.slick.Graphics;
@@ -27,6 +29,8 @@ public class World {
 
 	private List<LifeFlask> flasks;
 	private List<Monster> monsters;
+	
+	private final List<LifeFlask> toBeRemoved;
 
 	public World() throws SlickException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
@@ -42,6 +46,7 @@ public class World {
 		flasks = level.flasksInLevel();
 		for (LifeFlask f : flasks)
 			f.setWorld(this);
+		toBeRemoved = new ArrayList<>(flasks.size());
 
 		monsters = level.monstersInLevel();
 		for (Monster munch : monsters)
@@ -97,10 +102,12 @@ public class World {
 	public void update(int delta) {
 		if (delta < 0)
 			throw new IllegalArgumentException("delta >= 0");
-
+		
 		// call update of all flasks
+		toBeRemoved.clear();
 		for (LifeFlask f : flasks)
 			f.update(delta);
+		flasks.removeAll(toBeRemoved);
 
 		// call update of all monsters
 		for (Monster m : monsters)
@@ -145,13 +152,11 @@ public class World {
 	/**
 	 * Remove a flask from the world and att it to the character
 	 * 
-	 * @param f
-	 *            flask to pick
-	 * @deprecated not implemented yet
+	 * @param f flask to pick
 	 */
-	@Deprecated
 	public void pickFlask(LifeFlask f) {
-		throw new NotImplementedException();
+		toBeRemoved.add(f);
+		hero.pickFlask();
 	}
 
 	public Hero getHero() {
