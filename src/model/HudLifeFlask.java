@@ -9,6 +9,11 @@ import org.newdawn.slick.UnicodeFont;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Hud that indicates how many life flasks are in the hero's inventory
+ * @author Tartiflotte
+ *
+ */
 public class HudLifeFlask {
 	
 	private Animation[] animationBigFlask;
@@ -33,10 +38,16 @@ public class HudLifeFlask {
 		}
 	}
 	
+	/**
+	 * @see Game.update()
+	 */
 	public void update(int delta, int nbFlask){
 		nbFlaskHero = nbFlask;
 	}
 	
+	/**
+	 * @see Game.render()
+	 */
 	public void render(Graphics g){
 		//float nbFlaskHero = hero.getNbFlasks();
 		if(nbFlaskHero >= 10)
