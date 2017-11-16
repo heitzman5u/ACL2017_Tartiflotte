@@ -10,7 +10,6 @@ import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
 import exception.NullArgumentException;
-import exception.NotImplementedException;
 
 /**
  * Load the elements of the map
@@ -21,6 +20,8 @@ public class Level {
 
 	private TiledMap map;
 	private Hero hero;
+	
+	private ArrayList<Monster> monsters;
 
 	private Monster monster;
 
@@ -43,11 +44,11 @@ public class Level {
 		}
 
 		map = new TiledMap(file, tilesetLoc);
-		monster = new Monster(450, 200);
-		hero = new Hero(30, 260);
+		monsters= monstersInLevel();
+		hero = getHeroInTmx();
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
 
-		listFlask = objectsInLevel("flask");
+		listFlask = flasksInLevel();
 	}
 
 	/**
@@ -76,18 +77,32 @@ public class Level {
 	 * @param obj
 	 * @throws SlickException
 	 */
-	private ArrayList<LifeFlask> objectsInLevel(String obj) throws SlickException {
+	private ArrayList<LifeFlask> flasksInLevel() throws SlickException {
 		Image tile;
 		ArrayList<LifeFlask> listFlask = new ArrayList<LifeFlask>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
-				tile = this.map.getTileImage(x, y, this.map.getLayerIndex(obj));
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
 				if (tile != null) {
 					listFlask.add(new LifeFlask(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
 				}
 			}
 		}
 		return listFlask;
+	}
+	
+	private ArrayList<Monster> monstersInLevel() throws SlickException {
+		Image tile;
+		ArrayList<Monster> monsters = new ArrayList<Monster>();
+		for (int x = 0; x < this.map.getWidth(); x++) {
+			for (int y = 0; y < this.map.getHeight(); y++) {
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("monster"));
+				if (tile != null) {
+					monsters.add(new Monster(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+				}
+			}
+		}
+		return monsters;
 	}
 
 	private Hero getHeroInTmx() throws SlickException {
@@ -137,11 +152,10 @@ public class Level {
 	/**
 	 * Access level's monsters
 	 * 
-	 * @deprecated Not implemented yet
 	 * @return null
 	 */
-	@Deprecated
-	public Iterator<Monster> getMonsters() {
-		throw new NotImplementedException();
+
+	public Iterator<Monster> getMonsters(){
+		return monsters.iterator();
 	}
 }

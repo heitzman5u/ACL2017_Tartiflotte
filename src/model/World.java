@@ -21,7 +21,6 @@ public class World {
 	private Level level;
 
 	private Hero hero;
-	private Monster monster;
 	private Exit exit;
 
 	public World() throws SlickException {
@@ -30,13 +29,25 @@ public class World {
 		hero = level.getHero();
 		hero.setWorld(this);
 
-		monster = level.getMonster();
-		monster.setWorld(this);
-
 		exit = level.getExit();
 		exit.setWorld(this);
 
 		map = level.getMap();
+		
+		//setWorld on flasks
+		Iterator<LifeFlask> it = level.getFlasks();
+		LifeFlask f;
+		while (it.hasNext()) {
+			f = it.next();
+			f.setWorld(this);
+		}
+		
+		Iterator<Monster> itMonster = level.getMonsters();
+		Monster m;
+		while (itMonster.hasNext()) {
+			m = itMonster.next();
+			m.setWorld(this);;
+		}
 	}
 
 	/**
@@ -76,9 +87,16 @@ public class World {
 			f.render(g);
 		}
 
+		// call render of all monsters in level
+		Iterator<Monster> itMonster = level.getMonsters();
+		Monster m;
+		while (itMonster.hasNext()) {
+			m = itMonster.next();
+			m.render(g);
+		}
+
 		hero.render(g);
 		exit.render(g);
-		monster.render(g);
 	}
 
 	/**
@@ -89,7 +107,7 @@ public class World {
 	public void update(int delta) {
 		if (delta < 0)
 			throw new IllegalArgumentException("delta >= 0");
-		
+
 		// call update of all flasks in level
 		Iterator<LifeFlask> it = level.getFlasks();
 		LifeFlask f;
@@ -97,10 +115,17 @@ public class World {
 			f = it.next();
 			f.update(delta);
 		}
-		
+
+		// call update of all monsters in level
+		Iterator<Monster> itMonster = level.getMonsters();
+		Monster m;
+		while (itMonster.hasNext()) {
+			m = itMonster.next();
+			m.update(delta);
+		}
+
 		hero.update(delta);
 		exit.update(delta);
-		monster.update(delta);
 	}
 
 	/**
@@ -142,4 +167,9 @@ public class World {
 	public PlayerController getPlayerController() {
 		return hero.getPlayerController();
 	}
+
+	public Iterator getMonsters() {
+		return level.getMonsters();
+	}
+
 }

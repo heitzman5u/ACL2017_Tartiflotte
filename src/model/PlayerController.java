@@ -22,16 +22,19 @@ public class PlayerController implements KeyListener {
 	//private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
 	private int lastDirection = 3;//facing south by default
+	private Hero hero;
 	
 	/**
 	 * The constructor initializes the attribute inputs.
 	 * This attribute connects the four moving keys to the good displacement
 	 */
-	public PlayerController(){
+	public PlayerController(Hero h){
 		inputs.put(Input.KEY_Z, new InputProperty(0f,  -1f, 2));
 		inputs.put(Input.KEY_S, new InputProperty(0f,  1f, 3));
 		inputs.put(Input.KEY_Q, new InputProperty(-1f,  0f, 1));
 		inputs.put(Input.KEY_D, new InputProperty(1f, 0f, 0));
+		
+		hero=h;
 	}
 
 	@Override
@@ -61,6 +64,9 @@ public class PlayerController implements KeyListener {
 	public void keyPressed(int key, char arg1) {
 		if(inputs.containsKey(key)){
 			inputs.get(key).setPressed(true);
+		}
+		else if(key==Input.KEY_M){
+			hero.attackMonsters();
 		}
 	}
 	
