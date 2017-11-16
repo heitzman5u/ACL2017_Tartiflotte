@@ -18,7 +18,9 @@ public class Hero extends Character {
 	
 	private Animation[] animations;
 	
-	private static final float SPEED = 0.2f;	
+	private static final float SPEED = 0.2f;
+	
+	private int nbFlasks;
 	
 	/**
 	 * create a new Hero at the given position
@@ -30,7 +32,7 @@ public class Hero extends Character {
 		super(x, y, SPEED);
 		playerController = new PlayerController();
 		
-		
+		nbFlasks = 0;
 		animations = new Animation[9];
 		creationAnimations();
 	}
