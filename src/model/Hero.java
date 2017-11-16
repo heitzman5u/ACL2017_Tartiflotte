@@ -20,6 +20,7 @@ public class Hero extends Character {
 	private Animation[] animations;
 	
 	private static final float SPEED = 0.2f;
+	private static final int FULL_LIFE = 10;
 	
 	private int nbFlasks;
 	
@@ -34,19 +35,23 @@ public class Hero extends Character {
 		playerController = new PlayerController(this);
 		
 		nbFlasks = 0;
+		life = FULL_LIFE;
 		animations = new Animation[9];
 		creationAnimations();
 	}
 	
 	
 	/**
-	 * Copy a Hero. Deep copy of position and orientation
+	 * Copy a Hero. Deep copy of position, orientation, nb of flasks
 	 * Shallow copy of other objects
 	 * @param other the copied hero
 	 */
 	public Hero(Hero other){
-		super(other.getX(), other.getY(), SPEED);
+		super(other);
 		playerController = other.playerController;
+		animations = other.animations;
+		
+		nbFlasks = other.nbFlasks;
 	}
 	
 	/**
@@ -143,6 +148,7 @@ public class Hero extends Character {
 		direction = playerController.getDirection();
 	}
 	
+	
 	public void attackMonsters(){
 		Iterator<Monster> it = world.getMonsters();
 		
@@ -152,6 +158,11 @@ public class Hero extends Character {
 				m.setAlive(false);
 			}
 		}
+	}
+
+
+	public int getNbFlasks() {
+		return nbFlasks;
 	}
 		
 }

@@ -27,6 +27,9 @@ public class Level {
 	
 	private Exit exit;
 	
+
+	private ArrayList<LifeFlask> listFlask;
+
 	/**
 	 * Load a level
 	 * @param file file to load the map from
@@ -43,7 +46,8 @@ public class Level {
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
-		
+
+		listFlask = objectsInLevel("flask");		
 	}
 	
 	/**
@@ -63,6 +67,25 @@ public class Level {
                 (int) y / this.map.getTileHeight(), 
                 this.map.getLayerIndex("logic"));
 		return tile != null; //null if no "logic" tile found there
+	}
+	
+	/**
+	 * return list of objects in type obj in the level.tmx 
+	 * @param obj
+	 * @throws SlickException 
+	 */
+	public ArrayList<LifeFlask> objectsInLevel(String obj) throws SlickException {
+		Image tile;
+		ArrayList<LifeFlask> listFlask = new ArrayList<LifeFlask>();
+		for(int x=0; x < this.map.getWidth(); x++) {
+			for(int y=0; y < this.map.getHeight(); y++) {
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex(obj));
+				if(tile != null) {
+					listFlask.add(new LifeFlask(x*this.map.getTileWidth(),y*this.map.getTileHeight()));
+				}
+			}
+		}
+		return listFlask;
 	}
 	
 	/**
@@ -95,6 +118,10 @@ public class Level {
 		return exit;
 	}
 	
+	public Iterator<LifeFlask> getFlasks(){
+		return listFlask.iterator();
+	}
+
 	/**
 	 * Access level's monsters
 	 * @deprecated Not implemented yet
@@ -104,5 +131,4 @@ public class Level {
 	public Iterator<Monster> getMonsters(){
 		return monsters.iterator();
 	}
-	
 }
