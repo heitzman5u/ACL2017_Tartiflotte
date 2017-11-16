@@ -25,6 +25,8 @@ public class Level {
 	
 	private Exit exit;
 	
+	private LifeFlask lifeFlask;
+	
 	/**
 	 * Load a level
 	 * @param file file to load the map from
@@ -40,6 +42,7 @@ public class Level {
 		monster = new Monster(450, 200);
 		hero = new Hero(30, 260);
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
+		lifeFlask = new LifeFlask(200,200);
 		
 	}
 	
@@ -92,6 +95,10 @@ public class Level {
 		return exit;
 	}
 	
+	public LifeFlask getLifeFlask() {
+		return lifeFlask;
+	}
+
 	/**
 	 * Access level's monsters
 	 * @deprecated Not implemented yet

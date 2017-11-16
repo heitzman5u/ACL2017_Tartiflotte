@@ -141,5 +141,12 @@ public class Hero extends Character {
 	private void setDirection(){
 		direction = playerController.getDirection();
 	}
+
+
+	public int getNbFlasks() {
+		return nbFlasks;
+	}
+	
+	
 		
 }
