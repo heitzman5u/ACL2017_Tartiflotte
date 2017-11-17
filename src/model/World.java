@@ -86,11 +86,12 @@ public class World {
 		for (LifeFlask f : flasks)
 			f.render(g);
 
+		hero.render(g);
+		
 		// call render of all monsters
 		for (Monster m : monsters)
 			m.render(g);
 
-		hero.render(g);
 		exit.render(g);
 	}
 
