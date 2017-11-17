@@ -7,13 +7,20 @@ import org.newdawn.slick.SpriteSheet;
 
 import exception.NullArgumentException;
 
+/**
+ * A flask that can be picked by the hero, and heals him
+ * @author Tartiflotte
+ *
+ */
 public class LifeFlask extends WorldObject {
 	
 	private Animation animationLittleFlask;
 	
 	private static float hp = 120f; 
-	
 	private static float PICK_UP_DISTANCE = 25f;
+	
+	private static float WIDTH = 50f;
+	private static float HEIGHT = 50f;
 
 	protected LifeFlask(float x, float y) throws SlickException {
 		super(x, y);
@@ -22,18 +29,24 @@ public class LifeFlask extends WorldObject {
 		creationAnimationsLittleFlask();
 	}
 	
+	/**
+	 * @see Game.update()
+	 */
 	public void update(int delta){
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
-		/*final float d = world.trajectoryToHero(this).length();
-		if(d < PICK_UP_DISTANCE){
+		final float d = world.trajectoryToHero(this).length();
+		if(d <= PICK_UP_DISTANCE){
+			//System.out.println("Flask picked");
 			world.pickFlask(this);
-		}*/
-		//TODO
+		}
 	}
 	
+	/**
+	 * @see Game.render()
+	 */
 	public void render(Graphics g){
 		if(g == null) throw new NullArgumentException();
-		g.drawAnimation(animationLittleFlask, pos.x, pos.y);
+		g.drawAnimation(animationLittleFlask, pos.x-WIDTH/2, pos.y-HEIGHT/2);
 	}
 	
 	private void creationAnimationsLittleFlask() throws SlickException{
@@ -43,6 +56,10 @@ public class LifeFlask extends WorldObject {
 	}
 	
 
+	/**
+	 * 
+	 * @return Number of hp healed by a flask
+	 */
 	public static float getHp() {
 		return hp;
 	}
