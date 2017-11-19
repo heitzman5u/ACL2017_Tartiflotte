@@ -36,11 +36,11 @@ public class Hero extends Character {
 		playerController = new PlayerController(this);
 		
 		nbFlasks = 0;
-		life = FULL_LIFE;
+		life = 6;
 		animations = new Animation[9];
 		creationAnimations();
 		
-		hudLifeFlask = new HudHeroInfo();
+		hudLifeFlask = new HudHeroInfo(FULL_LIFE, life);
 	}
 	
 	
@@ -67,6 +67,20 @@ public class Hero extends Character {
 			//scale to have constant speed
 			Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
 			pos.add(vspeed);
+		}
+	}
+	
+	/**
+	 * Allow the Hero to use one of his life flask to regain HP
+	 */
+	public void useFlask(){
+		if (nbFlasks > 0){
+			nbFlasks --;
+			if ((life + LifeFlask.HP) >= FULL_LIFE){
+				life = FULL_LIFE;
+			} else {
+				life += LifeFlask.HP;
+			}
 		}
 	}
 	
@@ -107,7 +121,7 @@ public class Hero extends Character {
 				&& !world.collideToWall(futurePos(delta)) ){
 			move(delta);
 		}
-		hudLifeFlask.update(delta, nbFlasks);
+		hudLifeFlask.update(delta, nbFlasks, life);
 	}
 	
 	/**
@@ -160,17 +174,6 @@ public class Hero extends Character {
 		Monster m = it.next();
 			if(distance(m)<=1200f){
 				m.setAlive(false);
-			}
-		}
-	}
-
-	public void useFlask(){
-		if (nbFlasks > 0){
-			nbFlasks --;
-			if ((life + LifeFlask.HP) >= FULL_LIFE){
-				life = FULL_LIFE;
-			} else {
-				life += LifeFlask.HP;
 			}
 		}
 	}
