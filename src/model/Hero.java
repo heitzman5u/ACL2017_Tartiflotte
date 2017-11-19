@@ -22,7 +22,7 @@ public class Hero extends Character {
 	private static final float SPEED = 0.2f;
 	private static final int FULL_LIFE = 10;
 
-	private HudLifeFlask hudLifeFlask;
+	private HudHeroInfo hudLifeFlask;
 	private int nbFlasks;
 	
 	/**
@@ -40,7 +40,7 @@ public class Hero extends Character {
 		animations = new Animation[9];
 		creationAnimations();
 		
-		hudLifeFlask = new HudLifeFlask();
+		hudLifeFlask = new HudHeroInfo();
 	}
 	
 	
@@ -164,6 +164,16 @@ public class Hero extends Character {
 		}
 	}
 
+	public void useFlask(){
+		if (nbFlasks > 0){
+			nbFlasks --;
+			if ((life + LifeFlask.HP) >= FULL_LIFE){
+				life = FULL_LIFE;
+			} else {
+				life += LifeFlask.HP;
+			}
+		}
+	}
 
 	public int getNbFlasks() {
 		return nbFlasks;

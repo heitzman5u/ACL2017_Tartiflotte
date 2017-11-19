@@ -67,6 +67,8 @@ public class PlayerController implements KeyListener {
 		}
 		else if(key==Input.KEY_M){
 			hero.attackMonsters();
+		} else if(key == Input.KEY_F){
+			hero.useFlask();
 		}
 	}
 	

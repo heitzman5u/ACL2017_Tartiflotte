@@ -18,14 +18,14 @@ import org.newdawn.slick.font.effects.ColorEffect;
  * @author Tartiflotte
  *
  */
-public class HudLifeFlask {
+public class HudHeroInfo {
 	
 	private Animation[] animationBigFlask;
 	private TrueTypeFont ttf;
 	
 	private int nbFlaskHero;
 	
-	public HudLifeFlask() throws SlickException{
+	public HudHeroInfo() throws SlickException{
 		animationBigFlask = new Animation[3];
 		nbFlaskHero = 0;
 		creationAnimationBigFlask();

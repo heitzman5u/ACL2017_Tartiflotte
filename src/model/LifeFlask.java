@@ -16,7 +16,7 @@ public class LifeFlask extends WorldObject {
 	
 	private Animation animationLittleFlask;
 	
-	private static float hp = 120f; 
+	public static float HP = 3; 
 	private static float PICK_UP_DISTANCE = 25f;
 	
 	private static float WIDTH = 50f;
@@ -61,7 +61,7 @@ public class LifeFlask extends WorldObject {
 	 * @return Number of hp healed by a flask
 	 */
 	public static float getHp() {
-		return hp;
+		return HP;
 	}
 	
 }
