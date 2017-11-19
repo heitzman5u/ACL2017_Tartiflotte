@@ -22,6 +22,7 @@ public class Monster extends Character {
 	private static final float SPEED = 2.0f;
 	private static final float ATTACK_DISTANCE = 600f;
 	private static final float VIEW_DISTANCE = 80_000f;
+	private static final int FULL_LIFE = 10;
 	
 	/**
 	 * Create a monster at the given position
@@ -34,7 +35,7 @@ public class Monster extends Character {
 		
 		moving = false;
 		direction = 0;
-		life = 10;
+		life = FULL_LIFE;
 		attack = false;
 		
 		animations = new Animation[8];
