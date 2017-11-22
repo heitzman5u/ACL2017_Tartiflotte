@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -23,7 +23,7 @@ public class World {
 	private TiledMap map;
 	private final Level level;
 	
-	private final List<LifeFlask> toBeRemoved;
+	private final Collection<LifeFlask> toBeRemoved;
 
 	public World() throws SlickException, TartiException {
 		level = new Level(1);
