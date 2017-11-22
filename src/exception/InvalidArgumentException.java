@@ -1,5 +1,10 @@
 package exception;
 
+/**
+ * This exception should be thrown when passing an invalid argument to a method.
+ * @author Tartiflotte
+ *
+ */
 public class InvalidArgumentException extends TartiException {
 
 	private static final long serialVersionUID = -944450205198181793L;
