@@ -1,7 +1,7 @@
 package exception;
 
 /**
- * This exception should be thrown in place of IllegalArgumentException when the argument is illegal because it's null
+ * This exception should be thrown in place of InvalidArgumentException when the argument is invalid because it's null
  * @author Tartiflotte
  */
 public class NullArgumentException extends InvalidArgumentException {

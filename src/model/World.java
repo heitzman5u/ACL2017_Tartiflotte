@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.InvalidArgumentException;
 import exception.NotImplementedException;
 import exception.NullArgumentException;
 import exception.TartiException;
@@ -103,7 +104,7 @@ public class World {
 
 	public void update(int delta) throws TartiException {
 		if (delta < 0)
-			throw new IllegalArgumentException("delta >= 0");
+			throw new InvalidArgumentException("delta >= 0");
 		
 		// call update of all flasks
 		toBeRemoved.clear();

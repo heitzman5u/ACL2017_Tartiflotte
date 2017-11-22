@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 
@@ -52,10 +53,10 @@ public class Level {
 	 *            ordinate of the character y must be within the map
 	 * @return true if the character collides to a wall ; false if not
 	 */
-	public boolean collides(float x, float y) {
+	public boolean collides(float x, float y) throws TartiException {
 		if (x < 0f || x >= (float) (map.getWidth() * map.getTileWidth()) || y < 0f
 				|| y >= (float) (map.getHeight() * map.getTileHeight())) {
-			throw new IllegalArgumentException();
+			throw new InvalidArgumentException();
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position

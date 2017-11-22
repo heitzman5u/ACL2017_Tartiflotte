@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 /**
@@ -63,7 +64,7 @@ public class Monster extends Character {
 	 * @param delta milliseconds since last frame
 	 */
 	public void move(int delta) throws TartiException{
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		float xHero = world.trajectoryToHero(this).getX();
 		float yHero = world.trajectoryToHero(this).getY();
 		
@@ -83,7 +84,7 @@ public class Monster extends Character {
 	 * @return the future position of the Monster ; needed to the collisions
 	 */
 	private Monster futurePos(int delta) throws TartiException{
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		Monster m = new Monster(this);
 		m.move(delta);
 		return m;
@@ -140,7 +141,7 @@ public class Monster extends Character {
 	 * @see Game.update()
 	 */
 	public void update(int delta) throws TartiException{
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		if(!world.collideToWall(futurePos(delta))){
 			move(delta);
 		}

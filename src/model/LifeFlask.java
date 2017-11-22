@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 
@@ -34,7 +35,7 @@ public class LifeFlask extends WorldObject {
 	 * @see Game.update()
 	 */
 	public void update(int delta) throws TartiException{
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		final float d = world.trajectoryToHero(this).length();
 		if(d <= PICK_UP_DISTANCE){
 			//System.out.println("Flask picked");

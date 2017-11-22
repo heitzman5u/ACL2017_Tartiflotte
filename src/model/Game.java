@@ -4,6 +4,7 @@ package model;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 
@@ -66,7 +67,7 @@ public class Game {
 	 * @param delta milliseconds since last frame
 	 */
 	public void update(int delta) throws TartiException{
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		world.update(delta);
 	}
 	
