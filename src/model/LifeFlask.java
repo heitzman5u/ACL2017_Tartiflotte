@@ -5,7 +5,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * A flask that can be picked by the hero, and heals him
@@ -32,8 +34,8 @@ public class LifeFlask extends WorldObject {
 	/**
 	 * @see Game.update()
 	 */
-	public void update(int delta){
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+	public void update(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		final float d = world.trajectoryToHero(this).length();
 		if(d <= PICK_UP_DISTANCE){
 			//System.out.println("Flask picked");
@@ -44,7 +46,7 @@ public class LifeFlask extends WorldObject {
 	/**
 	 * @see Game.render()
 	 */
-	public void render(Graphics g){
+	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		g.drawAnimation(animationLittleFlask, pos.x-WIDTH/2, pos.y-HEIGHT/2);
 	}

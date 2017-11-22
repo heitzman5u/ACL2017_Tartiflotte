@@ -6,6 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import exception.TartiException;
+
 /**
  * Graphic interface of the game
  * @author Tartiflotte
@@ -20,9 +22,8 @@ public class GameUI extends BasicGame {
 	/**
 	 * create a new GameUI, where the game will run
 	 * @param title title of the window
-	 * @throws SlickException
 	 */
-	public GameUI(String title) throws SlickException {
+	public GameUI(String title) {
 		super(title);
 	}
 
@@ -34,13 +35,23 @@ public class GameUI extends BasicGame {
 	}
 
 	@Override
-	public void update(GameContainer arg0, int delta) throws SlickException {
-		Game.getInstance().update(delta);
+	public void update(GameContainer arg0, int delta) {
+		try{
+			Game.getInstance().update(delta);
+		}catch(TartiException e){
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
-	public void render(GameContainer arg0, Graphics g) throws SlickException {
-		Game.getInstance().render(g);
+	public void render(GameContainer arg0, Graphics g) {
+		try{
+			Game.getInstance().render(g);
+		}catch(TartiException e){
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

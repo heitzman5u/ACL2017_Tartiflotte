@@ -11,8 +11,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.InvalidArgumentException;
 import exception.NotImplementedException;
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Represents the elements which will be displayed on the graphic interface
@@ -24,33 +26,42 @@ public class World {
 	private TiledMap map;
 	private Level level;
 
-	private Hero hero;
-	private Exit exit;
+	//private Hero hero;
+	//private Exit exit;
 
-	private List<LifeFlask> flasks;
-	private List<Monster> monsters;
+	//private List<LifeFlask> flasks;
+	//private List<Monster> monsters;
 	
 	private final List<LifeFlask> toBeRemoved;
 
-	public World() throws SlickException {
+	public World() throws SlickException, TartiException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
 
-		hero = level.getHero();
-		hero.setWorld(this);
+		//hero = level.getHero();
+		//hero.setWorld(this);
 
-		exit = level.getExit();
-		exit.setWorld(this);
+		//exit = level.getExit();
+		//exit.setWorld(this);
 
 		map = level.getMap();
 
-		flasks = level.flasksInLevel();
-		for (LifeFlask f : flasks)
-			f.setWorld(this);
-		toBeRemoved = new ArrayList<>(flasks.size());
+		//flasks = level.flasksInLevel();
+		//for (LifeFlask f : flasks)
+		//	f.setWorld(this);
+		toBeRemoved = new ArrayList<>(level.getFlasks().size());
 
-		monsters = level.monstersInLevel();
-		for (Monster munch : monsters)
-			munch.setWorld(this);
+		//monsters = level.monstersInLevel();
+		//for (Monster munch : monsters)
+		//	munch.setWorld(this);
+		
+		level.getHero().setWorld(this);
+		level.getExit().setWorld(this);
+		for(LifeFlask f : level.getFlasks()){
+			f.setWorld(this);
+		}
+		for(Monster m : level.getMonsters()){
+			m.setWorld(this);
+		}
 	}
 
 	/**
@@ -77,22 +88,22 @@ public class World {
 	 * 
 	 * @see Game.render()
 	 */
-	public void render(Graphics g) {
+	public void render(Graphics g) throws TartiException {
 		if (g == null)
 			throw new NullArgumentException();
 		map.render(0, 0);
 
 		// call render of all flasks
-		for (LifeFlask f : flasks)
+		for (LifeFlask f : level.getFlasks())
 			f.render(g);
 
-		hero.render(g);
+		level.getHero().render(g);
 		
 		// call render of all monsters
-		for (Monster m : monsters)
+		for (Monster m : level.getMonsters())
 			m.render(g);
 
-		exit.render(g);
+		level.getExit().render(g);
 	}
 
 	/**
@@ -100,22 +111,22 @@ public class World {
 	 * @see Game.update()
 	 */
 
-	public void update(int delta) {
+	public void update(int delta) throws TartiException {
 		if (delta < 0)
-			throw new IllegalArgumentException("delta >= 0");
+			throw new InvalidArgumentException("delta >= 0");
 		
 		// call update of all flasks
 		toBeRemoved.clear();
-		for (LifeFlask f : flasks)
+		for (LifeFlask f : level.getFlasks())
 			f.update(delta);
-		flasks.removeAll(toBeRemoved);
+		level.getFlasks().removeAll(toBeRemoved);
 
 		// call update of all monsters
-		for (Monster m : monsters)
+		for (Monster m : level.getMonsters())
 			m.update(delta);
 
-		hero.update(delta);
-		exit.update(delta);
+		level.getHero().update(delta);
+		level.getExit().update(delta);
 	}
 
 	/**
@@ -124,9 +135,10 @@ public class World {
 	 *            world object
 	 * @return the distance between the monster m and the hero
 	 */
-	public Vector2f trajectoryToHero(WorldObject o) {
+	public Vector2f trajectoryToHero(WorldObject o) throws TartiException {
 		if (o == null)
 			throw new NullArgumentException();
+		final Hero hero = level.getHero();
 		return new Vector2f(hero.getX() - o.getX(), hero.getY() - o.getY());
 	}
 
@@ -144,6 +156,7 @@ public class World {
 		float yTop = e.getTopLeft().getY();
 		float yBot = e.getBottomRight().getY();
 
+		final Hero hero = level.getHero();
 		if (hero.getX() >= xLeft && hero.getX() <= xRight && hero.getY() >= yTop && hero.getY() <= yBot) {
 			return true;
 		}
@@ -157,18 +170,18 @@ public class World {
 	 */
 	public void pickFlask(LifeFlask f) {
 		toBeRemoved.add(f);
-		hero.pickFlask();
+		level.getHero().pickFlask();
 	}
 
 	public Hero getHero() {
-		return hero;
+		return level.getHero();
 	}
 
 	public PlayerController getPlayerController() {
-		return hero.getPlayerController();
+		return level.getHero().getPlayerController();
 	}
 
-	public Iterator<Monster> getMonsters() {
-		return monsters.iterator();
+	public Iterable<Monster> getMonsters() {
+		return level.getMonsters();
 	}
 }

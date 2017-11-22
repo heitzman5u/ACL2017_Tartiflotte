@@ -8,7 +8,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
+import exception.TartiException;
 /**
  * Enemies of the player
  * @author Tartiflotte
@@ -67,8 +69,8 @@ public class Monster extends Character {
 	 * Allow the monster to move towards the hero
 	 * @param delta milliseconds since last frame
 	 */
-	public void move(int delta){
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+	public void move(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		float xHero = world.trajectoryToHero(this).getX();
 		float yHero = world.trajectoryToHero(this).getY();
 		
@@ -87,8 +89,8 @@ public class Monster extends Character {
 	 * @param delta milliseconds since last frame
 	 * @return the future position of the Monster ; needed to the collisions
 	 */
-	private Monster futurePos(int delta){
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+	private Monster futurePos(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		Monster m = new Monster(this);
 		m.move(delta);
 		return m;
@@ -97,7 +99,7 @@ public class Monster extends Character {
 	/**
 	 * Allows the monster to attack the hero
 	 */
-	public void attack(){
+	public void attack() throws TartiException{
 		float xHero = world.trajectoryToHero(this).getX();
 		float yHero = world.trajectoryToHero(this).getY();
 
@@ -144,8 +146,8 @@ public class Monster extends Character {
 	 * 
 	 * @see Game.update()
 	 */
-	public void update(int delta){
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+	public void update(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		if(!world.collideToWall(futurePos(delta))){
 			move(delta);
 		}
@@ -156,7 +158,7 @@ public class Monster extends Character {
 	 * 
 	 * @see Game.render()
 	 */
-	public void render(Graphics g){
+	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		// MONSTER ANIMATION
 		g.setColor(new Color(48,48,48));

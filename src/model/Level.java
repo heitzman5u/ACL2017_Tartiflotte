@@ -2,6 +2,7 @@ package model;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.newdawn.slick.Image;
@@ -9,7 +10,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Load the elements of the map
@@ -18,10 +21,13 @@ import exception.NullArgumentException;
  */
 public class Level {
 
-	private TiledMap map;
-	private Hero hero;
+	private final TiledMap map;
+	private final Hero hero;
+	
+	private final Collection<LifeFlask> flasks;
+	private final Collection<Monster> monsters;
 
-	private Exit exit;
+	private final Exit exit;
 	
 	/**
 	 * Load a level
@@ -32,7 +38,7 @@ public class Level {
 	 *            path to the tileset location
 	 * @throws SlickException
 	 */
-	public Level(InputStream file, String tilesetLoc) throws SlickException {
+	public Level(InputStream file, String tilesetLoc) throws SlickException, TartiException {
 		if (file == null || tilesetLoc == null) {
 			throw new NullArgumentException();
 		}
@@ -40,6 +46,8 @@ public class Level {
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
+		flasks = flasksInLevel();
+		monsters = monstersInLevel();
 	}
 
 	/**
@@ -51,10 +59,10 @@ public class Level {
 	 *            ordinate of the character y must be within the map
 	 * @return true if the character collides to a wall ; false if not
 	 */
-	public boolean collides(float x, float y) {
+	public boolean collides(float x, float y) throws TartiException {
 		if (x < 0f || x >= (float) (map.getWidth() * map.getTileWidth()) || y < 0f
 				|| y >= (float) (map.getHeight() * map.getTileHeight())) {
-			throw new IllegalArgumentException();
+			throw new InvalidArgumentException();
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
@@ -67,7 +75,7 @@ public class Level {
 	 *
 	 * @throws SlickException
 	 */
-	public List<LifeFlask> flasksInLevel() throws SlickException {
+	private Collection<LifeFlask> flasksInLevel() throws SlickException {
 		Image tile;
 		List<LifeFlask> listFlask = new ArrayList<LifeFlask>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
@@ -86,7 +94,7 @@ public class Level {
 	 * @return
 	 * @throws SlickException
 	 */
-	public List<Monster> monstersInLevel() throws SlickException {
+	private Collection<Monster> monstersInLevel() throws SlickException {
 		Image tile;
 		List<Monster> monsters = new ArrayList<Monster>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
@@ -134,5 +142,13 @@ public class Level {
 
 	public Exit getExit() {
 		return exit;
+	}
+	
+	public Collection<LifeFlask> getFlasks(){
+		return flasks;
+	}
+	
+	public Collection<Monster> getMonsters(){
+		return monsters;
 	}
 }

@@ -9,7 +9,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import exception.InvalidArgumentException;
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Main character of the game ; character that the player control
@@ -61,8 +63,8 @@ public class Hero extends Character {
 	 * Allow the hero to move towards the hero
 	 * @param delta milliseconds since last frame
 	 */
-	public void move(int delta){
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+	public void move(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		if (isAlive()){
 			//scale to have constant speed
 			Vector2f vspeed = playerController.getMovement().scale(speed*(float)delta);
@@ -90,8 +92,8 @@ public class Hero extends Character {
 	 * @param delta milliseconds since last frame
 	 * @return the future position of the Hero ; needed for the collisions
 	 */
-	public Hero futurePos(int delta){
-		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
+	public Hero futurePos(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		Hero h = new Hero(this);
 		h.move(delta);
 		return h;
@@ -100,7 +102,7 @@ public class Hero extends Character {
 	/**
 	 * @see Game.render()
 	 */
-	public void render(Graphics g){
+	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
@@ -115,7 +117,7 @@ public class Hero extends Character {
 	/**
 	 * @see Game.update()
 	 */
-	public void update(int delta){
+	public void update(int delta) throws TartiException{
 		setDirection();
 		if(playerController.isMoving() 
 				&& !world.collideToWall(futurePos(delta)) ){
@@ -168,10 +170,7 @@ public class Hero extends Character {
 	
 	
 	public void attackMonsters(){
-		Iterator<Monster> it = world.getMonsters();
-		
-		while(it.hasNext()){
-		Monster m = it.next();
+		for(Monster m : world.getMonsters()){
 			if(distance(m)<=1200f){
 				m.setAlive(false);
 			}
