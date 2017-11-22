@@ -52,7 +52,7 @@ public class HudHeroInfo {
 	 * @throws SlickException
 	 */
 	private void creationAnimationBigFlask() throws SlickException{
-		SpriteSheet spriteSheet = new SpriteSheet("bigFlask", getClass().getResourceAsStream("/flask/images/BigLifeFlask.png"), 150, 150);
+		SpriteSheet spriteSheet = new SpriteSheet("bigFlask", getClass().getResourceAsStream("/flask/images/BigLifeFlask.png"), 100, 100);
 		
 		for (int j = 0 ; j < 3 ; j++){
 			Animation animation = new Animation();
@@ -84,14 +84,14 @@ public class HudHeroInfo {
 	 */
 	private void flaskHUD(Graphics g){
 		if(nbFlaskHero > 5)
-			g.drawAnimation(animationBigFlask[0], 10, 15);
+			g.drawAnimation(animationBigFlask[0], 10, 20);
 		if(nbFlaskHero > 0)
-			g.drawAnimation(animationBigFlask[1], 10, 15);
+			g.drawAnimation(animationBigFlask[1], 10, 20);
 		if(nbFlaskHero == 0)
-			g.drawAnimation(animationBigFlask[2], 10, 15);
+			g.drawAnimation(animationBigFlask[2], 10, 20);
 		g.setColor(Color.white);
 
-		ttf.drawString(110.0f, 120.0f, "x"+ nbFlaskHero, Color.white);
+		ttf.drawString(80.0f, 90.0f, "x"+ nbFlaskHero, Color.white);
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class HudHeroInfo {
 		lifeBarImg.draw(10, 10, 1.0f);
 		
 		float lifeRatio = lifeHero/fullLifeHero;
-		float width = lifeImg.getWidth() * lifeRatio;
-		float height = lifeImg.getHeight();
+		float width = (int)lifeImg.getWidth() * lifeRatio;
+		float height = (int)lifeImg.getHeight();
 		lifeImg.draw(10,12,width,height);
 	}
 	
