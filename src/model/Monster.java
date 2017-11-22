@@ -3,6 +3,7 @@ package model;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
@@ -20,6 +21,9 @@ public class Monster extends Character {
 	
 	private boolean moving;	
 	private boolean attack;
+	
+	private Image lifeBarImg;
+	private Image lifeImg;
 	
 	private static final float SPEED = 2.0f;
 	private static final float ATTACK_DISTANCE = 600f;
@@ -43,6 +47,8 @@ public class Monster extends Character {
 		animations = new Animation[8];
 
 		creationAnimations();
+		lifeBarImg = new Image("/res/monsters/images/life_bar.png");
+		lifeImg = new Image("/res/monsters/images/life.jpg");
 	}
 	
 	/**
@@ -171,6 +177,10 @@ public class Monster extends Character {
 				e.printStackTrace();
 			}
 		}
+		
+		// LIFE BAR
+		lifeBarHUD();
+		
 		// --
 	}
 	
@@ -198,6 +208,19 @@ public class Monster extends Character {
 			animations[j+nbDirections] = animation;
 		}
 		//--
+	}
+	
+	/**
+	 * Display the life bar of the monster
+	 */
+	private void lifeBarHUD(){
+		float lifeRatio = life/FULL_LIFE;
+		float width = (int)lifeImg.getWidth() * lifeRatio;
+		float height = (int)lifeImg.getHeight();
+		lifeBarImg.draw(getX() - (int)(width/2), getY() - 60, 1.0f);
+		
+
+		lifeImg.draw(getX() - (int)(width/2) +1, getY()+1 - 60, width, height);
 	}
 	
 }
