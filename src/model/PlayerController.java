@@ -69,6 +69,8 @@ public class PlayerController implements KeyListener {
 			hero.attackMonsters();
 		} else if(key == Input.KEY_F){
 			hero.useFlask();
+		} else if(key == Input.KEY_P){
+			Game.getInstance().loadNextLevel();
 		}
 	}
 	

@@ -21,7 +21,7 @@ import exception.TartiException;
 public class World {
 
 	private TiledMap map;
-	private final Level level;
+	private Level level;
 	
 	private final Collection<LifeFlask> toBeRemoved;
 
@@ -81,15 +81,22 @@ public class World {
 
 		level.getExit().render(g);
 	}
+	
+	
 
 	/**
 	 * 
-	 * @see Game.update()
+	 * @param delta milliseconds since last frame
+	 * @param nextLevel level to load (0 = no loading)
+	 * @throws TartiException
 	 */
-
-	public void update(int delta) throws TartiException {
-		if (delta < 0)
+	public void update(int delta, int nextLevel) throws SlickException, TartiException {
+		if (delta < 0){
 			throw new InvalidArgumentException("delta >= 0");
+		}
+		if(nextLevel < 0){
+			throw new InvalidArgumentException("Loading a level with number < 0");
+		}
 		
 		// call update of all flasks
 		toBeRemoved.clear();
@@ -103,8 +110,35 @@ public class World {
 
 		level.getHero().update(delta);
 		level.getExit().update(delta);
+		
+		if(nextLevel != 0){
+			loadLevel(nextLevel);
+		}
+	}
+	
+	/**
+	 * Load a specific level
+	 * @param number level to load
+	 * @throws SlickException
+	 * @throws TartiException
+	 */
+	private void loadLevel(int number) throws SlickException, TartiException{
+		level = new Level(number);
+		map = level.getMap();
+		toBeRemoved.clear();
+		
+		level.getHero().setWorld(this);
+		level.getExit().setWorld(this);
+		for(LifeFlask f : level.getFlasks()){
+			f.setWorld(this);
+		}
+		for(Monster m : level.getMonsters()){
+			m.setWorld(this);
+		}
 	}
 
+	
+	
 	/**
 	 * 
 	 * @param o

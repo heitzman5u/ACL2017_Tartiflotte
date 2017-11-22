@@ -38,7 +38,7 @@ public class GameUI extends BasicGame {
 	public void update(GameContainer arg0, int delta) {
 		try{
 			Game.getInstance().update(delta);
-		}catch(TartiException e){
+		}catch(SlickException | TartiException e){
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}

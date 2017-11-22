@@ -2,6 +2,7 @@ package model;
 
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
@@ -22,6 +23,10 @@ public class Game {
 	
 	private int gameState;
 	
+	private int currentLevel;
+	
+	private boolean loadingLevel;
+	
 	private World world;
 	private HudMessage victory;
 		
@@ -29,6 +34,8 @@ public class Game {
 	
 	private Game(){
 		try{
+			currentLevel = 1;
+			loadingLevel = false;
 			world = new World();
 			victory = new HudMessage("/hud/victory_achieved.png");	
 		}catch(Exception e){
@@ -61,13 +68,25 @@ public class Game {
 		gameState = WIN;
 	}
 	
+	
+	/**
+	 * Tell the model that we should move on next stage
+	 */
+	public void loadNextLevel(){
+		if(isWon()){
+			loadingLevel = true;
+			gameState = Game.IN_GAME;
+		}
+	}
+	
 	/**
 	 * Update the game state (calculate the new positions of the characters for example)
 	 * @param delta milliseconds since last frame
 	 */
-	public void update(int delta) throws TartiException{
+	public void update(int delta) throws SlickException, TartiException{
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
-		world.update(delta);
+		world.update(delta, loadingLevel ? ++currentLevel : 0);
+		loadingLevel = false;
 	}
 	
 	/**
