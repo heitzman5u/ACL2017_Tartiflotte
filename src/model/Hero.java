@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Iterator;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;

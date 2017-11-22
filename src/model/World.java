@@ -1,8 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.newdawn.slick.Graphics;
@@ -12,7 +10,6 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 import exception.InvalidArgumentException;
-import exception.NotImplementedException;
 import exception.NullArgumentException;
 import exception.TartiException;
 
@@ -25,40 +22,19 @@ public class World {
 
 	private TiledMap map;
 	private Level level;
-
-	//private Hero hero;
-	//private Exit exit;
-
-	//private List<LifeFlask> flasks;
-	//private List<Monster> monsters;
 	
 	private final List<LifeFlask> toBeRemoved;
 
 	public World() throws SlickException, TartiException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
 
-		//hero = level.getHero();
-		//hero.setWorld(this);
-
-		//exit = level.getExit();
-		//exit.setWorld(this);
-
 		map = level.getMap();
-
-		//flasks = level.flasksInLevel();
-		//for (LifeFlask f : flasks)
-		//	f.setWorld(this);
-		toBeRemoved = new ArrayList<>(level.getFlasks().size());
-
-		//monsters = level.monstersInLevel();
-		//for (Monster munch : monsters)
-		//	munch.setWorld(this);
-		
 		level.getHero().setWorld(this);
 		level.getExit().setWorld(this);
 		for(LifeFlask f : level.getFlasks()){
 			f.setWorld(this);
 		}
+		toBeRemoved = new ArrayList<>(level.getFlasks().size());
 		for(Monster m : level.getMonsters()){
 			m.setWorld(this);
 		}

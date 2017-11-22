@@ -2,7 +2,6 @@ package model;
 
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;

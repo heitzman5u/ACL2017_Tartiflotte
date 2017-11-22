@@ -1,6 +1,13 @@
 package exception;
 
+/**
+ * Base class for all exceptions used by the project
+ * @author Tartiflotte
+ *
+ */
 public class TartiException extends Exception {
+
+	private static final long serialVersionUID = -8550475457898132818L;
 
 	public TartiException() {
 		super("Exception thrown from Tartiflotte program");
