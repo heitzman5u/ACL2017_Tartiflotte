@@ -21,12 +21,12 @@ import exception.TartiException;
 public class World {
 
 	private TiledMap map;
-	private Level level;
+	private final Level level;
 	
 	private final List<LifeFlask> toBeRemoved;
 
 	public World() throws SlickException, TartiException {
-		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
+		level = new Level(1);
 
 		map = level.getMap();
 		level.getHero().setWorld(this);

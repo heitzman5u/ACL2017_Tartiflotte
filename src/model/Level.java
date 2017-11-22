@@ -49,6 +49,10 @@ public class Level {
 		flasks = flasksInLevel();
 		monsters = monstersInLevel();
 	}
+	
+	public Level(int number) throws SlickException, TartiException{
+		this(Level.class.getResourceAsStream("/maps/level_"+number+".tmx"), "maps");
+	}
 
 	/**
 	 * Determines if the given position is on a "logic" block of the map
