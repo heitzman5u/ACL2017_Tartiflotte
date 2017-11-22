@@ -2,10 +2,11 @@ package exception;
 
 /**
  * This exception should be thrown when a method is not implemented, but will likely be in the future.
- * Such an operation should be marked as "deprecated"!;
+ * Such an operation should be marked as "deprecated"!
+ * RunTime exception
  * @author Tartiflotte
  */
-public class NotImplementedException extends UnsupportedOperationException {
+public class NotImplementedException extends UnsupportedOperationException { //runtime
 
 	private static final long serialVersionUID = -6602260355052908365L;
 

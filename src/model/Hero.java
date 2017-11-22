@@ -10,6 +10,7 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Main character of the game ; character that the player control
@@ -100,7 +101,7 @@ public class Hero extends Character {
 	/**
 	 * @see Game.render()
 	 */
-	public void render(Graphics g){
+	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);

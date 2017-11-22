@@ -13,6 +13,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import exception.NotImplementedException;
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Represents the elements which will be displayed on the graphic interface
@@ -32,7 +33,7 @@ public class World {
 	
 	private final List<LifeFlask> toBeRemoved;
 
-	public World() throws SlickException {
+	public World() throws SlickException, TartiException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
 
 		hero = level.getHero();
@@ -77,7 +78,7 @@ public class World {
 	 * 
 	 * @see Game.render()
 	 */
-	public void render(Graphics g) {
+	public void render(Graphics g) throws TartiException {
 		if (g == null)
 			throw new NullArgumentException();
 		map.render(0, 0);
@@ -100,7 +101,7 @@ public class World {
 	 * @see Game.update()
 	 */
 
-	public void update(int delta) {
+	public void update(int delta) throws TartiException {
 		if (delta < 0)
 			throw new IllegalArgumentException("delta >= 0");
 		
@@ -124,7 +125,7 @@ public class World {
 	 *            world object
 	 * @return the distance between the monster m and the hero
 	 */
-	public Vector2f trajectoryToHero(WorldObject o) {
+	public Vector2f trajectoryToHero(WorldObject o) throws TartiException {
 		if (o == null)
 			throw new NullArgumentException();
 		return new Vector2f(hero.getX() - o.getX(), hero.getY() - o.getY());

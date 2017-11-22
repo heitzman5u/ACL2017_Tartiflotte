@@ -7,6 +7,7 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Point;
 
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Represents an exit on the map, ie: space where the hero will move to the next stage
@@ -20,7 +21,7 @@ public class Exit {
 	
 	private Animation animation;
 	
-	public Exit(Point tl, Point br) throws SlickException{
+	public Exit(Point tl, Point br) throws SlickException, TartiException{
 		if(tl == null || br == null) throw new NullArgumentException();
 		if(tl.getX() > br.getX() || tl.getY() > br.getY()){
 			throw new IllegalArgumentException("top-left isn't right positionned beside bottom-right");
@@ -35,7 +36,7 @@ public class Exit {
 	 * 
 	 * @see Game.render()
 	 */
-	public void render(Graphics g){
+	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		float xArrow = (topLeft.getX() + bottomRight.getX())/2;
 		float yArrow = topLeft.getY() - 90;

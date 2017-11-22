@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * Represents the model of the game
@@ -29,12 +30,11 @@ public class Game {
 	private Game(){
 		try{
 			world = new World();
-			victory = new HudMessage("/hud/victory_achieved.png");
-		}catch(SlickException e){
-			System.err.println("SlickException: " + e.getMessage());
+			victory = new HudMessage("/hud/victory_achieved.png");	
+		}catch(Exception e){
+			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class Game {
 	 * Update the game state (calculate the new positions of the characters for example)
 	 * @param delta milliseconds since last frame
 	 */
-	public void update(int delta){
+	public void update(int delta) throws TartiException{
 		if(delta < 0) throw new IllegalArgumentException("delta >= 0");
 		world.update(delta);
 	}
@@ -74,7 +74,7 @@ public class Game {
 	 * Display the graphic elements of the game
 	 * @param g graphic object to write in
 	 */
-	public void render(Graphics g){
+	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		world.render(g);
 		if(isWon()){

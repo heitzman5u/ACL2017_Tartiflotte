@@ -4,7 +4,7 @@ package exception;
  * This exception should be thrown in place of IllegalArgumentException when the argument is illegal because it's null
  * @author Tartiflotte
  */
-public class NullArgumentException extends IllegalArgumentException {
+public class NullArgumentException extends InvalidArgumentException {
 	
 	private static final long serialVersionUID = 7860837849244466469L;
 

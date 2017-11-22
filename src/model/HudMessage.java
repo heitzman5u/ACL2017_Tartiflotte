@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * A message to be displayed to the hud
@@ -21,7 +22,7 @@ public class HudMessage {
 	 * @param g game associated to this message
 	 * @throws SlickException 
 	 */
-	public HudMessage(String path) throws SlickException {
+	public HudMessage(String path) throws SlickException, TartiException {
 		if(path == null) throw new NullArgumentException();
 		img = new Image(getClass().getResourceAsStream(path), "victory_achieved", false, 0);
 	}
