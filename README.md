@@ -10,6 +10,20 @@ Projet M1 ACL (= Analyse et Conception de Logiciels)
 ## Concept
 Le projet Tartiflotte consiste en la conception et l'implémentation d'un jeu RPG en vue du dessus.
 
+## Mode d'emploi
+Lancez "ant run" à la racine du projet. Si tout est installé correctement, le jeu devrait se lancer.
+Il vous faudra:
+- ant
+- le sdk de java
+
+Une fois en jeu:
+- Z Q S D permettent de se déplacer
+- (M permet d'attaquer un monstre proche ... non implémenté)
+- F permet d'utiliser une flasque de vie ramassée
+- P permet de charger le prochain niveau une fois la flèche atteinte
+
+Le jeu comporte uniquement 2 niveaux actuellement.
+
 ## Objectifs
 L'aboutissement du jeu n'est pas l'objectif principal de ce projet.
 En effet, dans le cadre du cours d'Analyse et Conception de Logiciels, nous devons mettre en pratique nos connaissances en terme de d'analyse, de conception, d'implémentation, de validation de logiciels.
