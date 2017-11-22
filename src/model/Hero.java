@@ -170,10 +170,7 @@ public class Hero extends Character {
 	
 	
 	public void attackMonsters(){
-		Iterator<Monster> it = world.getMonsters();
-		
-		while(it.hasNext()){
-		Monster m = it.next();
+		for(Monster m : world.getMonsters()){
 			if(distance(m)<=1200f){
 				m.setAlive(false);
 			}

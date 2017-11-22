@@ -26,33 +26,42 @@ public class World {
 	private TiledMap map;
 	private Level level;
 
-	private Hero hero;
-	private Exit exit;
+	//private Hero hero;
+	//private Exit exit;
 
-	private List<LifeFlask> flasks;
-	private List<Monster> monsters;
+	//private List<LifeFlask> flasks;
+	//private List<Monster> monsters;
 	
 	private final List<LifeFlask> toBeRemoved;
 
 	public World() throws SlickException, TartiException {
 		level = new Level(getClass().getResourceAsStream("/maps/level_1.tmx"), "maps");
 
-		hero = level.getHero();
-		hero.setWorld(this);
+		//hero = level.getHero();
+		//hero.setWorld(this);
 
-		exit = level.getExit();
-		exit.setWorld(this);
+		//exit = level.getExit();
+		//exit.setWorld(this);
 
 		map = level.getMap();
 
-		flasks = level.flasksInLevel();
-		for (LifeFlask f : flasks)
-			f.setWorld(this);
-		toBeRemoved = new ArrayList<>(flasks.size());
+		//flasks = level.flasksInLevel();
+		//for (LifeFlask f : flasks)
+		//	f.setWorld(this);
+		toBeRemoved = new ArrayList<>(level.getFlasks().size());
 
-		monsters = level.monstersInLevel();
-		for (Monster munch : monsters)
-			munch.setWorld(this);
+		//monsters = level.monstersInLevel();
+		//for (Monster munch : monsters)
+		//	munch.setWorld(this);
+		
+		level.getHero().setWorld(this);
+		level.getExit().setWorld(this);
+		for(LifeFlask f : level.getFlasks()){
+			f.setWorld(this);
+		}
+		for(Monster m : level.getMonsters()){
+			m.setWorld(this);
+		}
 	}
 
 	/**
@@ -85,16 +94,16 @@ public class World {
 		map.render(0, 0);
 
 		// call render of all flasks
-		for (LifeFlask f : flasks)
+		for (LifeFlask f : level.getFlasks())
 			f.render(g);
 
-		hero.render(g);
+		level.getHero().render(g);
 		
 		// call render of all monsters
-		for (Monster m : monsters)
+		for (Monster m : level.getMonsters())
 			m.render(g);
 
-		exit.render(g);
+		level.getExit().render(g);
 	}
 
 	/**
@@ -108,16 +117,16 @@ public class World {
 		
 		// call update of all flasks
 		toBeRemoved.clear();
-		for (LifeFlask f : flasks)
+		for (LifeFlask f : level.getFlasks())
 			f.update(delta);
-		flasks.removeAll(toBeRemoved);
+		level.getFlasks().removeAll(toBeRemoved);
 
 		// call update of all monsters
-		for (Monster m : monsters)
+		for (Monster m : level.getMonsters())
 			m.update(delta);
 
-		hero.update(delta);
-		exit.update(delta);
+		level.getHero().update(delta);
+		level.getExit().update(delta);
 	}
 
 	/**
@@ -129,6 +138,7 @@ public class World {
 	public Vector2f trajectoryToHero(WorldObject o) throws TartiException {
 		if (o == null)
 			throw new NullArgumentException();
+		final Hero hero = level.getHero();
 		return new Vector2f(hero.getX() - o.getX(), hero.getY() - o.getY());
 	}
 
@@ -146,6 +156,7 @@ public class World {
 		float yTop = e.getTopLeft().getY();
 		float yBot = e.getBottomRight().getY();
 
+		final Hero hero = level.getHero();
 		if (hero.getX() >= xLeft && hero.getX() <= xRight && hero.getY() >= yTop && hero.getY() <= yBot) {
 			return true;
 		}
@@ -159,18 +170,18 @@ public class World {
 	 */
 	public void pickFlask(LifeFlask f) {
 		toBeRemoved.add(f);
-		hero.pickFlask();
+		level.getHero().pickFlask();
 	}
 
 	public Hero getHero() {
-		return hero;
+		return level.getHero();
 	}
 
 	public PlayerController getPlayerController() {
-		return hero.getPlayerController();
+		return level.getHero().getPlayerController();
 	}
 
-	public Iterator<Monster> getMonsters() {
-		return monsters.iterator();
+	public Iterable<Monster> getMonsters() {
+		return level.getMonsters();
 	}
 }

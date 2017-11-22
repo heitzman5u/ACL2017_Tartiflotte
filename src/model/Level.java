@@ -2,6 +2,7 @@ package model;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.newdawn.slick.Image;
@@ -20,10 +21,13 @@ import exception.TartiException;
  */
 public class Level {
 
-	private TiledMap map;
-	private Hero hero;
+	private final TiledMap map;
+	private final Hero hero;
+	
+	private final Collection<LifeFlask> flasks;
+	private final Collection<Monster> monsters;
 
-	private Exit exit;
+	private final Exit exit;
 	
 	/**
 	 * Load a level
@@ -42,6 +46,8 @@ public class Level {
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
+		flasks = flasksInLevel();
+		monsters = monstersInLevel();
 	}
 
 	/**
@@ -69,7 +75,7 @@ public class Level {
 	 *
 	 * @throws SlickException
 	 */
-	public List<LifeFlask> flasksInLevel() throws SlickException {
+	private Collection<LifeFlask> flasksInLevel() throws SlickException {
 		Image tile;
 		List<LifeFlask> listFlask = new ArrayList<LifeFlask>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
@@ -88,7 +94,7 @@ public class Level {
 	 * @return
 	 * @throws SlickException
 	 */
-	public List<Monster> monstersInLevel() throws SlickException {
+	private Collection<Monster> monstersInLevel() throws SlickException {
 		Image tile;
 		List<Monster> monsters = new ArrayList<Monster>();
 		for (int x = 0; x < this.map.getWidth(); x++) {
@@ -136,5 +142,13 @@ public class Level {
 
 	public Exit getExit() {
 		return exit;
+	}
+	
+	public Collection<LifeFlask> getFlasks(){
+		return flasks;
+	}
+	
+	public Collection<Monster> getMonsters(){
+		return monsters;
 	}
 }
