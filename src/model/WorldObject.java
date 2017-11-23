@@ -38,6 +38,14 @@ public class WorldObject implements Serializable {
 		return pos.y;
 	}
 	
+	public void setX(float x){
+		pos.x = x;
+	}
+	
+	public void setY(float y){
+		pos.y = y;		
+	}
+	
 	public void setWorld(World w){
 		world = w;
 	}

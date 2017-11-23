@@ -79,6 +79,7 @@ public class Game {
 	
 	/**
 	 * Tell the model that we should move on next stage
+	 * However, we have to wait the execution of all updates before
 	 */
 	public void loadNextLevel(){
 		if(isWon()){
