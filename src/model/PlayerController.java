@@ -72,7 +72,6 @@ public class PlayerController implements KeyListener {
 	@Override
 	public void keyPressed(int key, char arg1) {
 		if(hero == null) return;
-		System.out.println("hero is not null!! *************************");
 		if(inputs.containsKey(key)){
 			final InputProperty ip = inputs.get(key);
 			hero.receiveCommand(ip.getCommand());
