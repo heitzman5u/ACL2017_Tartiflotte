@@ -1,7 +1,5 @@
 package model;
 
-import org.newdawn.slick.geom.Vector2f;
-
 /**
  * A character is a world's entity.
  * It can be alive or dead.

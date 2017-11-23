@@ -2,16 +2,13 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
-import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.MouseListener;
 
 import controller.PlayerCommand;
 import exception.NullArgumentException;
 import exception.TartiException;
-import jdk.internal.org.xml.sax.InputSource;
 
 /**
  * Tell what button is pressed or released and in wich direction
@@ -22,7 +19,7 @@ import jdk.internal.org.xml.sax.InputSource;
 /*
  * Helper class that converts input into data usable by the hero
  */
-public class PlayerController implements KeyListener {
+public class PlayerController implements KeyListener, MouseListener {
 	
 	//private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
@@ -97,6 +94,40 @@ public class PlayerController implements KeyListener {
 	public void setHero(Hero h) throws TartiException{
 		if(h == null) throw new NullArgumentException();
 		hero = h;
+	}
+
+	@Override
+	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
+	}
+
+	@Override
+	public void mouseDragged(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseWheelMoved(int arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
