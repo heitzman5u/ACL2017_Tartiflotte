@@ -1,7 +1,6 @@
 package controller;
 
 import org.newdawn.slick.geom.Vector2f;
-import org.omg.CORBA.COMM_FAILURE;
 
 /**
  * Enum that 

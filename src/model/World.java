@@ -125,7 +125,6 @@ public class World {
 		level.getExit().update(delta);
 		
 		level.getFlasks().removeAll(toBeRemoved);
-		level.getHero().getSpells().removeAll(toBeRemoved);
 		level.getMonsters().removeAll(toBeRemoved);
 		objects.removeAll(toBeRemoved);
 		

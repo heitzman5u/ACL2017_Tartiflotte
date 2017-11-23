@@ -214,13 +214,13 @@ public class Monster extends Character {
 	 * Display the life bar of the monster
 	 */
 	private void lifeBarHUD(){
-		float lifeRatio = life/FULL_LIFE;
-		float width = (int)lifeImg.getWidth() * lifeRatio;
-		float height = (int)lifeImg.getHeight();
-		lifeBarImg.draw(getX() - (int)(width/2), getY() - 60, 1.0f);
+		float lifeRatio = life/(float)FULL_LIFE;
+		float width = (float)lifeImg.getWidth() * lifeRatio;
+		float height = (float)lifeImg.getHeight();
+		lifeBarImg.draw(getX() - (width/2), getY() - 60, 1.0f);
 		
 
-		lifeImg.draw(getX() - (int)(width/2) +1, getY()+1 - 60, width, height);
+		lifeImg.draw(getX() - (width/2) +1, getY()+1 - 60, width, height);
 	}
 	
 }

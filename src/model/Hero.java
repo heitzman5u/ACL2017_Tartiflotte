@@ -32,7 +32,6 @@ public class Hero extends Character {
 
 	private transient HudHeroInfo hudLifeFlask;
 	private transient int nbFlasks;
-	private transient ArrayList<Spell> spells;
 
 	/**
 	 * create a new Hero at the given position
@@ -52,9 +51,6 @@ public class Hero extends Character {
 		life = 6;
 		animations = new Animation[9];
 		creationAnimations();
-
-		// maybe put a size to the list
-		spells = new ArrayList<Spell>();
 
 		hudLifeFlask = new HudHeroInfo(FULL_LIFE, life);
 	}
@@ -129,10 +125,6 @@ public class Hero extends Character {
 			g.drawAnimation(animations[8], pos.x - 40, pos.y - 65);
 		}
 		hudLifeFlask.render(g);
-		// call render for all spells
-		for (Spell s : spells) {
-			s.render(g);
-		}
 	}
 
 	/**
@@ -144,10 +136,6 @@ public class Hero extends Character {
 			move(delta);
 		}
 		hudLifeFlask.update(delta, nbFlasks, life);
-		// call update for all spells
-		for (Spell s : spells) {
-			s.update(delta);
-		}
 	}
 	
 	
@@ -259,15 +247,6 @@ public class Hero extends Character {
 		Spell sp=new Spell(x, y, dir);
 		sp.setWorld(world);
 		world.addSpell(sp);
-		spells.add(sp);
-	}
-
-	public Collection<Spell> getSpells(){
-		return spells;
-	}
-
-	public void destroySpell(Spell s) {
-		spells.remove(s);
 	}
 
 }
