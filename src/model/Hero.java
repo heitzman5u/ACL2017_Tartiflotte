@@ -1,6 +1,8 @@
 package model;
 
 
+import java.io.Serializable;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -16,14 +18,14 @@ import exception.TartiException;
  * Main character of the game ; character that the player control
  * @author Tartiflotte
  */
-public class Hero extends Character {
-	private PlayerController playerController;
-	private Animation[] animations;
+public class Hero extends Character implements Serializable {
+	private transient PlayerController playerController;
+	private transient Animation[] animations;
 	
-	private static final float SPEED = 0.2f;
-	private static final int FULL_LIFE = 10;
+	private transient static final float SPEED = 0.2f;
+	private transient static final int FULL_LIFE = 10;
 
-	private HudHeroInfo hudLifeFlask;
+	private transient HudHeroInfo hudLifeFlask;
 	private int nbFlasks;
 	
 	/**
@@ -56,6 +58,10 @@ public class Hero extends Character {
 		animations = other.animations;
 		
 		nbFlasks = other.nbFlasks;
+	}
+	
+	public String toString(){
+		return "<"+pos.x+";"+pos.y+">";
 	}
 	
 	/**

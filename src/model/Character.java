@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -9,14 +11,14 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Tartiflotte
  *
  */
-public class Character extends WorldObject {	
-	protected float speed;
+public class Character extends WorldObject implements Serializable{	
+	protected transient float speed;
 	
-	protected boolean alive;
+	protected transient boolean alive;
 	protected int life;
-	protected int damage;
+	protected transient int damage;
 	
-	protected int direction; //direction the character faces
+	protected transient int direction; //direction the character faces
 	
 	/**
 	 * 

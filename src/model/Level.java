@@ -1,9 +1,11 @@
 package model;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -59,6 +61,8 @@ public class Level implements Serializable {
 		
 		
 		serialization();
+		
+		deserialize();
 	}
 	
 	public Level(int number) throws SlickException, TartiException{
@@ -170,18 +174,26 @@ public class Level implements Serializable {
 	private void serialization(){
 		try {
 			FileOutputStream fos = new FileOutputStream("level.serial");
-			try {
-				ObjectOutputStream oos= new ObjectOutputStream(fos);
-				oos.writeObject(this); 
-				oos.flush();
-				oos.close();
-				fos.close();
-				
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
+			ObjectOutputStream oos= new ObjectOutputStream(fos);
+			oos.writeObject(hero); 
+			oos.flush();
+			oos.close();
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void deserialize(){
+		try{
+			FileInputStream fis = new FileInputStream("level.serial");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Hero tmp = (Hero) ois.readObject();
+			System.out.println(tmp);
+			ois.close();
+			fis.close();
+		}catch(IOException | ClassNotFoundException e){
 			e.printStackTrace();
 		}
 		
