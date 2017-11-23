@@ -26,6 +26,9 @@ import exception.TartiException;
  */
 public class Level implements Serializable {
 
+	private static final long serialVersionUID = -8517676766628736059L;
+	
+	
 	private final TiledMap map;
 	private final Hero hero;
 	
