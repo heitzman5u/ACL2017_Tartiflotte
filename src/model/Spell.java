@@ -65,7 +65,7 @@ public class Spell extends WorldObject{
 	}
 	
 	public boolean canMove(Vector2f pos){
-		return true; //à changer pour prendre en compte les collisions
+		return true; //change to take account of collisions
 	}
 	
 	public void move(int delta)throws TartiException {
