@@ -75,7 +75,6 @@ public class Game {
 	public void loadNextLevel(){
 		if(isWon()){
 			loadingLevel = true;
-			gameState = Game.IN_GAME;
 		}
 	}
 	
@@ -86,6 +85,9 @@ public class Game {
 	public void update(int delta) throws SlickException, TartiException{
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		world.update(delta, loadingLevel ? ++currentLevel : 0);
+		if(loadingLevel){
+			gameState = Game.IN_GAME;
+		}
 		loadingLevel = false;
 	}
 	
