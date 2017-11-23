@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -7,8 +9,8 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Tartiflotte
  *
  */
-public class WorldObject {
-	protected World world;
+public class WorldObject implements Serializable {
+	protected transient World world;
 	protected Vector2f pos;
 	
 	protected WorldObject(float x, float y){
@@ -38,6 +40,14 @@ public class WorldObject {
 	
 	public float getY(){
 		return pos.y;
+	}
+	
+	public void setX(float x){
+		pos.x = x;
+	}
+	
+	public void setY(float y){
+		pos.y = y;		
 	}
 	
 	public void setWorld(World w){

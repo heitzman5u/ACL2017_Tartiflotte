@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import java.io.Serializable;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -19,17 +21,18 @@ import exception.TartiException;
  * 
  * @author Tartiflotte
  */
+
 public class Hero extends Character {
-	private Animation[] animations;
+	private transient Animation[] animations;
 
-	private static final float SPEED = 0.2f;
-	private static final int FULL_LIFE = 10;
+	private transient static final float SPEED = 0.2f;
+	private transient static final int FULL_LIFE = 10;
 	
-	private Vector2f movement;
+	private transient Vector2f movement;
 
-	private HudHeroInfo hudLifeFlask;
-	private int nbFlasks;
-	private ArrayList<Spell> spells;
+	private transient HudHeroInfo hudLifeFlask;
+	private transient int nbFlasks;
+	private transient ArrayList<Spell> spells;
 
 	/**
 	 * create a new Hero at the given position
@@ -65,7 +68,10 @@ public class Hero extends Character {
 		nbFlasks = other.nbFlasks;
 	}
 	
-	
+
+	public String toString(){
+		return "<"+pos.x+";"+pos.y+">";
+	}
 	
 	/**
 	 * Allow the Hero to use one of his life flask to regain HP

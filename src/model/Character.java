@@ -1,5 +1,11 @@
 package model;
 
+
+import java.io.Serializable;
+
+import org.newdawn.slick.geom.Vector2f;
+
+
 /**
  * A character is a world's entity.
  * It can be alive or dead.
@@ -7,14 +13,14 @@ package model;
  * @author Tartiflotte
  *
  */
-public class Character extends WorldObject {	
-	protected float speed;
+public class Character extends WorldObject implements Serializable{	
+	protected transient float speed;
 	
-	protected boolean alive;
+	protected transient boolean alive;
 	protected int life;
-	protected int damage;
+	protected transient int damage;
 	
-	protected int direction; //direction the character faces
+	protected transient int direction; //direction the character faces
 	
 	/**
 	 * 
@@ -70,6 +76,10 @@ public class Character extends WorldObject {
 		return life;
 	}
 	
+	public void setLife(int life) {
+		this.life = life;
+	}
+
 	/**
 	 * Deal damage to this character.
 	 * No damage taken if dmg <= 0

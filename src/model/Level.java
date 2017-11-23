@@ -1,9 +1,10 @@
 package model;
 
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
 import exception.InvalidArgumentException;
-import exception.NullArgumentException;
 import exception.TartiException;
 
 /**
@@ -28,41 +28,43 @@ public class Level implements Serializable {
 
 	private static final long serialVersionUID = -8517676766628736059L;
 	
-	
-	private final TiledMap map;
-	private final Hero hero;
-	
-	private final Collection<LifeFlask> flasks;
-	private final Collection<Monster> monsters;
+	private static Hero hero;
 
-	private final Exit exit;
+	
+	private transient final TiledMap map;
+	private transient static boolean heroCreated = false;
+	
+	private transient final Collection<LifeFlask> flasks;
+	private transient final Collection<Monster> monsters;
+
+	private transient final Exit exit;
+	
+	private final int levelNumber;
+	
 	
 	/**
-	 * Load a level
-	 * 
-	 * @param file
-	 *            file to load the map from
-	 * @param tilesetLoc
-	 *            path to the tileset location
+	 * Load a level from file system
+	 * @param number level number
 	 * @throws SlickException
+	 * @throws TartiException
 	 */
-	public Level(InputStream file, String tilesetLoc) throws SlickException, TartiException {
-		if (file == null || tilesetLoc == null) {
-			throw new NullArgumentException();
-		}
+	public Level(int number) throws SlickException, TartiException{
+		final InputStream file = getClass().getResourceAsStream("/maps/level_"+number+".tmx");
+		final String tilesetLoc = "maps";
 
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
 		flasks = flasksInLevel();
 		monsters = monstersInLevel();
+		levelNumber = number;
 		
-		
-		serialization();
-	}
-	
-	public Level(int number) throws SlickException, TartiException{
-		this(Level.class.getResourceAsStream("/maps/level_"+number+".tmx"), "maps");
+//		try{
+//			deserialize();
+//		} catch (IOException | ClassNotFoundException e){
+//			
+//		}
+
 	}
 
 	/**
@@ -126,8 +128,16 @@ public class Level implements Serializable {
 	private Hero getHeroInTmx() throws SlickException, TartiException {
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
-				if (this.map.getTileImage(x, y, this.map.getLayerIndex("hero")) != null)
-					return new Hero(x * this.map.getTileWidth(), y * this.map.getTileHeight());
+				if (this.map.getTileImage(x, y, this.map.getLayerIndex("hero")) != null){
+					if (!heroCreated){
+						heroCreated = true;
+						return new Hero(x * this.map.getTileWidth(), y * this.map.getTileHeight());
+					} else {
+						hero.setX(x * this.map.getTileWidth());
+						hero.setY(y * this.map.getTileHeight());
+						return hero;
+					}
+				}
 			}
 		}
 		return null;
@@ -167,23 +177,28 @@ public class Level implements Serializable {
 		return monsters;
 	}
 	
-	private void serialization(){
+	public void serialize(){
 		try {
 			FileOutputStream fos = new FileOutputStream("level.serial");
-			try {
-				ObjectOutputStream oos= new ObjectOutputStream(fos);
-				oos.writeObject(this); 
-				oos.flush();
-				oos.close();
-				fos.close();
-				
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
+			ObjectOutputStream oos= new ObjectOutputStream(fos);
+			oos.writeObject(this); 
+			oos.flush();
+			oos.close();
+			fos.close();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	private void deserialize() throws IOException, ClassNotFoundException{
+		FileInputStream fis = new FileInputStream("level.serial");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		Level tmp = (Level) ois.readObject();
+		hero.setLife(tmp.getHero().getLife());
+		ois.close();
+		fis.close();
+
 		
 	}
 	

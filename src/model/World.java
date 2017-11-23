@@ -143,11 +143,13 @@ public class World {
 	 * @throws TartiException
 	 */
 	private void loadLevel(int number) throws SlickException, TartiException {
+		level.serialize();
 		level = new Level(number);
 		map = level.getMap();
 		toBeRemoved.clear();
 
-		level.getHero().setWorld(this);
+		Hero tmp = level.getHero();
+		tmp.setWorld(this);
 		level.getExit().setWorld(this);
 		for (LifeFlask f : level.getFlasks()) {
 			f.setWorld(this);
