@@ -11,7 +11,6 @@ import org.newdawn.slick.geom.Vector2f;
 import controller.PlayerCommand;
 import exception.NullArgumentException;
 import exception.TartiException;
-import jdk.internal.org.xml.sax.InputSource;
 
 /**
  * Tell what button is pressed or released and in wich direction

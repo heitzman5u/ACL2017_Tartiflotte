@@ -238,8 +238,8 @@ public class Hero extends Character {
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y) throws SlickException {
-		spells.add(new Spell(x, y));
+	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
+		spells.add(new Spell(x, y, dir));
 	}
 
 }

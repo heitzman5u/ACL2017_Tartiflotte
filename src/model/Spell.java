@@ -4,6 +4,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Vector2f;
 
 import exception.NullArgumentException;
 
@@ -13,12 +14,14 @@ public class Spell extends WorldObject{
 	private int damage;
 	private float range;
 	private float speed;
+	private Vector2f direction;
 	
-	protected Spell(float x, float y) throws SlickException {
+	protected Spell(float x, float y, Vector2f dir) throws SlickException {
 		super(x, y);
 		speed = 20;
 		damage = 10;
 		range = 50;
+		direction=dir;
 		animations = new Animation[32];
 		creationAnimation();
 	}
