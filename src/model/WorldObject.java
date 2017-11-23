@@ -28,6 +28,10 @@ public class WorldObject {
 		return pos;
 	}
 	
+	public void setPos(Vector2f p){
+		pos=p;
+	}
+	
 	public float getX(){
 		return pos.x;
 	}
