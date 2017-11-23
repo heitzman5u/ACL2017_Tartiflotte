@@ -88,8 +88,6 @@ public class PlayerController implements KeyListener, MouseListener {
 			final InputProperty ip = inputs.get(key);
 			if(inputs.get(key).getCommand().hasMovement()){
 				hero.receiveCommand(ip.getCommand().opposite());
-			}else{
-				hero.receiveCommand(ip.getCommand());
 			}
 		}
 	}
