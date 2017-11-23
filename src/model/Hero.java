@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import controller.PlayerCommand;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
@@ -124,6 +125,13 @@ public class Hero extends Character {
 		}
 		hudLifeFlask.update(delta, nbFlasks, life);
 	}
+	
+	
+	public void receiveCommand(PlayerCommand c){
+		//TODO
+	}
+	
+	
 	
 	/**
 	 * create the differents animations of the hero thanks to his SpriteSheet

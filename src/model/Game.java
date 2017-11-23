@@ -24,14 +24,11 @@ public class Game {
 	private int gameState;
 	
 	private int currentLevel;
-	
 	private boolean loadingLevel;
 	
 	private World world;
 	private HudMessage victory;
-		
-	
-	
+			
 	private Game(){
 		try{
 			currentLevel = 1;
