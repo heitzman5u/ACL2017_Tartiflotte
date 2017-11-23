@@ -68,6 +68,10 @@ public class Character extends WorldObject {
 		this.alive = alive;
 	}
 	
+	public int getLife() {
+		return life;
+	}
+	
 	/**
 	 * Deal damage to this character.
 	 * No damage taken if dmg <= 0
