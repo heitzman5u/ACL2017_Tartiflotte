@@ -148,6 +148,15 @@ public class Hero extends Character {
 		if(c.hasMovement()){
 			movement.add(c.getMovement());
 		}
+		if (c == PlayerCommand.USE_FLASK){
+			useFlask();
+		}
+		if (c == PlayerCommand.ATTACK){
+			attackMonsters();
+		}
+		if (c == PlayerCommand.NEXT_LEVEL){
+			Game.getInstance().loadNextLevel();
+		}
 	}
 	
 	/**

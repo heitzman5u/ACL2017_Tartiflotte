@@ -95,6 +95,7 @@ public class Game {
 		world.update(delta, loadingLevel ? ++currentLevel : 0);
 		if(loadingLevel){
 			gameState = Game.IN_GAME;
+			playerController.setHero(world.getHero());
 		}
 		loadingLevel = false;
 	}
