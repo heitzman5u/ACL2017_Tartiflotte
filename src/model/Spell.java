@@ -85,7 +85,7 @@ public class Spell extends WorldObject{
 		
 		Monster m = world.collideToMonster(this);
 		
-		if(m == null && range > 0) { //test if collide to wall too
+		if(m == null && range > 0 && !world.collideToWall(this)) {
 			move(delta);
 		}else {
 			if(m != null && m.getLife() <= 0)

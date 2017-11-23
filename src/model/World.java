@@ -51,7 +51,7 @@ public class World {
 	 *            Character (monster or hero)
 	 * @return true if the character is out of the map or collide to a wall
 	 */
-	public boolean collideToWall(Character h) {
+	public boolean collideToWall(WorldObject h) {
 		if (h == null)
 			return false;
 		// out of map
@@ -157,6 +157,9 @@ public class World {
 		for (Monster m : level.getMonsters()) {
 			m.setWorld(this);
 		}
+		
+		objects.addAll(level.getMonsters());
+		objects.addAll(level.getFlasks());
 	}
 
 	/**
