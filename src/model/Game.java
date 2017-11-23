@@ -24,25 +24,33 @@ public class Game {
 	private int gameState;
 	
 	private int currentLevel;
-	
 	private boolean loadingLevel;
 	
 	private World world;
 	private HudMessage victory;
-		
 	
-	
+	private PlayerController playerController;
+
+	private GameUI ui;
+			
 	private Game(){
-		try{
-			currentLevel = 1;
-			loadingLevel = false;
-			world = new World();
-			victory = new HudMessage("/hud/victory_achieved.png");	
-		}catch(Exception e){
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
+		this.currentLevel = 1;
+		this.loadingLevel = false;
+		this.playerController = null;
+		this.world = null;
+		this.victory = null;
 	}
+	
+	
+	public void setContext(int lvl, World w, HudMessage victory, PlayerController pc) throws TartiException{
+		this.currentLevel = lvl;
+		this.loadingLevel = false;
+		this.playerController = pc;
+		this.world = w;
+		this.playerController.setHero(this.world.getHero());
+		this.victory = victory;
+	}
+	
 	
 	/**
 	 * 
@@ -75,7 +83,6 @@ public class Game {
 	public void loadNextLevel(){
 		if(isWon()){
 			loadingLevel = true;
-			gameState = Game.IN_GAME;
 		}
 	}
 	
@@ -86,6 +93,9 @@ public class Game {
 	public void update(int delta) throws SlickException, TartiException{
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		world.update(delta, loadingLevel ? ++currentLevel : 0);
+		if(loadingLevel){
+			gameState = Game.IN_GAME;
+		}
 		loadingLevel = false;
 	}
 	
@@ -102,7 +112,15 @@ public class Game {
 	}
 	
 	public PlayerController getPlayerController(){
-		return world.getPlayerController();
+		return playerController;
+	}
+	
+	public void setControllerHero(Hero h) throws TartiException{
+		playerController.setHero(h);
+	}
+	
+	public void setUI(GameUI ui){
+		this.ui = ui;
 	}
 	
 }

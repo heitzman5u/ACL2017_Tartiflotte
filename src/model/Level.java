@@ -1,6 +1,11 @@
 package model;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,8 +24,11 @@ import exception.TartiException;
  * 
  * @author Tartiflotte
  */
-public class Level {
+public class Level implements Serializable {
 
+	private static final long serialVersionUID = -8517676766628736059L;
+	
+	
 	private final TiledMap map;
 	private final Hero hero;
 	
@@ -48,6 +56,9 @@ public class Level {
 		exit = new Exit(new Point(840, 350), new Point(900, 370));
 		flasks = flasksInLevel();
 		monsters = monstersInLevel();
+		
+		
+		serialization();
 	}
 	
 	public Level(int number) throws SlickException, TartiException{
@@ -112,7 +123,7 @@ public class Level {
 		return monsters;
 	}
 
-	private Hero getHeroInTmx() throws SlickException {
+	private Hero getHeroInTmx() throws SlickException, TartiException {
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				if (this.map.getTileImage(x, y, this.map.getLayerIndex("hero")) != null)
@@ -155,4 +166,25 @@ public class Level {
 	public Collection<Monster> getMonsters(){
 		return monsters;
 	}
+	
+	private void serialization(){
+		try {
+			FileOutputStream fos = new FileOutputStream("level.serial");
+			try {
+				ObjectOutputStream oos= new ObjectOutputStream(fos);
+				oos.writeObject(this); 
+				oos.flush();
+				oos.close();
+				fos.close();
+				
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

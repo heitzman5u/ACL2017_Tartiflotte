@@ -59,16 +59,6 @@ public class Character extends WorldObject {
 	}
 	
 	
-	/**
-	 * 
-	 * @param x x param of speed vector
-	 * @param y y param of speed vector
-	 */
-	public void move(float x, float y){
-		assert(pos != null):"character pos not set";
-		pos.add(new Vector2f(x,y));
-	}
-	
 	public boolean isAlive() {
 		return alive;
 	}

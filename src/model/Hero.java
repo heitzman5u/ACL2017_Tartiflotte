@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import controller.PlayerCommand;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
@@ -19,11 +20,12 @@ import exception.TartiException;
  * @author Tartiflotte
  */
 public class Hero extends Character {
-	private PlayerController playerController;
 	private Animation[] animations;
 
 	private static final float SPEED = 0.2f;
 	private static final int FULL_LIFE = 10;
+	
+	private Vector2f movement;
 
 	private HudHeroInfo hudLifeFlask;
 	private int nbFlasks;
@@ -37,11 +39,12 @@ public class Hero extends Character {
 	 * @param y
 	 *            ordinate
 	 * @throws SlickException
+	 * @throws TartiException 
 	 */
-	public Hero(float x, float y) throws SlickException {
+	public Hero(float x, float y) throws SlickException, TartiException{
 		super(x, y, SPEED);
-		playerController = new PlayerController(this);
-
+		
+		movement = new Vector2f();
 		nbFlasks = 0;
 		life = 6;
 		animations = new Animation[9];
@@ -53,37 +56,17 @@ public class Hero extends Character {
 		hudLifeFlask = new HudHeroInfo(FULL_LIFE, life);
 	}
 
-	/**
-	 * Copy a Hero. Deep copy of position, orientation, nb of flasks Shallow copy of
-	 * other objects
-	 * 
-	 * @param other
-	 *            the copied hero
-	 */
-	public Hero(Hero other) {
+	
+	public Hero(Hero other) throws TartiException{
 		super(other);
-		playerController = other.playerController;
 		animations = other.animations;
+		movement = other.movement.copy();
 
 		nbFlasks = other.nbFlasks;
 	}
-
-	/**
-	 * Allow the hero to move towards the hero
-	 * 
-	 * @param delta
-	 *            milliseconds since last frame
-	 */
-	public void move(int delta) throws TartiException {
-		if (delta < 0)
-			throw new InvalidArgumentException("delta >= 0");
-		if (isAlive()) {
-			// scale to have constant speed
-			Vector2f vspeed = playerController.getMovement().scale(speed * (float) delta);
-			pos.add(vspeed);
-		}
-	}
-
+	
+	
+	
 	/**
 	 * Allow the Hero to use one of his life flask to regain HP
 	 */
@@ -116,13 +99,12 @@ public class Hero extends Character {
 	/**
 	 * @see Game.render()
 	 */
-	public void render(Graphics g) throws TartiException {
-		if (g == null)
-			throw new NullArgumentException();
-		g.setColor(new Color(48, 48, 48));
-		g.fillOval(pos.x - 20, pos.y, 40, 16);
-		if (isAlive()) {
-			g.drawAnimation(animations[direction + (playerController.isMoving() ? 4 : 0)], pos.x - 40, pos.y - 65);
+	public void render(Graphics g) throws TartiException{
+		if(g == null) throw new NullArgumentException();
+		g.setColor(new Color(48,48,48));
+		g.fillOval(pos.x-20, pos.y, 40, 16);
+		if (isAlive()){
+			g.drawAnimation(animations[direction + (movement.length() > 0.0001 ? 4 : 0)], pos.x-40, pos.y-65);
 		} else {
 			g.drawAnimation(animations[8], pos.x - 40, pos.y - 65);
 		}
@@ -138,7 +120,7 @@ public class Hero extends Character {
 	 */
 	public void update(int delta) throws TartiException {
 		setDirection();
-		if (playerController.isMoving() && !world.collideToWall(futurePos(delta))) {
+		if( !world.collideToWall(futurePos(delta)) ){
 			move(delta);
 		}
 		hudLifeFlask.update(delta, nbFlasks, life);
@@ -147,7 +129,27 @@ public class Hero extends Character {
 			s.update(delta);
 		}
 	}
-
+	
+	/**
+	 * Allow the hero to move towards the hero
+	 * @param delta milliseconds since last frame
+	 */
+	public void move(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
+		if (isAlive()){
+			//scale to have constant speed
+			Vector2f vspeed = movement.getNormal().scale(speed*(float)delta);
+			pos.add(vspeed);
+		}
+	}
+	
+	
+	public void receiveCommand(PlayerCommand c){
+		if(c.hasMovement()){
+			movement.add(c.getMovement());
+		}
+	}
+	
 	/**
 	 * create the differents animations of the hero thanks to his SpriteSheet
 	 */
@@ -181,14 +183,33 @@ public class Hero extends Character {
 		animation.addFrame(spriteSheet.getSprite(0, 4), 100);
 		animations[8] = animation;
 		// --
-	}
-
-	public PlayerController getPlayerController() {
-		return playerController;
-	}
-
-	private void setDirection() {
-		direction = playerController.getDirection();
+	}	
+	
+	private void setDirection(){
+		double angle = movement.getTheta();
+		double demiQuart=360/8;
+		int dir=direction;
+		
+		if(movement.length() < 0.0001){
+			return; //no change
+		}
+		
+		if((angle<demiQuart) || angle>7*demiQuart){
+			dir=0;
+		}
+		else if(angle>=demiQuart && angle<=3*demiQuart){
+			dir=3; 
+		}
+		else if(angle>3*demiQuart && angle<5*demiQuart){
+			dir=1;
+		}
+		else if(angle>=5*demiQuart && angle<=7*demiQuart){
+			dir=2;
+		}
+		else{
+			throw new RuntimeException("Impossible angle case found!");
+		}
+		direction = dir;
 	}
 
 	public void attackMonsters() {

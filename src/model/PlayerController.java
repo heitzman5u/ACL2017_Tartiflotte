@@ -8,6 +8,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.geom.Vector2f;
 
+import controller.PlayerCommand;
+import exception.NullArgumentException;
+import exception.TartiException;
+import jdk.internal.org.xml.sax.InputSource;
+
 /**
  * Tell what button is pressed or released and in wich direction
  * @author Tartiflotte
@@ -21,20 +26,24 @@ public class PlayerController implements KeyListener {
 	
 	//private Stack<InputProperty> keyPressed;
 	private Map<Integer, InputProperty> inputs = new HashMap<>();
-	private int lastDirection = 3;//facing south by default
+	
 	private Hero hero;
 	
 	/**
 	 * The constructor initializes the attribute inputs.
 	 * This attribute connects the four moving keys to the good displacement
 	 */
-	public PlayerController(Hero h){
-		inputs.put(Input.KEY_Z, new InputProperty(0f,  -1f, 2));
-		inputs.put(Input.KEY_S, new InputProperty(0f,  1f, 3));
-		inputs.put(Input.KEY_Q, new InputProperty(-1f,  0f, 1));
-		inputs.put(Input.KEY_D, new InputProperty(1f, 0f, 0));
+	public PlayerController(){
+		inputs.put(Input.KEY_Z, new InputProperty(PlayerCommand.UP));
+		inputs.put(Input.KEY_S, new InputProperty(PlayerCommand.DOWN));
+		inputs.put(Input.KEY_Q, new InputProperty(PlayerCommand.LEFT));
+		inputs.put(Input.KEY_D, new InputProperty(PlayerCommand.RIGHT));
 		
-		hero=h;
+		inputs.put(Input.KEY_F, new InputProperty(PlayerCommand.USE_FLASK));
+		inputs.put(Input.KEY_M, new InputProperty(PlayerCommand.ATTACK));
+		inputs.put(Input.KEY_P, new InputProperty(PlayerCommand.NEXT_LEVEL));
+		
+		hero=null;
 	}
 
 	@Override
@@ -62,15 +71,11 @@ public class PlayerController implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(int key, char arg1) {
+		if(hero == null) return;
+		System.out.println("hero is not null!! *************************");
 		if(inputs.containsKey(key)){
-			inputs.get(key).setPressed(true);
-		}
-		else if(key==Input.KEY_M){
-			hero.attackMonsters();
-		} else if(key == Input.KEY_F){
-			hero.useFlask();
-		} else if(key == Input.KEY_P){
-			Game.getInstance().loadNextLevel();
+			final InputProperty ip = inputs.get(key);
+			hero.receiveCommand(ip.getCommand());
 		}
 	}
 	
@@ -79,16 +84,27 @@ public class PlayerController implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(int key, char arg1) {
+		if(hero == null) return;
 		if(inputs.containsKey(key)){
-			inputs.get(key).setPressed(false);
+			final InputProperty ip = inputs.get(key);
+			if(inputs.get(key).getCommand().hasMovement()){
+				hero.receiveCommand(ip.getCommand().opposite());
+			}else{
+				hero.receiveCommand(ip.getCommand());
+			}
 		}
+	}
+	
+	public void setHero(Hero h) throws TartiException{
+		if(h == null) throw new NullArgumentException();
+		hero = h;
 	}
 
 	/**
 	 * @return vector corresponding to the key pressed 
 	 * and the direction associated 
 	 */
-	public Vector2f getMovement(){
+	/*public Vector2f getMovement(){
 		//here, prop is set and pressed
 		Vector2f sum = new Vector2f(0,0);
 		for(Entry<Integer, InputProperty> e : inputs.entrySet()){
@@ -98,16 +114,16 @@ public class PlayerController implements KeyListener {
 			}
 		}
 		return sum.getNormal();
-	}
+	}*/
 
-	public boolean isMoving() {
+	/*public boolean isMoving() {
 		return getMovement().length()!=0f;
-	}
+	}*/
 	
 	/**
 	 * @return the current direction of the last button pressed
 	 */
-	public int getDirection(){
+	/*public int getDirection(){
 		//return inputs.get(lastPressed).getDirection();
 		double angle=getMovement().getTheta();
 		double demiQuart=360/8;
@@ -134,6 +150,6 @@ public class PlayerController implements KeyListener {
 		}
 		lastDirection=dir;
 		return dir;
-	}
+	}*/
 	
 }

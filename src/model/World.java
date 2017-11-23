@@ -206,9 +206,6 @@ public class World {
 		return level.getHero();
 	}
 
-	public PlayerController getPlayerController() {
-		return level.getHero().getPlayerController();
-	}
 
 	public Iterable<Monster> getMonsters() {
 		return level.getMonsters();

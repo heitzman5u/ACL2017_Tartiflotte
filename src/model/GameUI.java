@@ -29,9 +29,22 @@ public class GameUI extends BasicGame {
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		container = arg0;
-		container.getInput().addKeyListener(Game.getInstance().getPlayerController());
-		container.setTargetFrameRate(FRAME_RATE);
+		try{
+			container = arg0;
+			container.setTargetFrameRate(FRAME_RATE);
+			
+			//Set the game
+			PlayerController pc = new PlayerController();
+			container.getInput().addKeyListener(pc);
+			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
+			World w = new World();
+			int level = 1;
+			
+			Game.getInstance().setContext(level, w, victory, pc);
+		}catch(TartiException e){
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 	@Override
