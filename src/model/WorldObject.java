@@ -30,12 +30,24 @@ public class WorldObject implements Serializable {
 		return pos;
 	}
 	
+	public void setPos(Vector2f p){
+		pos=p;
+	}
+	
 	public float getX(){
 		return pos.x;
 	}
 	
 	public float getY(){
 		return pos.y;
+	}
+	
+	public void setX(float x){
+		pos.x = x;
+	}
+	
+	public void setY(float y){
+		pos.y = y;		
 	}
 	
 	public void setWorld(World w){

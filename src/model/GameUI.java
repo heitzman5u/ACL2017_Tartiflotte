@@ -36,6 +36,7 @@ public class GameUI extends BasicGame {
 			//Set the game
 			PlayerController pc = new PlayerController();
 			container.getInput().addKeyListener(pc);
+			container.getInput().addMouseListener(pc);
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
 			World w = new World();
 			int level = 1;

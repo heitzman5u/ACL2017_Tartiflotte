@@ -101,6 +101,20 @@ public class Hero extends Character {
 		h.move(delta);
 		return h;
 	}
+	
+
+	/**
+	 * Allow the hero to move towards the hero
+	 * @param delta milliseconds since last frame
+	 */
+	public void move(int delta) throws TartiException{
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
+		if (isAlive()){
+			//scale to have constant speed
+			Vector2f vspeed = movement.getNormal().scale(speed*(float)delta);
+			pos.add(vspeed);
+		}
+	}
 
 	/**
 	 * @see Game.render()
@@ -136,18 +150,6 @@ public class Hero extends Character {
 		}
 	}
 	
-	/**
-	 * Allow the hero to move towards the hero
-	 * @param delta milliseconds since last frame
-	 */
-	public void move(int delta) throws TartiException{
-		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
-		if (isAlive()){
-			//scale to have constant speed
-			Vector2f vspeed = movement.getNormal().scale(speed*(float)delta);
-			pos.add(vspeed);
-		}
-	}
 	
 	
 	public void receiveCommand(PlayerCommand c){
@@ -253,8 +255,10 @@ public class Hero extends Character {
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y) throws SlickException {
-		spells.add(new Spell(x, y));
+	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
+		Spell sp=new Spell(x, y, dir);
+		sp.setWorld(world);
+		spells.add(sp);
 	}
 
 

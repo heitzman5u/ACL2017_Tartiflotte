@@ -80,6 +80,10 @@ public class Character extends WorldObject implements Serializable {
 	public int getLife() {
 		return life;
 	}
+	
+	public void setLife(int life) {
+		this.life = life;
+	}
 
 	/**
 	 * Deal damage to this character. No damage taken if dmg <= 0
