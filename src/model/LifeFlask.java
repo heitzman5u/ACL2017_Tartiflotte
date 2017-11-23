@@ -38,7 +38,6 @@ public class LifeFlask extends WorldObject {
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		final float d = world.trajectoryToHero(this).length();
 		if(d <= PICK_UP_DISTANCE){
-			//System.out.println("Flask picked");
 			world.pickFlask(this);
 		}
 	}
