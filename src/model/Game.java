@@ -28,18 +28,29 @@ public class Game {
 	
 	private World world;
 	private HudMessage victory;
+	
+	private PlayerController playerController;
+
+	private GameUI ui;
 			
 	private Game(){
-		try{
-			currentLevel = 1;
-			loadingLevel = false;
-			world = new World();
-			victory = new HudMessage("/hud/victory_achieved.png");	
-		}catch(Exception e){
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
+		this.currentLevel = 1;
+		this.loadingLevel = false;
+		this.playerController = null;
+		this.world = null;
+		this.victory = null;
 	}
+	
+	
+	public void setContext(int lvl, World w, HudMessage victory, PlayerController pc) throws TartiException{
+		this.currentLevel = lvl;
+		this.loadingLevel = false;
+		this.playerController = pc;
+		this.world = w;
+		this.playerController.setHero(this.world.getHero());
+		this.victory = victory;
+	}
+	
 	
 	/**
 	 * 
@@ -101,7 +112,15 @@ public class Game {
 	}
 	
 	public PlayerController getPlayerController(){
-		return world.getPlayerController();
+		return playerController;
+	}
+	
+	public void setControllerHero(Hero h) throws TartiException{
+		playerController.setHero(h);
+	}
+	
+	public void setUI(GameUI ui){
+		this.ui = ui;
 	}
 	
 }

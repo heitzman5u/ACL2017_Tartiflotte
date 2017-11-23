@@ -13,12 +13,12 @@ public class Main {
 		while(nbTry < 3 && !succeed){
 			try {
 				new AppGameContainer(new GameUI("title"), 1120, 800, false).start();
-				nbTry++;
 				succeed = true;
 			} catch (Throwable t){
 				System.err.println(t.getMessage());
 				t.printStackTrace();
 				succeed = false;
+				nbTry++;
 			}
 		}
 		

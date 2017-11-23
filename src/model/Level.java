@@ -123,7 +123,7 @@ public class Level implements Serializable {
 		return monsters;
 	}
 
-	private Hero getHeroInTmx() throws SlickException {
+	private Hero getHeroInTmx() throws SlickException, TartiException {
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				if (this.map.getTileImage(x, y, this.map.getLayerIndex("hero")) != null)
