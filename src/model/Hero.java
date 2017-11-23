@@ -257,4 +257,9 @@ public class Hero extends Character {
 		spells.add(new Spell(x, y));
 	}
 
+
+	public void destroySpell(Spell s) {
+		spells.remove(s);
+	}
+
 }

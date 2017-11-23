@@ -198,5 +198,9 @@ public class Level implements Serializable {
 		}
 		
 	}
+
+	public void destroyMonster(Monster m) {
+		monsters.remove(m);
+	}
 	
 }

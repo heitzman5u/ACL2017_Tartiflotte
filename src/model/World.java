@@ -23,7 +23,8 @@ public class World {
 	private TiledMap map;
 	private Level level;
 
-	private final Collection<LifeFlask> toBeRemoved;
+	private final Collection<WorldObject> toBeRemoved;
+	private Collection<WorldObject> objects;
 
 	public World() throws SlickException, TartiException {
 		level = new Level(1);
@@ -31,13 +32,17 @@ public class World {
 		map = level.getMap();
 		level.getHero().setWorld(this);
 		level.getExit().setWorld(this);
+		
 		for (LifeFlask f : level.getFlasks()) {
 			f.setWorld(this);
 		}
+		objects.addAll(level.getFlasks());
+		
 		toBeRemoved = new ArrayList<>(level.getFlasks().size());
 		for (Monster m : level.getMonsters()) {
 			m.setWorld(this);
 		}
+		objects.addAll(level.getMonsters());
 	}
 
 	/**
@@ -201,13 +206,26 @@ public class World {
 		toBeRemoved.add(f);
 		level.getHero().pickFlask();
 	}
+	
+	public void destroyMonster(Monster m) {
+		toBeRemoved.add(m);
+		level.destroyMonster(m);
+	}
+	
+	public void destroySpell(Spell s) {
+		toBeRemoved.add(s);
+		level.getHero().destroySpell(s);
+	}
 
 	public Hero getHero() {
 		return level.getHero();
 	}
 
-
 	public Iterable<Monster> getMonsters() {
 		return level.getMonsters();
+	}
+	
+	public void addSpell(Spell s) {
+		objects.add(s);
 	}
 }
