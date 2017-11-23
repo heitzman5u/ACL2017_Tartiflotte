@@ -11,7 +11,7 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Tartiflotte
  *
  */
-public class Character extends WorldObject implements Serializable {
+public abstract class Character extends WorldObject implements Serializable {
 	protected transient float speed;
 
 	protected transient boolean alive;

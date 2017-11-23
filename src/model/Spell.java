@@ -22,7 +22,7 @@ public class Spell extends WorldObject{
 	protected Spell(float x, float y, Vector2f dir) throws SlickException {
 		super(x, y);
 		speed = 0.7f;
-		damage = 10;
+		damage = 2;
 		range = 50;
 		direction=dir.getNormal();
 		spritePos=calculateSpritePosition();
@@ -54,7 +54,7 @@ public class Spell extends WorldObject{
 			approachedAngle+=valAngAppr;
 			i=(i+1)%16;
 		}
-		return (12+i)%16;
+		return (11+i)%16;
 	}
 	
 	public Vector2f futurePos(int delta) throws TartiException{
@@ -82,10 +82,15 @@ public class Spell extends WorldObject{
 	}
 	
 	public void update(int delta) throws TartiException {
-		if(!world.collideToMonster(this) && range > 0) { //test if collide to wall too
+		
+		Monster m = world.collideToMonster(this);
+		
+		if(m == null && range > 0) { //test if collide to wall too
 			move(delta);
 		}else {
-			//kill him in world
+			if(m != null && m.getLife() <= 0)
+				world.destroyObject(m);
+			world.destroyObject(this);
 		}
 	}
 }

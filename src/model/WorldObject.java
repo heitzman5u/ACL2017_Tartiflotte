@@ -2,14 +2,18 @@ package model;
 
 import java.io.Serializable;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
+
+import exception.NullArgumentException;
+import exception.TartiException;
 
 /**
  * An object that is in the world map, and can interact with it
  * @author Tartiflotte
  *
  */
-public class WorldObject implements Serializable {
+public abstract class WorldObject implements Serializable {
 	protected transient World world;
 	protected Vector2f pos;
 	
@@ -57,4 +61,8 @@ public class WorldObject implements Serializable {
 	public float distance(WorldObject wo){
 		return this.getPos().distance(wo.getPos());
 	}
+	
+	public abstract void render(Graphics g) throws TartiException;
+	public abstract void update(int delta) throws TartiException;
+	
 }

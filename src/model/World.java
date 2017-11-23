@@ -28,7 +28,7 @@ public class World {
 
 	public World() throws SlickException, TartiException {
 		level = new Level(1);
-
+		objects = new ArrayList<>();
 		map = level.getMap();
 		level.getHero().setWorld(this);
 		level.getExit().setWorld(this);
@@ -38,7 +38,7 @@ public class World {
 		}
 		objects.addAll(level.getFlasks());
 		
-		toBeRemoved = new ArrayList<>(level.getFlasks().size());
+		toBeRemoved = new ArrayList<>();
 		for (Monster m : level.getMonsters()) {
 			m.setWorld(this);
 		}
@@ -70,17 +70,18 @@ public class World {
 	 * @param s
 	 * @return true if the spell collide a monster
 	 */
-	public boolean collideToMonster(Spell s) {
+	public Monster collideToMonster(Spell s) {
 		for (Monster m : level.getMonsters()) {
 			if (m.getPos().distance(s.getPos()) <= 25) {
 				m.receiveDamage(s.getDamage());
 				if (m.getLife() <= 0) {
 					m.setAlive(false);
+					
 				}
-				return true;
+				return m;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -91,17 +92,11 @@ public class World {
 		if (g == null)
 			throw new NullArgumentException();
 		map.render(0, 0);
-
-		// call render of all flasks
-		for (LifeFlask f : level.getFlasks())
-			f.render(g);
-
+		
 		level.getHero().render(g);
-
-		// call render of all monsters
-		for (Monster m : level.getMonsters())
-			m.render(g);
-
+		
+		for(WorldObject o : objects)
+			o.render(g);
 		level.getExit().render(g);
 	}
 
@@ -121,19 +116,19 @@ public class World {
 			throw new InvalidArgumentException("Loading a level with number < 0");
 		}
 
-		// call update of all flasks
 		toBeRemoved.clear();
-		for (LifeFlask f : level.getFlasks())
-			f.update(delta);
-		level.getFlasks().removeAll(toBeRemoved);
-
-		// call update of all monsters
-		for (Monster m : level.getMonsters())
-			m.update(delta);
+		for(WorldObject o : objects)
+			o.update(delta);
+	
 
 		level.getHero().update(delta);
 		level.getExit().update(delta);
-
+		
+		level.getFlasks().removeAll(toBeRemoved);
+		level.getHero().getSpells().removeAll(toBeRemoved);
+		level.getMonsters().removeAll(toBeRemoved);
+		objects.removeAll(toBeRemoved);
+		
 		if (nextLevel != 0) {
 			loadLevel(nextLevel);
 		}
@@ -209,14 +204,9 @@ public class World {
 		level.getHero().pickFlask();
 	}
 	
-	public void destroyMonster(Monster m) {
-		toBeRemoved.add(m);
-		level.destroyMonster(m);
-	}
+	public void destroyObject(WorldObject o) {
+		toBeRemoved.add(o);
 	
-	public void destroySpell(Spell s) {
-		toBeRemoved.add(s);
-		level.getHero().destroySpell(s);
 	}
 
 	public Hero getHero() {

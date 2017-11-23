@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.util.Collection;
 import java.io.Serializable;
 
 import org.newdawn.slick.Animation;
@@ -258,9 +258,13 @@ public class Hero extends Character {
 	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
 		Spell sp=new Spell(x, y, dir);
 		sp.setWorld(world);
+		world.addSpell(sp);
 		spells.add(sp);
 	}
 
+	public Collection<Spell> getSpells(){
+		return spells;
+	}
 
 	public void destroySpell(Spell s) {
 		spells.remove(s);
