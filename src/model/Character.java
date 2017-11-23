@@ -1,8 +1,10 @@
 package model;
 
+
 import java.io.Serializable;
 
 import org.newdawn.slick.geom.Vector2f;
+
 
 /**
  * A character is a world's entity.
@@ -68,6 +70,10 @@ public class Character extends WorldObject implements Serializable{
 
 	public void setAlive(boolean alive) {
 		this.alive = alive;
+	}
+	
+	public int getLife() {
+		return life;
 	}
 	
 	/**
