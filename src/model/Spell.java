@@ -15,7 +15,7 @@ public class Spell extends WorldObject{
 	private Animation[] animations;
 	private int spritePos;
 	private int damage;
-	private float range;
+	private float range; // in seconds
 	private float speed;
 	private Vector2f direction;
 	
@@ -23,7 +23,7 @@ public class Spell extends WorldObject{
 		super(x, y);
 		speed = 0.7f;
 		damage = 2;
-		range = 50;
+		range = 0.3f;
 		direction=dir.getNormal();
 		spritePos=calculateSpritePosition();
 		animations = new Animation[32];
@@ -87,6 +87,7 @@ public class Spell extends WorldObject{
 		
 		if(m == null && range > 0 && !world.collideToWall(this)) {
 			move(delta);
+			range-= (float)delta / 1000f;
 		}else {
 			if(m != null && m.getLife() <= 0)
 				world.destroyObject(m);
