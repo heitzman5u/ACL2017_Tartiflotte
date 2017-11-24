@@ -215,12 +215,14 @@ public class Monster extends Character {
 	 */
 	private void lifeBarHUD(){
 		float lifeRatio = life/(float)FULL_LIFE;
-		float width = (float)lifeImg.getWidth() * lifeRatio;
+		float width = (float)lifeImg.getWidth();
 		float height = (float)lifeImg.getHeight();
+		float widthRatio = (float)lifeImg.getWidth() * lifeRatio;
+
 		lifeBarImg.draw(getX() - (width/2), getY() - 60, 1.0f);
 		
 
-		lifeImg.draw(getX() - (width/2) +1, getY()+1 - 60, width, height);
+		lifeImg.draw(getX() - (width/2) +1, getY()+1 - 60, widthRatio, height);
 	}
 	
 }
