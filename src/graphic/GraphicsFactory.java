@@ -1,6 +1,7 @@
 package graphic;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -18,6 +19,9 @@ public class GraphicsFactory {
 	private static Animation[] monsterAnimation;
 	private static Animation littleFlaskAnimation;
 	private static Animation exitAnimation;
+	private static Animation scratchAnimation;
+	private static Image monsterLifeBarImg;
+	private static Image monsterLifeImg;
 
 	public static void loadSpellAnimation() throws SlickException{
 		spellAnimation = new Animation[32];
@@ -108,6 +112,22 @@ public class GraphicsFactory {
 	}
 	
 	
+	public static void loadScratchAnimation() throws SlickException{
+		scratchAnimation = new Animation();
+		SpriteSheet spriteSheet = new SpriteSheet("griffure", GraphicsFactory.class.getResourceAsStream("/monsters/images/scratch.png"), 60, 60);
+		scratchAnimation.addFrame(spriteSheet.getSprite(0, 0), 100);
+	}
+	
+	
+	public static void loadMonsterLifeBarImages() throws SlickException{
+		monsterLifeImg= new Image("/res/monsters/images/life.jpg");
+		monsterLifeBarImg = new Image("/res/monsters/images/life_bar.png");
+	}
+	
+	
+	// -------------------------------------------------------------------------------------------
+	
+	
 	public static Animation[] getSpellAnimation() throws NotLoadedException{
 		if(spellAnimation == null) throw new NotLoadedException();
 		return spellAnimation;
@@ -131,6 +151,21 @@ public class GraphicsFactory {
 	public static Animation getExitAnimation() throws NotLoadedException{
 		if(exitAnimation == null) throw new NotLoadedException();
 		return exitAnimation;
+	}
+	
+	public static Animation getScratchAnimation() throws NotLoadedException{
+		if(scratchAnimation == null) throw new NotLoadedException();
+		return scratchAnimation;
+	}
+	
+	public static Image getMonsterLifeBarImage() throws NotLoadedException{
+		if(monsterLifeBarImg == null) throw new NotLoadedException();
+		return monsterLifeBarImg;
+	}
+	
+	public static Image getMonsterLifeImage() throws NotLoadedException{
+		if(monsterLifeImg == null) throw new NotLoadedException();
+		return monsterLifeImg;
 	}
 
 }

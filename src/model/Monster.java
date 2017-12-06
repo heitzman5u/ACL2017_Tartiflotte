@@ -5,10 +5,10 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import exception.InvalidArgumentException;
+import exception.NotLoadedException;
 import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
@@ -23,9 +23,6 @@ public class Monster extends Character {
 	
 	private boolean moving;	
 	private boolean attack;
-	
-	private Image lifeBarImg;
-	private Image lifeImg;
 	
 	private static final float SPEED = 2.0f;
 	private static final float ATTACK_DISTANCE = 600f;
@@ -45,9 +42,6 @@ public class Monster extends Character {
 		direction = 0;
 		life = FULL_LIFE;
 		attack = false;
-
-		lifeBarImg = new Image("/res/monsters/images/life_bar.png");
-		lifeImg = new Image("/res/monsters/images/life.jpg");
 	}
 	
 	/**
@@ -165,15 +159,8 @@ public class Monster extends Character {
 		
 		// ATTACK ANIMATION
 		if (attack == true){
-			try {
-				SpriteSheet spriteSheet;
-				spriteSheet = new SpriteSheet("griffure", getClass().getResourceAsStream("/monsters/images/scratch.png"), 60, 60);
-				Animation attackAnim = new Animation();
-				attackAnim.addFrame(spriteSheet.getSprite(0, 0), 100);
-				g.drawAnimation(attackAnim, world.getHero().getX()-30, world.getHero().getY()-30);
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
+			Animation attackAnim = GraphicsFactory.getScratchAnimation();
+			g.drawAnimation(attackAnim, world.getHero().getX()-30, world.getHero().getY()-30);
 		}
 		
 		// LIFE BAR
@@ -182,44 +169,21 @@ public class Monster extends Character {
 		// --
 	}
 	
-	/**
-	 * create the differents animations of the monster thanks to his SpriteSheet
-	 * @throws SlickException
-	 */
-	/*private void creationAnimations() throws SlickException{
-		SpriteSheet spriteSheet = new SpriteSheet("lycan", getClass().getResourceAsStream("/monsters/images/lycan.png"), 80, 80);
-				
-		// STOP POSITIONS
-		int nbDirections = 4;
-		for (int i = 0 ; i < nbDirections ; i++){
-			Animation animation = new Animation();
-			animation.addFrame(spriteSheet.getSprite(0, i), 200);
-			animations[i] = animation;
-		}
-		
-		// MOVING POSITIONS
-		for (int j = 0 ; j < 4 ; j++){
-			Animation animation = new Animation();
-			for (int i = 0 ; i < 4 ; i++){
-				animation.addFrame(spriteSheet.getSprite(i, j), 200);
-			}
-			animations[j+nbDirections] = animation;
-		}
-		//--
-	}*/
 	
 	/**
 	 * Display the life bar of the monster
+	 * @throws NotLoadedException 
 	 */
-	private void lifeBarHUD(){
+	private void lifeBarHUD() throws NotLoadedException{
+		Image lifeBarImg = GraphicsFactory.getMonsterLifeBarImage();
+		Image lifeImg = GraphicsFactory.getMonsterLifeImage();
+		
 		float lifeRatio = life/(float)FULL_LIFE;
 		float width = (float)lifeImg.getWidth();
 		float height = (float)lifeImg.getHeight();
 		float widthRatio = (float)lifeImg.getWidth() * lifeRatio;
 
 		lifeBarImg.draw(getX() - (width/2), getY() - 60, 1.0f);
-		
-
 		lifeImg.draw(getX() - (width/2) +1, getY()+1 - 60, widthRatio, height);
 	}
 	

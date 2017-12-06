@@ -40,6 +40,8 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadMonsterAnimation();
 			GraphicsFactory.loadLittleFlaskAnimation();
 			GraphicsFactory.loadExitAnimation();
+			GraphicsFactory.loadScratchAnimation();
+			GraphicsFactory.loadMonsterLifeBarImages();
 			
 			
 			//Set the game

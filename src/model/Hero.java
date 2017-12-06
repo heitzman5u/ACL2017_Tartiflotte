@@ -22,9 +22,7 @@ import graphic.GraphicsFactory;
 public class Hero extends Character {
 
 	private static final long serialVersionUID = 3797645190029724829L;
-
 	
-	//private transient Animation[] animations;
 
 	private transient static final float SPEED = 0.2f;
 	private transient static final int FULL_LIFE = 10;
@@ -50,8 +48,6 @@ public class Hero extends Character {
 		movement = new Vector2f();
 		nbFlasks = 0;
 		life = 6;
-		//animations = new Animation[9];
-		//creationAnimations();
 
 		hudLifeFlask = new HudHeroInfo(FULL_LIFE, life);
 	}
@@ -157,40 +153,6 @@ public class Hero extends Character {
 		}
 	}
 	
-	/**
-	 * create the differents animations of the hero thanks to his SpriteSheet
-	 */
-	/*private void creationAnimations() throws SlickException {
-		SpriteSheet spriteSheet = new SpriteSheet("hero", getClass().getResourceAsStream("/hero/images/hero.png"), 80,
-				80);
-
-		// STOP POSITIONS
-		int nbDirections = 4;
-		for (int i = 0; i < nbDirections; i++) {
-			Animation animation = new Animation();
-			if (i == 1) {
-				animation.addFrame(spriteSheet.getSprite(5, i), 100);
-			} else {
-				animation.addFrame(spriteSheet.getSprite(0, i), 100);
-			}
-			animations[i] = animation;
-		}
-
-		// MOVING POSITIONS
-		for (int j = 0; j < 4; j++) {
-			Animation animation = new Animation();
-			for (int i = 0; i < 6; i++) {
-				animation.addFrame(spriteSheet.getSprite(i, j), 100);
-			}
-			animations[j + nbDirections] = animation;
-		}
-
-		// DEAD POSITIONS
-		Animation animation = new Animation();
-		animation.addFrame(spriteSheet.getSprite(0, 4), 100);
-		animations[8] = animation;
-		// --
-	}*/	
 	
 	private void setDirection(){
 		double angle = movement.getTheta();
