@@ -78,6 +78,7 @@ public class Spell extends WorldObject{
 	}
 	
 	public void update(int delta) throws TartiException {
+		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		
 		Monster m = world.collideToMonster(this);
 		

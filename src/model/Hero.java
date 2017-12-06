@@ -13,6 +13,7 @@ import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
 import graphic.HudHeroInfo;
+import test.SafeMethod;
 
 /**
  * Main character of the game ; character that the player control
@@ -57,6 +58,27 @@ public class Hero extends Character {
 		movement = other.movement.copy();
 
 		nbFlasks = other.nbFlasks;
+	}
+	
+	
+	/**
+	 * For testing purpose
+	 * @param m
+	 */
+	@Deprecated
+	public void setMovement(Vector2f m){
+		SafeMethod.forTesting();
+		movement = m;
+	}
+	
+	/**
+	 * For testing purpose
+	 * @return 
+	 */
+	@Deprecated
+	public Vector2f getMovement(){
+		SafeMethod.forTesting();
+		return movement;
 	}
 	
 
@@ -121,6 +143,7 @@ public class Hero extends Character {
 			g.drawAnimation(animations[8], pos.x - 40, pos.y - 65);
 		}
 		HudHeroInfo hudLifeFlask = GraphicsFactory.getHudHero();
+		hudLifeFlask.update(nbFlasks, life);
 		hudLifeFlask.render(g);
 	}
 
@@ -132,8 +155,6 @@ public class Hero extends Character {
 		if( !world.collideToWall(futurePos(delta)) ){
 			move(delta);
 		}
-		HudHeroInfo hudLifeFlask = GraphicsFactory.getHudHero();
-		hudLifeFlask.update(delta, nbFlasks, life);
 	}
 	
 	

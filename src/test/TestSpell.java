@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.newdawn.slick.geom.Vector2f;
 
+import exception.InvalidArgumentException;
 import exception.TartiException;
 import model.Monster;
 import model.Spell;
@@ -37,6 +38,16 @@ public class TestSpell {
 		assertEquals(1010f, s.getX(), 0.01);
 		EasyMock.verify(w);
 	}
+
+
+	@Test(expected=InvalidArgumentException.class)
+	public void testInvalidTimeLap() throws TartiException{
+		Spell s = new Spell(10f, 10f, new Vector2f(1f, 0));
+		
+		s.update(-10);
+		fail("Invalid delta time but update still executed");
+	}
+	
 	
 	@Test
 	public void testCollisionWall() throws TartiException{
@@ -75,5 +86,6 @@ public class TestSpell {
 		s.update(100); //100 milliseconds
 		EasyMock.verify(w);
 	}
+	
 
 }

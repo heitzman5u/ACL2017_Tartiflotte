@@ -87,7 +87,11 @@ public abstract class Character extends WorldObject implements Serializable {
 	public void setLife(int life) {
 		this.life = life;
 	}
-
+	
+	public void setSpeed(float s){
+		this.speed = s;
+	}
+	
 	/**
 	 * Deal damage to this character. No damage taken if dmg <= 0
 	 * 

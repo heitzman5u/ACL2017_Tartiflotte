@@ -46,6 +46,9 @@ public class World {
 		objects.addAll(level.getMonsters());
 	}
 	
+	/**
+	 * For testing purpose
+	 */
 	@Deprecated
 	public World(){
 		SafeMethod.forTesting();

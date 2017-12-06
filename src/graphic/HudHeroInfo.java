@@ -33,8 +33,6 @@ public class HudHeroInfo {
 	public HudHeroInfo() throws SlickException{
 		animationBigFlask = new Animation[3];
 		nbFlaskHero = 0;
-		//fullLifeHero = fullLife;
-		//lifeHero = life;
 		
 		creationAnimationBigFlask();
 		
@@ -45,20 +43,6 @@ public class HudHeroInfo {
 		lifeImg = new Image("/res/hero/images/life.jpg");
 	}
 	
-	/*public HudHeroInfo(float fullLife, float life) throws SlickException{
-		animationBigFlask = new Animation[3];
-		nbFlaskHero = 0;
-		fullLifeHero = fullLife;
-		lifeHero = life;
-		
-		creationAnimationBigFlask();
-		
-		Font font = new Font("Time New Roman", Font.PLAIN, 20);
-		ttf = new TrueTypeFont(font, true);
-		
-		lifeBarImg = new Image("/res/hero/images/life_bar.png");
-		lifeImg = new Image("/res/hero/images/life.jpg");
-	}*/
 	
 	/**
 	 * Display the animation of the number of life flask
@@ -75,9 +59,11 @@ public class HudHeroInfo {
 	}
 	
 	/**
-	 * @see Game.update()
+	 * Update the hud components with current status
+	 * @param nbFlask number of flasks the hero has
+	 * @param life life the hero has
 	 */
-	public void update(int delta, int nbFlask, float life){
+	public void update(int nbFlask, float life){
 		nbFlaskHero = nbFlask;
 		lifeHero = life;
 	}
