@@ -22,6 +22,8 @@ public class GraphicsFactory {
 	private static Animation scratchAnimation;
 	private static Image monsterLifeBarImg;
 	private static Image monsterLifeImg;
+	
+	private static HudHeroInfo hudHero;
 
 	public static void loadSpellAnimation() throws SlickException{
 		spellAnimation = new Animation[32];
@@ -125,6 +127,11 @@ public class GraphicsFactory {
 	}
 	
 	
+	public static void loadHudHero() throws SlickException{
+		hudHero = new HudHeroInfo();
+	}
+	
+	
 	// -------------------------------------------------------------------------------------------
 	
 	
@@ -166,6 +173,11 @@ public class GraphicsFactory {
 	public static Image getMonsterLifeImage() throws NotLoadedException{
 		if(monsterLifeImg == null) throw new NotLoadedException();
 		return monsterLifeImg;
+	}
+	
+	public static HudHeroInfo getHudHero() throws NotLoadedException{
+		if(hudHero == null) throw new NotLoadedException();
+		return hudHero;
 	}
 
 }

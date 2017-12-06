@@ -12,6 +12,7 @@ import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
+import graphic.HudHeroInfo;
 
 /**
  * Main character of the game ; character that the player control
@@ -29,7 +30,6 @@ public class Hero extends Character {
 	
 	private transient Vector2f movement;
 
-	private transient HudHeroInfo hudLifeFlask;
 	private transient int nbFlasks;
 
 	/**
@@ -48,8 +48,6 @@ public class Hero extends Character {
 		movement = new Vector2f();
 		nbFlasks = 0;
 		life = 6;
-
-		hudLifeFlask = new HudHeroInfo(FULL_LIFE, life);
 	}
 
 	
@@ -122,6 +120,7 @@ public class Hero extends Character {
 		} else {
 			g.drawAnimation(animations[8], pos.x - 40, pos.y - 65);
 		}
+		HudHeroInfo hudLifeFlask = GraphicsFactory.getHudHero();
 		hudLifeFlask.render(g);
 	}
 
@@ -133,6 +132,7 @@ public class Hero extends Character {
 		if( !world.collideToWall(futurePos(delta)) ){
 			move(delta);
 		}
+		HudHeroInfo hudLifeFlask = GraphicsFactory.getHudHero();
 		hudLifeFlask.update(delta, nbFlasks, life);
 	}
 	

@@ -42,6 +42,7 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadExitAnimation();
 			GraphicsFactory.loadScratchAnimation();
 			GraphicsFactory.loadMonsterLifeBarImages();
+			GraphicsFactory.loadHudHero();
 			
 			
 			//Set the game
