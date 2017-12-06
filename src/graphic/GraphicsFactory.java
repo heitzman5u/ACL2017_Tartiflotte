@@ -17,6 +17,7 @@ public class GraphicsFactory {
 	private static Animation[] heroAnimation;
 	private static Animation[] monsterAnimation;
 	private static Animation littleFlaskAnimation;
+	private static Animation exitAnimation;
 
 	public static void loadSpellAnimation() throws SlickException{
 		spellAnimation = new Animation[32];
@@ -98,6 +99,15 @@ public class GraphicsFactory {
 	}
 	
 	
+	public static void loadExitAnimation() throws SlickException{
+		exitAnimation = new Animation();
+		SpriteSheet spriteSheet = new SpriteSheet("exit_arrow", GraphicsFactory.class.getResourceAsStream("/maps/images/exit_case_arrow.png"), 20, 25);
+		for(int i = 0 ; i < 4 ; i++){
+			exitAnimation.addFrame(spriteSheet.getSprite(i, 0), 150);
+		}
+	}
+	
+	
 	public static Animation[] getSpellAnimation() throws NotLoadedException{
 		if(spellAnimation == null) throw new NotLoadedException();
 		return spellAnimation;
@@ -116,6 +126,11 @@ public class GraphicsFactory {
 	public static Animation getLittleFlaskAnimation() throws NotLoadedException{
 		if(littleFlaskAnimation == null) throw new NotLoadedException();
 		return littleFlaskAnimation;
+	}
+	
+	public static Animation getExitAnimation() throws NotLoadedException{
+		if(exitAnimation == null) throw new NotLoadedException();
+		return exitAnimation;
 	}
 
 }

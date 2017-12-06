@@ -39,6 +39,8 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadHeroAnimation();
 			GraphicsFactory.loadMonsterAnimation();
 			GraphicsFactory.loadLittleFlaskAnimation();
+			GraphicsFactory.loadExitAnimation();
+			
 			
 			//Set the game
 			PlayerController pc = new PlayerController();

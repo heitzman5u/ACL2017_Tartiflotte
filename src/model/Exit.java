@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Point;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
+import graphic.GraphicsFactory;
 
 /**
  * Represents an exit on the map, ie: space where the hero will move to the next stage
@@ -19,9 +20,7 @@ public class Exit {
 	
 	private Point topLeft;
 	private Point bottomRight;
-	
-	private Animation animation;
-	
+		
 	public Exit(Point tl, Point br) throws SlickException, TartiException{
 		if(tl == null || br == null) throw new NullArgumentException();
 		if(tl.getX() > br.getX() || tl.getY() > br.getY()){
@@ -29,9 +28,7 @@ public class Exit {
 		}
 		topLeft = tl;
 		bottomRight = br;
-		
-		setAnimation();
-	}
+}
 
 	/**
 	 * 
@@ -41,6 +38,8 @@ public class Exit {
 		if(g == null) throw new NullArgumentException();
 		float xArrow = (topLeft.getX() + bottomRight.getX())/2;
 		float yArrow = topLeft.getY() - 90;
+		
+		Animation animation = GraphicsFactory.getExitAnimation();
 		g.drawAnimation(animation, xArrow, yArrow);
 	}
 	
@@ -54,18 +53,6 @@ public class Exit {
 			Game.getInstance().win();
 		}
 
-	}
-	
-	/**
-	 * create the animation of the arrow to indicate the exit zone
-	 * @throws SlickException 
-	 */
-	private void setAnimation() throws SlickException{
-		SpriteSheet spriteSheet = new SpriteSheet("exit_arrow", getClass().getResourceAsStream("/maps/images/exit_case_arrow.png"), 20, 25);
-		animation = new Animation();
-		for(int i = 0 ; i < 4 ; i++){
-			animation.addFrame(spriteSheet.getSprite(i, 0), 150);
-		}
 	}
 
 	public Point getTopLeft() {
