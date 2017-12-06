@@ -20,7 +20,7 @@ public class Spell extends WorldObject{
 	private float speed;
 	private Vector2f direction;
 	
-	protected Spell(float x, float y, Vector2f dir) throws SlickException {
+	public Spell(float x, float y, Vector2f dir) throws SlickException {
 		super(x, y);
 		speed = 0.7f;
 		damage = 2;
