@@ -11,13 +11,15 @@ import org.newdawn.slick.geom.Vector2f;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
+import graphic.GraphicsFactory;
 /**
  * Enemies of the player
  * @author Tartiflotte
  */
 public class Monster extends Character {
 	
-	private Animation[] animations;
+	private static final long serialVersionUID = -6851386506754886875L;
+	
 	
 	private boolean moving;	
 	private boolean attack;
@@ -43,10 +45,7 @@ public class Monster extends Character {
 		direction = 0;
 		life = FULL_LIFE;
 		attack = false;
-		
-		animations = new Animation[8];
 
-		creationAnimations();
 		lifeBarImg = new Image("/res/monsters/images/life_bar.png");
 		lifeImg = new Image("/res/monsters/images/life.jpg");
 	}
@@ -60,9 +59,6 @@ public class Monster extends Character {
 		
 		moving = other.moving;
 		attack = other.attack;
-		
-		//shallow copy of animations (because they should share the same animations, no deep copy needed)
-		animations = other.animations;
 	}
 	
 	/**
@@ -160,6 +156,8 @@ public class Monster extends Character {
 	 */
 	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
+		
+		Animation[] animations = GraphicsFactory.getMonsterAnimation();
 		// MONSTER ANIMATION
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
@@ -188,7 +186,7 @@ public class Monster extends Character {
 	 * create the differents animations of the monster thanks to his SpriteSheet
 	 * @throws SlickException
 	 */
-	private void creationAnimations() throws SlickException{
+	/*private void creationAnimations() throws SlickException{
 		SpriteSheet spriteSheet = new SpriteSheet("lycan", getClass().getResourceAsStream("/monsters/images/lycan.png"), 80, 80);
 				
 		// STOP POSITIONS
@@ -208,7 +206,7 @@ public class Monster extends Character {
 			animations[j+nbDirections] = animation;
 		}
 		//--
-	}
+	}*/
 	
 	/**
 	 * Display the life bar of the monster

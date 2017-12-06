@@ -7,6 +7,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import exception.TartiException;
+import graphic.GraphicsFactory;
 
 /**
  * Graphic interface of the game
@@ -32,6 +33,11 @@ public class GameUI extends BasicGame {
 		try{
 			container = arg0;
 			container.setTargetFrameRate(FRAME_RATE);
+			
+			//load graphics
+			GraphicsFactory.loadSpellAnimation();
+			GraphicsFactory.loadHeroAnimation();
+			GraphicsFactory.loadMonsterAnimation();
 			
 			//Set the game
 			PlayerController pc = new PlayerController();

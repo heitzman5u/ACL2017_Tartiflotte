@@ -1,20 +1,17 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.io.Serializable;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import controller.PlayerCommand;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
+import graphic.GraphicsFactory;
 
 /**
  * Main character of the game ; character that the player control
@@ -23,7 +20,11 @@ import exception.TartiException;
  */
 
 public class Hero extends Character {
-	private transient Animation[] animations;
+
+	private static final long serialVersionUID = 3797645190029724829L;
+
+	
+	//private transient Animation[] animations;
 
 	private transient static final float SPEED = 0.2f;
 	private transient static final int FULL_LIFE = 10;
@@ -49,8 +50,8 @@ public class Hero extends Character {
 		movement = new Vector2f();
 		nbFlasks = 0;
 		life = 6;
-		animations = new Animation[9];
-		creationAnimations();
+		//animations = new Animation[9];
+		//creationAnimations();
 
 		hudLifeFlask = new HudHeroInfo(FULL_LIFE, life);
 	}
@@ -58,7 +59,7 @@ public class Hero extends Character {
 	
 	public Hero(Hero other) throws TartiException{
 		super(other);
-		animations = other.animations;
+		//animations = other.animations;
 		movement = other.movement.copy();
 
 		nbFlasks = other.nbFlasks;
@@ -119,6 +120,7 @@ public class Hero extends Character {
 		if(g == null) throw new NullArgumentException();
 		g.setColor(new Color(48,48,48));
 		g.fillOval(pos.x-20, pos.y, 40, 16);
+		Animation[] animations = GraphicsFactory.getHeroAnimation();
 		if (isAlive()){
 			g.drawAnimation(animations[direction + (movement.length() > 0.0001 ? 4 : 0)], pos.x-40, pos.y-65);
 		} else {
@@ -158,7 +160,7 @@ public class Hero extends Character {
 	/**
 	 * create the differents animations of the hero thanks to his SpriteSheet
 	 */
-	private void creationAnimations() throws SlickException {
+	/*private void creationAnimations() throws SlickException {
 		SpriteSheet spriteSheet = new SpriteSheet("hero", getClass().getResourceAsStream("/hero/images/hero.png"), 80,
 				80);
 
@@ -188,7 +190,7 @@ public class Hero extends Character {
 		animation.addFrame(spriteSheet.getSprite(0, 4), 100);
 		animations[8] = animation;
 		// --
-	}	
+	}*/	
 	
 	private void setDirection(){
 		double angle = movement.getTheta();

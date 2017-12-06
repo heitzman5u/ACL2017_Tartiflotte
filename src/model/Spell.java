@@ -3,17 +3,18 @@ package model;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
+import graphic.GraphicsFactory;
 
 public class Spell extends WorldObject{
 
-	private Animation[] animations;
-	private int spritePos;
+	private static final long serialVersionUID = 5044107265511033106L;
+	
+	
 	private int damage;
 	private float range; // in seconds
 	private float speed;
@@ -25,28 +26,13 @@ public class Spell extends WorldObject{
 		damage = 2;
 		range = 0.3f;
 		direction=dir.getNormal();
-		spritePos=calculateSpritePosition();
-		animations = new Animation[32];
-		creationAnimation();
-	}
-		
-	private void creationAnimation() throws SlickException {
-		SpriteSheet spriteSheet = new SpriteSheet("spell", getClass().getResourceAsStream("/spell/images/spell1.png"), 96, 93);
-		
-		for(int i = 0; i < 16; i++) {
-			Animation animation = new Animation();
-			for(int j = 0; j < 14; j++) {
-				animation.addFrame(spriteSheet.getSprite(j, i), 200);
-			}
-			animations[i] = animation;
-		}
 	}
 	
 	public int getDamage() {
 		return damage;
 	}
 	
-	public int calculateSpritePosition(){
+	private int calculateSpritePosition(){
 		double approachedAngle=0, actualAngle=direction.getTheta();
 		double valAngInter=360/32, valAngAppr=360/16;
 		int i=0;
@@ -76,8 +62,10 @@ public class Spell extends WorldObject{
 		setPos(newPos);
 	}
 
-	public void render(Graphics g) throws NullArgumentException {
+	public void render(Graphics g) throws NullArgumentException, TartiException {
 		if(g == null) throw new NullArgumentException();
+		Animation[] animations = GraphicsFactory.getSpellAnimation();
+		final int spritePos = calculateSpritePosition();
 		g.drawAnimation(animations[spritePos], pos.x-48, pos.y-60);
 	}
 	
