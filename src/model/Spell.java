@@ -8,6 +8,7 @@ import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
+import test.SafeMethod;
 
 public class Spell extends WorldObject{
 
@@ -25,6 +26,14 @@ public class Spell extends WorldObject{
 		damage = 2;
 		range = 0.3f;
 		direction=dir.getNormal();
+	}
+	
+	public void setSpeed(float f){
+		speed = f;
+	}
+	
+	public void setRange(float r){
+		range = r;
 	}
 	
 	public int getDamage() {

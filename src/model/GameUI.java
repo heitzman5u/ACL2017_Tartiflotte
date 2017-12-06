@@ -50,8 +50,8 @@ public class GameUI extends BasicGame {
 			container.getInput().addKeyListener(pc);
 			container.getInput().addMouseListener(pc);
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
-			World w = new World();
 			int level = 1;
+			World w = new World(level);
 			
 			Game.getInstance().setContext(level, w, victory, pc);
 		}catch(TartiException e){

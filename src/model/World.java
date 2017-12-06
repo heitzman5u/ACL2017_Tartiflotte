@@ -12,6 +12,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
+import test.SafeMethod;
 
 /**
  * Represents the elements which will be displayed on the graphic interface
@@ -26,8 +27,8 @@ public class World {
 	private final Collection<WorldObject> toBeRemoved;
 	private Collection<WorldObject> objects;
 
-	public World() throws SlickException, TartiException {
-		level = new Level(1);
+	public World(int lvl) throws SlickException, TartiException {
+		level = new Level(lvl);
 		objects = new ArrayList<>();
 		map = level.getMap();
 		level.getHero().setWorld(this);
@@ -43,6 +44,12 @@ public class World {
 			m.setWorld(this);
 		}
 		objects.addAll(level.getMonsters());
+	}
+	
+	@Deprecated
+	public World(){
+		SafeMethod.forTesting();
+		toBeRemoved = null;
 	}
 
 	/**
