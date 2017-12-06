@@ -2,8 +2,6 @@ package model;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Point;
 
 import exception.InvalidArgumentException;
@@ -21,7 +19,7 @@ public class Exit {
 	private Point topLeft;
 	private Point bottomRight;
 		
-	public Exit(Point tl, Point br) throws SlickException, TartiException{
+	public Exit(Point tl, Point br) throws TartiException{
 		if(tl == null || br == null) throw new NullArgumentException();
 		if(tl.getX() > br.getX() || tl.getY() > br.getY()){
 			throw new InvalidArgumentException("top-left isn't right positionned beside bottom-right");

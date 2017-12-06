@@ -35,7 +35,7 @@ public class Monster extends Character {
 	 * @param y ordinate
 	 * @throws SlickException
 	 */
-	public Monster(float x, float y) throws SlickException{
+	public Monster(float x, float y) {
 		super(x, y, SPEED);
 		
 		moving = false;

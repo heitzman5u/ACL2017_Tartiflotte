@@ -191,6 +191,7 @@ public class Level implements Serializable {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private void deserialize() throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream("level.serial");
 		ObjectInputStream ois = new ObjectInputStream(fis);

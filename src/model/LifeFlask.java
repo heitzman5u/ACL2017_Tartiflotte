@@ -2,7 +2,6 @@ package model;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
@@ -25,7 +24,7 @@ public class LifeFlask extends WorldObject {
 	private static float WIDTH = 50f;
 	private static float HEIGHT = 50f;
 
-	protected LifeFlask(float x, float y) throws SlickException {
+	protected LifeFlask(float x, float y) {
 		super(x, y);		
 	}
 	

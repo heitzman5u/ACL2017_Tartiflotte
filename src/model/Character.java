@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 
-import org.newdawn.slick.geom.Vector2f;
 
 /**
  * A character is a world's entity. It can be alive or dead. It can move on this
@@ -12,6 +11,10 @@ import org.newdawn.slick.geom.Vector2f;
  *
  */
 public abstract class Character extends WorldObject implements Serializable {
+
+	private static final long serialVersionUID = 761530876528728112L;
+
+	
 	protected transient float speed;
 
 	protected transient boolean alive;

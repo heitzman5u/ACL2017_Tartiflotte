@@ -42,7 +42,7 @@ public class Hero extends Character {
 	 * @throws SlickException
 	 * @throws TartiException 
 	 */
-	public Hero(float x, float y) throws SlickException, TartiException{
+	public Hero(float x, float y){
 		super(x, y, SPEED);
 		
 		movement = new Vector2f();

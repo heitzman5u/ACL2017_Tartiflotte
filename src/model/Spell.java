@@ -2,7 +2,6 @@ package model;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import exception.InvalidArgumentException;
@@ -20,7 +19,7 @@ public class Spell extends WorldObject{
 	private float speed;
 	private Vector2f direction;
 	
-	public Spell(float x, float y, Vector2f dir) throws SlickException {
+	public Spell(float x, float y, Vector2f dir) {
 		super(x, y);
 		speed = 0.7f;
 		damage = 2;
