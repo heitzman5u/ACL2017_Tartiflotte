@@ -38,6 +38,7 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadSpellAnimation();
 			GraphicsFactory.loadHeroAnimation();
 			GraphicsFactory.loadMonsterAnimation();
+			GraphicsFactory.loadLittleFlaskAnimation();
 			
 			//Set the game
 			PlayerController pc = new PlayerController();

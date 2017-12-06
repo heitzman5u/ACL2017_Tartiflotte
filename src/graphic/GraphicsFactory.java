@@ -16,6 +16,7 @@ public class GraphicsFactory {
 	private static Animation[] spellAnimation;
 	private static Animation[] heroAnimation;
 	private static Animation[] monsterAnimation;
+	private static Animation littleFlaskAnimation;
 
 	public static void loadSpellAnimation() throws SlickException{
 		spellAnimation = new Animation[32];
@@ -89,6 +90,14 @@ public class GraphicsFactory {
 	}
 	
 	
+	public static void loadLittleFlaskAnimation() throws SlickException{
+		littleFlaskAnimation = new Animation();
+		SpriteSheet spriteSheet = new SpriteSheet("littleFlask", GraphicsFactory.class.getResourceAsStream("/flask/images/LittleLifeFlask.png"), 50, 50);
+		littleFlaskAnimation.addFrame(spriteSheet.getSprite(0, 0), 300);
+		littleFlaskAnimation.addFrame(spriteSheet.getSprite(1, 0), 300);
+	}
+	
+	
 	public static Animation[] getSpellAnimation() throws NotLoadedException{
 		if(spellAnimation == null) throw new NotLoadedException();
 		return spellAnimation;
@@ -102,6 +111,11 @@ public class GraphicsFactory {
 	public static Animation[] getMonsterAnimation() throws NotLoadedException{
 		if(monsterAnimation == null) throw new NotLoadedException();
 		return monsterAnimation;
+	}
+	
+	public static Animation getLittleFlaskAnimation() throws NotLoadedException{
+		if(littleFlaskAnimation == null) throw new NotLoadedException();
+		return littleFlaskAnimation;
 	}
 
 }
