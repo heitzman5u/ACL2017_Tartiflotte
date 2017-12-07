@@ -24,7 +24,7 @@ public class LifeFlask extends WorldObject {
 	private static float WIDTH = 50f;
 	private static float HEIGHT = 50f;
 
-	protected LifeFlask(float x, float y) {
+	public LifeFlask(float x, float y) {
 		super(x, y);		
 	}
 	
