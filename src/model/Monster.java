@@ -28,6 +28,12 @@ public class Monster extends Character {
 	private static final float ATTACK_DISTANCE = 600f;
 	private static final float VIEW_DISTANCE = 80_000f;
 	private static final int FULL_LIFE = 10;
+	private static final int ATTACK_POWER = 1;
+	
+	private final long ATTACK_INTERVAL = 1000; //milliseconds
+	
+	private final Timer attackTimer;
+	
 	
 	/**
 	 * Create a monster at the given position
@@ -42,6 +48,7 @@ public class Monster extends Character {
 		direction = 0;
 		life = FULL_LIFE;
 		attack = false;
+		attackTimer = new Timer(ATTACK_INTERVAL);
 	}
 	
 	/**
@@ -53,6 +60,7 @@ public class Monster extends Character {
 		
 		moving = other.moving;
 		attack = other.attack;
+		attackTimer = new Timer(ATTACK_INTERVAL);
 	}
 	
 	/**
@@ -94,9 +102,14 @@ public class Monster extends Character {
 		float yHero = world.trajectoryToHero(this).getY();
 
 		//attack only if within the range
-		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= ATTACK_DISTANCE)){
+		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= ATTACK_DISTANCE) 
+				&& attackTimer.elapsed()){
 			attack = true;
-			world.getHero().setAlive(false);
+			world.getHero().receiveDamage(ATTACK_POWER);
+			attackTimer.start(ATTACK_INTERVAL);
+		}
+		else{
+			attack = false;
 		}
 
 	}
