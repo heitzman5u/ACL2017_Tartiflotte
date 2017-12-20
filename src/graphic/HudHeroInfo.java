@@ -68,6 +68,16 @@ public class HudHeroInfo {
 		lifeHero = life;
 	}
 	
+	
+	/**
+	 * Set the maximum health
+	 * @param life 
+	 */
+	public void setFullLife(float life){
+		fullLifeHero = life;
+	}
+	
+	
 	/**
 	 * @see Game.render()
 	 */

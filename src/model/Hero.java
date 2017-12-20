@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import controller.PlayerCommand;
 import exception.InvalidArgumentException;
+import exception.NotLoadedException;
 import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
@@ -49,6 +50,11 @@ public class Hero extends Character {
 		movement = new Vector2f();
 		nbFlasks = 0;
 		life = 6;
+		try {
+			GraphicsFactory.getHudHero().setFullLife((float)FULL_LIFE);
+		} catch (NotLoadedException e) {
+			System.err.println("The hero's hud was not properly loaded");
+		}
 	}
 
 	
@@ -143,7 +149,7 @@ public class Hero extends Character {
 			g.drawAnimation(animations[8], pos.x - 40, pos.y - 65);
 		}
 		HudHeroInfo hudLifeFlask = GraphicsFactory.getHudHero();
-		hudLifeFlask.update(nbFlasks, life);
+		hudLifeFlask.update(nbFlasks, (float) life);
 		hudLifeFlask.render(g);
 	}
 

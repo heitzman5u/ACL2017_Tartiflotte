@@ -152,6 +152,7 @@ public class World {
 	 * @throws TartiException
 	 */
 	private void loadLevel(int number) throws SlickException, TartiException {
+		objects.clear();
 		level.serialize();
 		level = new Level(number);
 		map = level.getMap();
