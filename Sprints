@@ -4,7 +4,7 @@ _ this sprint works with order lines.
 _ creation of a hero which move in 4 directions with the following keys (Z,Q,S,D).
 _ creation of a empty world ; the hero can go outside the world.
 
-
+everything has been implemented
 
 Sprint 1.1 : (3 weeks)
 
@@ -18,7 +18,7 @@ _ creation of monsters.
 _ when the hero is close enough to monsters, monsters goes towards the hero.
 _ when a monster attack the hero, they instantly kill him.
 
-
+everything has been implemented
 
 Sprint 2 :
 _Hero can attack the monster
@@ -26,3 +26,17 @@ _Several levels
 _Life bar for every characters
 _The Hero can picked up flask of life
 _The hero can use flask of life when the player press a key
+
+everything has been implemented
+
+
+Sprint 3 :
+
+_ There is a boss level.
+_ The boss has 2 attack pattern different from that of monsters : 
+  _ First phase : the boss appears on a random side of the map (Left or Right) and he runs to the opposite side. When he touchs the hero, it deals a lot of dammage.
+  _ Second phase : same as first phase + the boss throws projectiles towards the hero.
+_ Correction of the exit bug.
+_ There is an ambiant music.
+_ There is a new monster type : the ghosts
+  _ When the hero is next to a ghost location, the ghost appears and move thowards the hero in order to attack him.

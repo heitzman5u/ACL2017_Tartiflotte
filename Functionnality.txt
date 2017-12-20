@@ -15,6 +15,7 @@ The character can move on 4 directions (z, q, s, d), with constant speed. A cann
 The character cannot move through walls.
 There are monsters on the level. Monsters can attack the player and kill him, restarting the level
 The monsters move towards the player when he is close enough.
+There is different type of monsters, with different attack pattern.
 Instead of instantly dying, the player has a life bar. He dies when it reaches 0. Monsters deal a constant amount of damage to the player when they attack.
 The monsters have a life bar. The player can attack them (arrow buttons), dealing a constant amount of damage and killing them if their life goes under 0. And they disappear.
 A fog of war is implemented{
@@ -28,5 +29,12 @@ When the player reaches a ladder, a new level is loaded{
 }
 Levels are read from files.
 
+There is a boss level.
+The boss has an attack pattern different from that of monsters.
+
+There is an ambiant music.
+
 When moving on a bonfire, all monsters are reset, and the life of the player too.
 These are save points, restarting the game will lead the player to that point.
+
+
