@@ -7,6 +7,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import exception.TartiException;
+import graphic.GraphicsFactory;
 
 /**
  * Graphic interface of the game
@@ -33,13 +34,24 @@ public class GameUI extends BasicGame {
 			container = arg0;
 			container.setTargetFrameRate(FRAME_RATE);
 			
+			//load graphics
+			GraphicsFactory.loadSpellAnimation();
+			GraphicsFactory.loadHeroAnimation();
+			GraphicsFactory.loadMonsterAnimation();
+			GraphicsFactory.loadLittleFlaskAnimation();
+			GraphicsFactory.loadExitAnimation();
+			GraphicsFactory.loadScratchAnimation();
+			GraphicsFactory.loadMonsterLifeBarImages();
+			GraphicsFactory.loadHudHero();
+			
+			
 			//Set the game
 			PlayerController pc = new PlayerController();
 			container.getInput().addKeyListener(pc);
 			container.getInput().addMouseListener(pc);
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
-			World w = new World();
 			int level = 1;
+			World w = new World(level);
 			
 			Game.getInstance().setContext(level, w, victory, pc);
 		}catch(TartiException e){

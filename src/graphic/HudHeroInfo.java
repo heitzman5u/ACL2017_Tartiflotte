@@ -1,4 +1,4 @@
-package model;
+package graphic;
 
 import java.awt.Font;
 
@@ -30,11 +30,9 @@ public class HudHeroInfo {
 	private Image lifeBarImg;
 	private Image lifeImg;
 	
-	public HudHeroInfo(float fullLife, float life) throws SlickException{
+	public HudHeroInfo() throws SlickException{
 		animationBigFlask = new Animation[3];
 		nbFlaskHero = 0;
-		fullLifeHero = fullLife;
-		lifeHero = life;
 		
 		creationAnimationBigFlask();
 		
@@ -44,6 +42,7 @@ public class HudHeroInfo {
 		lifeBarImg = new Image("/res/hero/images/life_bar.png");
 		lifeImg = new Image("/res/hero/images/life.jpg");
 	}
+	
 	
 	/**
 	 * Display the animation of the number of life flask
@@ -60,12 +59,24 @@ public class HudHeroInfo {
 	}
 	
 	/**
-	 * @see Game.update()
+	 * Update the hud components with current status
+	 * @param nbFlask number of flasks the hero has
+	 * @param life life the hero has
 	 */
-	public void update(int delta, int nbFlask, float life){
+	public void update(int nbFlask, float life){
 		nbFlaskHero = nbFlask;
 		lifeHero = life;
 	}
+	
+	
+	/**
+	 * Set the maximum health
+	 * @param life 
+	 */
+	public void setFullLife(float life){
+		fullLifeHero = life;
+	}
+	
 	
 	/**
 	 * @see Game.render()

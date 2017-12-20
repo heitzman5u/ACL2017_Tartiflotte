@@ -5,7 +5,6 @@ import java.io.Serializable;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-import exception.NullArgumentException;
 import exception.TartiException;
 
 /**
@@ -14,6 +13,10 @@ import exception.TartiException;
  *
  */
 public abstract class WorldObject implements Serializable {
+
+	private static final long serialVersionUID = 5246513459737320965L;
+	
+	
 	protected transient World world;
 	protected Vector2f pos;
 	

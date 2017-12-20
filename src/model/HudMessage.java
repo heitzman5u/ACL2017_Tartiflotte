@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Font;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
