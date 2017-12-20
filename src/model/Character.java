@@ -105,6 +105,10 @@ public abstract class Character extends WorldObject implements Serializable {
 			life = 0;
 		else
 			life -= dmg;
+		
+		if(life <= 0){
+			setAlive(false);
+		}
 	}
 
 }

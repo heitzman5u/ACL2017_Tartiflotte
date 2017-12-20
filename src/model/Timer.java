@@ -10,11 +10,24 @@ public class Timer {
 	
 	long start;
 	long end;
+	
+	
+	
 
 	/**
 	 * Default constructor
 	 */
 	public Timer() {
+		
+	}
+	
+	
+	/**
+	 * Construct a timer and starts it
+	 * @param scheduledTime
+	 */
+	public Timer(long scheduledTime) {
+		start(scheduledTime);
 	}
 	
 	
