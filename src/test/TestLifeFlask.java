@@ -40,11 +40,11 @@ public class TestLifeFlask {
 		l.setWorld(w);
 		
 		EasyMock.expect(w.trajectoryToHero(l)).andReturn(new Vector2f(200f, 200f));
-		w.pickFlask(l);
+		//w.pickFlask(l);
 		
 		EasyMock.replay(w);
 		l.update(100);
-		//the flask should be picked up
+		//the flask should not be picked up
 		EasyMock.verify(w);
 	}
 
