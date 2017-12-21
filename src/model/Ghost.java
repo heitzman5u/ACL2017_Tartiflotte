@@ -36,14 +36,7 @@ public class Ghost extends Monster {
 	private Ghost(Ghost other){
 		super(other);
 	}
-	
-	private Monster futurePos(int delta) throws TartiException{
-		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
-		Ghost m = new Ghost(this);
-		m.move(delta);
-		return m;
-	}
-	
+		
 	/**
 	 * Allow the monster to move towards the hero
 	 * @param delta milliseconds since last frame
@@ -94,9 +87,7 @@ public class Ghost extends Monster {
 
 	public void update(int delta) throws TartiException {
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
-		if(!world.collideToWall(futurePos(delta))){
-			move(delta);
-		}
+		move(delta);
 		attack();
 	}
 	
