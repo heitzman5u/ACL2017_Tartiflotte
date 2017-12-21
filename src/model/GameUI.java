@@ -4,6 +4,7 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 
 import exception.TartiException;
@@ -49,6 +50,8 @@ public class GameUI extends BasicGame {
 			PlayerController pc = new PlayerController();
 			container.getInput().addKeyListener(pc);
 			container.getInput().addMouseListener(pc);
+			//Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers");
+			//m.loop();
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
 			int level = 1;
 			World w = new World(level);
