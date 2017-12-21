@@ -83,7 +83,7 @@ public class Level implements Serializable {
 	public boolean collides(float x, float y) throws TartiException {
 		if (x < 0f || x >= (float) (map.getWidth() * map.getTileWidth()) || y < 0f
 				|| y >= (float) (map.getHeight() * map.getTileHeight())) {
-			throw new InvalidArgumentException();
+			return true;
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
