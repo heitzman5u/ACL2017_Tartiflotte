@@ -50,10 +50,10 @@ public class GameUI extends BasicGame {
 			PlayerController pc = new PlayerController();
 			container.getInput().addKeyListener(pc);
 			container.getInput().addMouseListener(pc);
-			//Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers");
-			//m.loop();
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
 			World w = new World(1);
+			Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers");
+			m.loop();
 			
 			Game.getInstance().setContext(w, victory, pc);
 		}catch(TartiException e){
