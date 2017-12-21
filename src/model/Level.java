@@ -175,7 +175,7 @@ public class Level implements Serializable {
 					final int wOn2 = this.map.getTileWidth()/2;
 					final int hOn2 = this.map.getTileHeight()/2;
 					return new Exit(
-							new Point(xe - wOn2, ye - hOn2), 
+							new Point(xe, ye), 
 							new Point(xe + wOn2, ye + hOn2)
 							);
 				}
