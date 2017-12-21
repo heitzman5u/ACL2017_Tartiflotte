@@ -21,7 +21,7 @@ public class Game {
 	public static final int IN_GAME = 0;
 	public static final int LOOSE = -1;
 	
-	public static final int FIRST_LEVEL = 3;
+	public static final int FIRST_LEVEL = 1;
 	public static final int LAST_LEVEL = 3;
 	
 	
