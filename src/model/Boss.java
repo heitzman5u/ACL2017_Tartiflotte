@@ -16,7 +16,7 @@ import graphic.GraphicsFactory;
 public class Boss extends Monster{
 
 	public Boss(float x, float y) {
-		super(x, y, 3.0f, 600f, 80000f, 20, 2, 1000);
+		super(x, y, 3.0f, 40f, 80000f, 20, 2, 1000);
 	}
 	
 	public void attackSpell() {
