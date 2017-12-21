@@ -19,6 +19,13 @@ public class HeroSpell extends Spell {
 		range = 0.3f;
 	}
 	
+	public HeroSpell(float x, float y, float xCible, float yCible) {
+		super(x, y, xCible, yCible);
+		speed = 0.7f;
+		damage = 2;
+		range = 0.3f;
+	}
+	
 	public void update(int delta) throws TartiException {
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		

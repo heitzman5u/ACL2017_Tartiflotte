@@ -22,10 +22,12 @@ public abstract class Spell extends WorldObject{
 	
 	public Spell(float x, float y, Vector2f dir) {
 		super(x, y);
-		speed = 0.7f;
-		damage = 2;
-		range = 0.3f;
 		direction=dir.getNormal();
+	}
+	
+	public Spell(float x, float y, float xCible, float yCible) {
+		super(x, y);
+		direction=new Vector2f(xCible-x, yCible-y).getNormal();
 	}
 	
 	public void setSpeed(float f){
@@ -77,7 +79,7 @@ public abstract class Spell extends WorldObject{
 		g.drawAnimation(animations[spritePos], pos.x-48, pos.y-60);
 	}
 	
-	public void update(int delta) throws TartiException {
+	/*public void update(int delta) throws TartiException {
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		
 		Monster m = world.collideToMonster(this);
@@ -90,5 +92,5 @@ public abstract class Spell extends WorldObject{
 				world.destroyObject(m);
 			world.destroyObject(this);
 		}
-	}
+	}*/
 }

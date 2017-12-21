@@ -118,12 +118,9 @@ public class PlayerController implements KeyListener, MouseListener {
 		if(arg0==0){
 			float xh=hero.getX(), yh=hero.getY();
 			Vector2f dir = new Vector2f(arg1-xh,arg2-yh);
-			try {
-				hero.spawnSpell(xh, yh, dir);
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+			hero.spawnSpell(xh, yh, dir);
+		
 		}
 	}
 

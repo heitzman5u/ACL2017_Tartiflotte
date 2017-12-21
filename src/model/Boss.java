@@ -14,9 +14,12 @@ import exception.TartiException;
 import graphic.GraphicsFactory;
 
 public class Boss extends Monster{
+	
+	private long spellInterval;
 
 	public Boss(float x, float y) {
 		super(x, y, 3.0f, 600f, 80000f, 20, 2, 1000);
+		spellInterval=2000;
 	}
 	
 	public void attackSpell() {
@@ -34,10 +37,13 @@ public class Boss extends Monster{
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
-		Spell sp=new EnemySpell(x, y, dir);
-		sp.setWorld(world);
-		world.addSpell(sp);
+	public void spawnSpell(float x, float y, float xCible, float yCible) {
+		if(attackTimer.elapsed()){
+			Spell sp=new EnemySpell(x, y, xCible, yCible);
+			sp.setWorld(world);
+			world.addSpell(sp);
+			attackTimer.start(spellInterval);
+		}
 	}
 	
 	/**
@@ -65,14 +71,10 @@ public class Boss extends Monster{
 		/*if(life <= fullLife/2) {
 			spawnSpell();
 		}*/
-//		Vector2f dir = new Vector2f();
-//		dir=world.getHero().getPos().add((this.getPos()).negate());
-//			try {
-//				spawnSpell(getX(), getY(),dir);
-//			} catch (SlickException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+
+		
+		spawnSpell(getX(), getY(), world.getHero().getX(), world.getHero().getY());
+			
 		
 	}
 	
