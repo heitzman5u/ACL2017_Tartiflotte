@@ -1,420 +1,486 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="model.Hero" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Hero.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="441" width="217" x="588" y="1838"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="2" language="java" name="controller.PlayerCommand" project="ACL2017_Tartiflotte" 
+  <enumeration id="1" language="java" name="controller.PlayerCommand" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/controller/PlayerCommand.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="173" x="153" y="1465"/>    
+    <position height="315" width="216" x="313" y="1612"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="3" language="java" name="model.Exit" project="ACL2017_Tartiflotte" 
+  <class id="2" language="java" name="model.Exit" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/Exit.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="133" x="1218" y="1465"/>    
+    <position height="207" width="133" x="823" y="1612"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="model.Spell" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Spell.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="333" width="161" x="366" y="1465"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="graphic.HudHeroInfo" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/graphic/HudHeroInfo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="183" x="1202" y="539"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="model.WorldObject" project="ACL2017_Tartiflotte" 
+  <class id="3" language="java" name="model.WorldObject" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/WorldObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="158" x="771" y="930"/>    
+    <position height="315" width="158" x="996" y="1612"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="model.Game" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Game.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="282" x="662" y="-284"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="model.Level" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Level.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="495" width="228" x="969" y="930"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="model.Ghost" project="ACL2017_Tartiflotte" 
+  <class id="4" language="java" name="model.Ghost" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/Ghost.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="133" x="861" y="2319"/>    
+    <position height="189" width="133" x="613" y="2929"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="model.LifeFlask" project="ACL2017_Tartiflotte" 
+  <class id="5" language="java" name="model.LifeFlask" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/LifeFlask.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="149" x="824" y="1465"/>    
+    <position height="225" width="149" x="946" y="1967"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="graphic.GraphicsFactory" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/graphic/GraphicsFactory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="783" width="193" x="1192" y="-284"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="model.GameUI" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/GameUI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="209" x="299" y="539"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="model.Wolf" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Wolf.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="134" x="687" y="2319"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="model.InputProperty" project="ACL2017_Tartiflotte" 
+  <class id="6" language="java" name="model.InputProperty" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/InputProperty.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="176" x="350" y="930"/>    
+    <position height="171" width="176" x="331" y="1059"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="model.PlayerController" project="ACL2017_Tartiflotte" 
+  <class id="7" language="java" name="model.PlayerController" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/PlayerController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="183" x="548" y="539"/>    
+    <position height="315" width="183" x="350" y="632"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="model.EnemySpell" project="ACL2017_Tartiflotte" 
+  <class id="8" language="java" name="model.AttackBoost" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/AttackBoost.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="176" x="1336" y="1967"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="model.EnemySpell" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/EnemySpell.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="179" x="159" y="1838"/>    
+    <position height="135" width="182" x="1088" y="2394"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="model.HeroSpell" project="ACL2017_Tartiflotte" 
+  <class id="10" language="java" name="model.HeroSpell" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/HeroSpell.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="170" x="378" y="1838"/>    
+    <position height="135" width="173" x="1310" y="2394"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="Main" project="ACL2017_Tartiflotte" file="/ACL2017_Tartiflotte/src/Main.java" 
+  <class id="11" language="java" name="Main" project="ACL2017_Tartiflotte" file="/ACL2017_Tartiflotte/src/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="113" x="331" y="-284"/>    
+    <position height="99" width="113" x="413" y="-245"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="model.Boss" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="204" x="1055" y="2319"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="20" language="java" name="model.World" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/World.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="218" x="771" y="539"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="21" language="java" name="model.Monster" project="ACL2017_Tartiflotte" 
-    file="/ACL2017_Tartiflotte/src/model/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="241" x="1015" y="1838"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="22" language="java" name="model.HudMessage" project="ACL2017_Tartiflotte" 
+  <class id="12" language="java" name="model.HudMessage" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/HudMessage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="133" x="1029" y="539"/>    
+    <position height="135" width="133" x="573" y="632"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="model.Character" project="ACL2017_Tartiflotte" 
+  <class id="13" language="java" name="model.Character" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="333" width="196" x="588" y="1465"/>    
+    <position height="387" width="196" x="710" y="1967"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="model.Timer" project="ACL2017_Tartiflotte" 
+  <class id="14" language="java" name="model.Hero" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Hero.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="217" x="550" y="2394"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="model.Spell" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Spell.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="161" x="1135" y="1967"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="graphic.HudHeroInfo" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/graphic/HudHeroInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="193" x="1253" y="632"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="model.Game" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Game.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="282" x="666" y="-245"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="model.Level" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Level.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="513" width="262" x="670" y="1059"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="19" language="java" name="model.Boss.state" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="136" x="807" y="3338"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="20" language="java" name="graphic.GraphicsFactory" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/graphic/GraphicsFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="837" width="193" x="1253" y="-245"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="model.GameUI" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/GameUI.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="209" x="746" y="632"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="model.Wolf" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Wolf.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="134" x="1054" y="2929"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="model.Boss" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="207" x="807" y="2929"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="model.World" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/World.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="218" x="995" y="632"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="model.Monster" project="ACL2017_Tartiflotte" 
+    file="/ACL2017_Tartiflotte/src/model/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="241" x="807" y="2394"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="model.Timer" project="ACL2017_Tartiflotte" 
     file="/ACL2017_Tartiflotte/src/model/Timer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="113" x="1015" y="2584"/>    
+    <position height="171" width="113" x="613" y="3338"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="25">    
-    <bendpoint x="1227" y="930"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="26" name="world"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
   <association id="28">    
-    <bendpoint x="557" y="930"/>    
-    <bendpoint x="557" y="1465"/>    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="29" name="hero"/>      
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="29" name="stateNow"/>      
       <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="31">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <association id="32">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="33" name="ui"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="36" name="playerController"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <generalization id="39">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <association id="40">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="41" name="timerAnimAttack"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="23"/>  
-  </generalization>  
-  <association id="45">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="46" name="exit"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="48">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="49">    
-    <bendpoint x="1024" y="1465"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="50" name="monsters"/>      
-      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
+  <association id="31">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="32" name="ui"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="52">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="53">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="54" name="objects"/>      
-      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="56">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="57" name="world"/>      
-      <multiplicity id="58" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="59">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="60" name="level"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="63">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="64">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="65" name="command"/>      
-      <multiplicity id="66" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="67">    
-    <bendpoint x="1024" y="2319"/>    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="68" name="attackTimer"/>      
-      <multiplicity id="69" minimum="0" maximum="1"/>    
+  <association id="34">    
+    <bendpoint x="962" y="1059"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="35" name="world"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="70">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="71" name="inputs"/>      
-      <multiplicity id="72" minimum="0" maximum="2147483647"/>    
+  <association id="37">    
+    <bendpoint x="983" y="1059"/>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="38" name="toBeAdded"/>      
+      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="73">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="23"/>  
-  </generalization>  
-  <association id="74">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="75" name="world"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
+  <association id="40">    
+    <bendpoint x="582" y="2929"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="41" name="timerAttackBoost"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
+    <end type="TARGET" refId="26" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="77">    
-    <bendpoint x="1003" y="1465"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="78" name="hero"/>      
-      <multiplicity id="79" minimum="0" maximum="1"/>    
+  <association id="43">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="44" name="command"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="80">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="81" name="toBeRemoved"/>      
-      <multiplicity id="82" minimum="0" maximum="2147483647"/>    
+  <association id="46">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="47" name="inputs"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="83">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="84" name="instance"/>      
-      <multiplicity id="85" minimum="0" maximum="1"/>    
+  <association id="49">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="50" name="exit"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <association id="53">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="54" name="playerController"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="86">    
+  <association id="56">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="57" name="world"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <association id="60">    
+    <bendpoint x="1004" y="1059"/>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="61" name="toBeRemoved"/>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="64" name="pickableObject"/>      
+      <multiplicity id="65" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="67">    
+    <bendpoint x="619" y="1612"/>    
+    <bendpoint x="619" y="1967"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="68" name="hero"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="70">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="71" name="victory"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="74">    
+    <bendpoint x="1025" y="1059"/>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="75" name="objects"/>      
+      <multiplicity id="76" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="77">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <association id="78">    
+    <bendpoint x="1046" y="1059"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="79" name="world"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="82">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="83" name="instance"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="85">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="86" name="level"/>      
+      <multiplicity id="87" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="88">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="89">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="90">    
+    <bendpoint x="559" y="1059"/>    
+    <bendpoint x="559" y="1612"/>    
+    <bendpoint x="559" y="1967"/>    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="87" name="victory"/>      
-      <multiplicity id="88" minimum="0" maximum="1"/>    
+      <attribute id="91" name="hero"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="89">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="90" name="hudHero"/>      
-      <multiplicity id="91" minimum="0" maximum="1"/>    
+  <association id="93">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="94" name="hudHero"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="96">    
+    <bendpoint x="776" y="2929"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="97" name="attackTimer"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="100" name="timerAnimAttack"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="102">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="103">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <association id="104">    
+    <bendpoint x="679" y="1612"/>    
+    <bendpoint x="679" y="1967"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="105" name="monsters"/>      
+      <multiplicity id="106" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="107">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
