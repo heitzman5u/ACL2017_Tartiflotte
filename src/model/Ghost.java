@@ -66,5 +66,4 @@ public class Ghost extends Monster {
 		attack();
 	}
 	
-	
 }
