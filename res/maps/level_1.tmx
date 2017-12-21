@@ -32,7 +32,7 @@
  </layer>
  <layer name="ghost" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQ0AAAgDsCUowL9ZZIyjVdAEAABo2WkP+OoALlDkn6wNAAA=
+   H4sIAAAAAAAAC+3UMQ0AAAjAMBIU4N8sCniBo1WwaxEAwJbK6wLgG19g0ud5Ua6sDQAA
   </data>
  </layer>
  <layer name="hero" width="35" height="25">
