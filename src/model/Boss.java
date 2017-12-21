@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Font;
+import java.util.Random;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
@@ -16,25 +17,34 @@ import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
 
-public class Boss extends Monster{
-	
+public class Boss extends Monster {
+
 	private TrueTypeFont ttf;
 
+	private enum state {
+		ENTER, TELEPORTATION, CHARGED;
+
+	};
+	
+	private Random r;
+
+	private int heightMap = 800;
+	private int widthMap = 1120;
+	
+	private Vector2f direction;
+
+	private state stateNow;
+
 	public Boss(float x, float y) {
-		super(x, y, 3.0f, 40f, 80000f, 20, 2, 1000);
-		
+		super(x, y, 0.4f, 40f, 80000f, 20, 2, 1000);
+
+		stateNow = state.ENTER;
+
 		Font font = new Font("Time New Roman", Font.PLAIN, 20);
 		ttf = new TrueTypeFont(font, true);
+		r = new Random();
 	}
-	
-	public void attackSpell() {
-		
-	}
-	
-	public void move(int delta) {
-		
-	}
-	
+
 	/**
 	 * create a spell and add it to the list in world
 	 * 
@@ -42,69 +52,108 @@ public class Boss extends Monster{
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
-		Spell sp=new EnemySpell(x, y, dir);
+	public void spawnSpell(float x, float y, Vector2f dir){
+		Spell sp = new EnemySpell(x, y, dir);
 		sp.setWorld(world);
 		world.addSpell(sp);
 	}
-	
+
 	private void displayName() {
-		ttf.drawString(1120/2-ttf.getWidth("Galdemiche")/2, 720, "Galdemiche", Color.yellow);
+		ttf.drawString(widthMap / 2 - ttf.getWidth("Galdemiche") / 2, 720, "Galdemiche", Color.yellow);
 	}
-	
+
 	/**
 	 * Display the life bar of the monster
-	 * @throws NotLoadedException 
+	 * 
+	 * @throws NotLoadedException
 	 */
-	private void lifeBarHUD() throws NotLoadedException{
+	private void lifeBarHUD() throws NotLoadedException {
 		Image lifeBarImg = GraphicsFactory.getBossLifeBarImage();
 		Image lifeImg = GraphicsFactory.getBossLifeImage();
-		
-		float bigger = 400;
-		float lifeRatio = life/(float)fullLife;
-		float width = (float)lifeImg.getWidth() + bigger;
-		float height = (float)lifeImg.getHeight();
-		float widthRatio = ((float)lifeImg.getWidth()+bigger) * lifeRatio;
 
-		lifeBarImg.draw(1120/2-width/2, 750, width, height);
-		lifeImg.draw(1120/2-width/2, 753, widthRatio-4, height-6);
+		float bigger = 400;
+		float lifeRatio = life / (float) fullLife;
+		float width = (float) lifeImg.getWidth() + bigger;
+		float height = (float) lifeImg.getHeight();
+		float widthRatio = ((float) lifeImg.getWidth() + bigger) * lifeRatio;
+
+		lifeBarImg.draw(widthMap / 2 - width / 2, 750, width, height);
+		lifeImg.draw(widthMap / 2 - width / 2, 753, widthRatio - 4, height - 6);
 	}
-	
-	
+
+	private void bossEnter(int delta) {
+		if (stateNow == state.ENTER)
+			if (getY() < heightMap) {
+				setY(getY() + getSpeed()*(float)delta);
+				setDirection(0);
+			} else {
+				stateNow = state.TELEPORTATION;
+			}
+	}
+
+	private void teleportation() {
+		if (stateNow == state.TELEPORTATION) {
+			int rand = r.nextInt(3);
+			switch (rand) {
+			case 0:
+				direction = new Vector2f(0, 1);
+				setPos(new Vector2f(world.getHero().getX(), 0));
+				break;
+			case 1:
+				direction = new Vector2f(-1, 0);
+				setPos(new Vector2f(widthMap, world.getHero().getY()));
+				break;
+			case 2:
+				direction = new Vector2f(1, 0);
+				setPos(new Vector2f(0,world.getHero().getY()));
+				break;
+			case 3:
+				direction = new Vector2f(0, -1);
+				setPos(new Vector2f(world.getHero().getX(), heightMap));
+				break;
+			}
+		
+			setDirection(rand);
+			stateNow = state.CHARGED;
+		}
+	}
+
+	public void charged(int delta) {
+		if (stateNow == state.CHARGED) {
+			pos.add( direction.getNormal().scale(speed*(float)delta) );
+			if (getX() > 0 && getX() < 1120 && getY() > 0 && getY() < 800)
+				;
+			else
+				stateNow = state.TELEPORTATION;
+		}
+	}
+
 	@Override
 	public void update(int delta) throws TartiException {
-		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
-		//move(delta);
+		if (delta < 0)
+			throw new InvalidArgumentException("delta >= 0");
 		attack();
-		/*if(life <= fullLife/2) {
-			spawnSpell();
-		}*/
-//		Vector2f dir = new Vector2f();
-//		dir=world.getHero().getPos().add((this.getPos()).negate());
-//			try {
-//				spawnSpell(getX(), getY(),dir);
-//			} catch (SlickException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-	
+		teleportation();
+		charged(delta);
+		bossEnter(delta);
+//		if(getLife() <= (int)fullLife / 2) {
+//			spawnSpell(getX(), getY(), world.trajectoryToHero(this));
+//		}
 	}
-	
+
 	public void render(Graphics g) throws TartiException {
-		if(g == null) throw new NullArgumentException();
-		
+		if (g == null)
+			throw new NullArgumentException();
+
 		Animation[] animations = GraphicsFactory.getBossAnimation();
-		
-		//Boss Animation
-		g.setColor(new Color(48,48,48));
-		g.fillOval(pos.x-20, pos.y, 40, 16);
-		//put the deplacement fonctions
-		g.drawAnimation(animations[1], pos.x-40, pos.y-65);
-		
+
+		// Boss Animation
+		g.setColor(new Color(48, 48, 48));
+		g.fillOval(pos.x - 20, pos.y, 40, 16);
+		// put the deplacement fonctions
+		g.drawAnimation(animations[getDirection()], pos.x - 40, pos.y - 65);
+
 		lifeBarHUD();
 		displayName();
 	}
 }
-	
-	
-

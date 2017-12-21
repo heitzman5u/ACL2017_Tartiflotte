@@ -24,7 +24,7 @@ public class HudMessage {
 	/**
 	 * 
 	 * @param path path to the image file
-	 * @param g game associated to this message
+	 * @param g game associated to this messageddd
 	 * @throws SlickException 
 	 */
 	public HudMessage(String path) throws SlickException, TartiException {

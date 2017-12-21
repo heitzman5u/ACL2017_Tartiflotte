@@ -21,7 +21,7 @@ public class Wolf extends Monster {
 	 * @throws SlickException
 	 */
 	public Wolf(float x, float y) {
-		super(x, y, 2.0f , 24f, 283f, 10, 3, 1000);
+		super(x, y, 0.15f , 24f, 283f, 10, 3, 1000);
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class Wolf extends Monster {
 		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= Math.pow(viewDistance,2)) 
 				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= Math.pow(attackDistance, 2))){
 			moving = true;
-			pos.add(direction(xHero, yHero).scale(speed));	
+			pos.add(direction(xHero, yHero).scale(speed*(float)delta));	
 		} else {
 			moving = false;
 		}

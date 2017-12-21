@@ -92,6 +92,18 @@ public abstract class Character extends WorldObject implements Serializable {
 		this.speed = s;
 	}
 	
+	public float getSpeed() {
+		return speed;
+	}
+	
+    public void setDirection(int dir) {
+    	direction = dir;
+    }
+	
+	public int getDirection() {
+		return direction;
+	}
+	
 	/**
 	 * Deal damage to this character. No damage taken if dmg <= 0
 	 * 

@@ -279,7 +279,7 @@ public class Level implements Serializable {
 	private Boss bossInLevel(int level) {
 		Boss b = null;
 		if(level == 3 ) {
-			b = new Boss(500,500);
+			b = new Boss(1120/2-15,-100);
 			monsters.add(b);
 		}
 		return b;
