@@ -107,5 +107,14 @@ public abstract class Monster extends Character {
 		}
 		 return new Vector2f(signX, signY);
 	}
+	
+	
+	@Override
+	public void receiveDamage(int dmg){
+		super.receiveDamage(dmg);
+		if(!isAlive()){
+			world.destroyObject(this);
+		}
+	}
 		
 }

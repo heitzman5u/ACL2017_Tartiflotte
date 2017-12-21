@@ -35,8 +35,8 @@ public class HeroSpell extends Spell {
 			move(delta);
 			range-= (float)delta / 1000f;
 		}else {
-			if(m != null && m.getLife() <= 0)
-				world.destroyObject(m);
+//			if(m != null && m.getLife() <= 0)
+//				world.destroyObject(m);
 			world.destroyObject(this);
 		}
 	}

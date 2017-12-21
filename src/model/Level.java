@@ -218,6 +218,10 @@ public class Level implements Serializable {
 	
 	private void loadMusic(int level) {
 		try {
+			if (level == 1){
+				Music m = new Music(getClass().getResourceAsStream("/musics/Orphan_of_Kos.ogg"), "Orphan_of_Kos.ogg");
+				m.loop();
+			}
 			if(level == 3) {
 				Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers.ogg");
 				m.loop();

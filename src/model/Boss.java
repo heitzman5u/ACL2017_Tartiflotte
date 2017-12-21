@@ -90,8 +90,19 @@ public class Boss extends Monster{
 		}*/
 
 		spawnSpell(getX(), getY(), world.getHero().getX(), world.getHero().getY());
-			
+		
+		
 	}
+	
+	public void receiveDamage(int dmg){
+		life -= dmg;
+		if(life <= 0){
+			setAlive(false);
+			Game.getInstance().win();
+			world.destroyObject(this);
+		}
+	}
+
 	
 	public void render(Graphics g) throws TartiException {
 		if(g == null) throw new NullArgumentException();
