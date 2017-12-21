@@ -23,8 +23,8 @@ public class World {
 
 	private TiledMap map;
 	private Level level;
-
-	private final Collection<WorldObject> toBeRemoved;
+	final Collection<WorldObject> toBeRemoved;
+	private final Collection<WorldObject> toBeAdded;
 	private Collection<WorldObject> objects;
 
 	public World(int lvl) throws SlickException, TartiException {
@@ -41,6 +41,7 @@ public class World {
 		objects.addAll(level.getPickableObject());
 		
 		toBeRemoved = new ArrayList<>();
+		toBeAdded = new ArrayList<>();
 		for (Monster m : level.getMonsters()) {
 			m.setWorld(this);
 		}
@@ -103,7 +104,7 @@ public class World {
 	 * 
 	 * @param s
 	 */
-	public void collideToHero(Spell s) {
+	public boolean collideToHero(Spell s) {
 		Hero h=level.getHero();
 		if (h.getPos().distance(s.getPos()) <= 25) {
 			h.receiveDamage(s.getDamage());
@@ -111,7 +112,9 @@ public class World {
 				h.setAlive(false);
 				
 			}
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -143,8 +146,8 @@ public class World {
 		if (delta < 0) {
 			throw new InvalidArgumentException("delta >= 0");
 		}
-
-		toBeRemoved.clear();
+		
+		
 		for(WorldObject o : objects)
 			o.update(delta);
 	
@@ -156,6 +159,12 @@ public class World {
 		level.getPickableObject().removeAll(toBeRemoved);
 		level.getMonsters().removeAll(toBeRemoved);
 		objects.removeAll(toBeRemoved);
+		if(!toBeAdded.isEmpty())
+		{
+			objects.addAll(toBeAdded);
+		}
+		toBeAdded.clear();
+		toBeRemoved.clear();
 		
 		if (nextLevel) {
 			loadLevel(getCurrentLevel()+1);
@@ -175,6 +184,8 @@ public class World {
 		level.serialize();
 		level = new Level(number);
 		map = level.getMap();
+		
+		toBeAdded.clear();
 		toBeRemoved.clear();
 
 		Hero tmp = level.getHero();
@@ -244,7 +255,6 @@ public class World {
 	
 	public void destroyObject(WorldObject o) {
 		toBeRemoved.add(o);
-	
 	}
 
 	public Hero getHero() {
@@ -256,7 +266,7 @@ public class World {
 	}
 	
 	public void addSpell(Spell s) {
-		objects.add(s);
+		toBeAdded.add(s);
 	}
 	
 	public int getCurrentLevel() {

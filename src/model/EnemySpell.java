@@ -19,14 +19,21 @@ public class EnemySpell extends Spell {
 		range = 0.6f;
 	}
 	
+	public EnemySpell(float x, float y, float xCible, float yCible) {
+		super(x, y, xCible, yCible);
+		speed = 0.5f;
+		damage = 2;
+		range = 0.6f;
+	}
+	
 	public void update(int delta) throws TartiException {
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
 		
-		world.collideToHero(this);
-		
-		if(range > 0 && !world.collideToWall(this)) {
+		if(range > 0 && !world.collideToWall(this) && !world.collideToHero(this)) {
 			move(delta);
 			range-= (float)delta / 1000f;
+		} else {
+			world.destroyObject(this);
 		}
 	}
 

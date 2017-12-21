@@ -8,7 +8,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.geom.Vector2f;
 
 import exception.InvalidArgumentException;
 import exception.NotLoadedException;
@@ -18,11 +17,18 @@ import graphic.GraphicsFactory;
 
 public class Boss extends Monster{
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1480519936011295029L;
+	private long spellInterval;
 	private TrueTypeFont ttf;
 
 	public Boss(float x, float y) {
 		super(x, y, 3.0f, 40f, 80000f, 100, 2, 1000);
 		
+		spellInterval=2000;
 		Font font = new Font("Time New Roman", Font.PLAIN, 20);
 		ttf = new TrueTypeFont(font, true);
 	}
@@ -42,10 +48,13 @@ public class Boss extends Monster{
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
-		Spell sp=new EnemySpell(x, y, dir);
-		sp.setWorld(world);
-		world.addSpell(sp);
+	public void spawnSpell(float x, float y, float xCible, float yCible) {
+		if(attackTimer.elapsed()){
+			Spell sp=new EnemySpell(x, y, xCible, yCible);
+			sp.setWorld(world);
+			world.addSpell(sp);
+			attackTimer.start(spellInterval);
+		}
 	}
 	
 	private void displayName() {
@@ -79,15 +88,9 @@ public class Boss extends Monster{
 		/*if(life <= fullLife/2) {
 			spawnSpell();
 		}*/
-//		Vector2f dir = new Vector2f();
-//		dir=world.getHero().getPos().add((this.getPos()).negate());
-//			try {
-//				spawnSpell(getX(), getY(),dir);
-//			} catch (SlickException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-	
+
+		spawnSpell(getX(), getY(), world.getHero().getX(), world.getHero().getY());
+			
 	}
 	
 	public void render(Graphics g) throws TartiException {
