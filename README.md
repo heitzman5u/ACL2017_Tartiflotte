@@ -23,7 +23,7 @@ Une fois en jeu:
 - R permet d'utiliser un boost d'attaque ramassé
 - P permet de charger le prochain niveau une fois la flèche atteinte
 
-Le jeu comporte uniquement 2 niveaux actuellement.
+Le jeu comporte uniquement 3 niveaux actuellement.
 
 ## Objectifs
 L'aboutissement du jeu n'est pas l'objectif principal de ce projet.
@@ -32,7 +32,7 @@ En effet, dans le cadre du cours d'Analyse et Conception de Logiciels, nous devo
 ## Procédure
 Nous suivons une procédure agile afin de mener le projet à bien.
 
-Nous séparons le développement en sprints de 2 semaines. A chaque sprint (pas forcément dans cet ordre):
+Nous séparons le développement en sprints de 3 semaines. A chaque sprint (pas forcément dans cet ordre):
 - Nous sélectionnons une liste de fonctionnalités à implémenter durant ce sprint.
 - Nous identifions les éléments de conception à ajouter, à l'aide de diagrammes de classes, de séquence...
 - Nous répartissons les tâches entre nous 4.
