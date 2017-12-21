@@ -114,7 +114,7 @@ public class Level implements Serializable {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
 				if (tile != null) {
-					listFlask.add(new LifeFlask(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+					listFlask.add(new LifeFlask(x * this.map.getTileWidth() + 16, y * this.map.getTileHeight() + 16));
 				}
 			}
 		}
@@ -134,7 +134,7 @@ public class Level implements Serializable {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("attack_boost"));
 				if (tile != null) {
-					attBoost.add(new AttackBoost(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+					attBoost.add(new AttackBoost(x * this.map.getTileWidth() + 16, y * this.map.getTileHeight() + 16));
 				}
 			}
 		}
