@@ -14,9 +14,15 @@
  <tileset firstgid="783" source="hero.tsx"/>
  <tileset firstgid="784" source="exit.tsx"/>
  <tileset firstgid="785" source="ghost.tsx"/>
+ <tileset firstgid="786" source="attack_boost.tsx"/>
  <layer name="exit" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OAQkAAAgDsIMF7J/WFCLClmAJAOzruh4AwC8Di4oG26wNAAA=
+  </data>
+ </layer>
+ <layer name="attack_boost" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQkAAAgDsIMN7B/WFCLClmAJAPzVdT0AgB0DoFNNoqwNAAA=
   </data>
  </layer>
  <layer name="ghost" width="35" height="25">
