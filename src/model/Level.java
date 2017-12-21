@@ -119,7 +119,7 @@ public class Level implements Serializable {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("monster"));
 				if (tile != null) {
-					monsters.add(new Monster(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+					monsters.add(new Wolf(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
 				}
 			}
 		}

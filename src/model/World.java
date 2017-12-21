@@ -12,7 +12,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
-import test.SafeMethod;
+//import test.SafeMethod;
 
 /**
  * Represents the elements which will be displayed on the graphic interface
@@ -46,14 +46,14 @@ public class World {
 		objects.addAll(level.getMonsters());
 	}
 	
-	/**
-	 * For testing purpose
-	 */
-	@Deprecated
-	public World(){
-		SafeMethod.forTesting();
-		toBeRemoved = null;
-	}
+//	/**
+//	 * For testing purpose
+//	 */
+//	@Deprecated
+//	public World(){
+//		SafeMethod.forTesting();
+//		toBeRemoved = null;
+//	}
 
 	/**
 	 * 
