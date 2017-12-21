@@ -12,6 +12,12 @@
  <tileset firstgid="781" source="flask.tsx"/>
  <tileset firstgid="782" source="monster.tsx"/>
  <tileset firstgid="783" source="hero.tsx"/>
+ <tileset firstgid="784" source="exit.tsx"/>
+ <layer name="exit" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQkAAAgDsIMF7J/WFCLClmAJAOzruh4AwC8Di4oG26wNAAA=
+  </data>
+ </layer>
  <layer name="hero" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OQQ0AAAgEoNsMYP+2tlAfkIAEgG1d1wMA4LsB8OGKYKwNAAA=
@@ -87,22 +93,22 @@
    H4sIAAAAAAAAC+3QsQ0AMAjAMPo64vAuXbgApNoXRIkAAH5RZ7qg29azQXoCPBfy/wHerA0AAA==
   </data>
  </layer>
- <layer name="montagne" width="35" height="25">
+ <layer name="montagne" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgoC3wZIRgL0YaW0QCCBt1yygYBaOAAmAAzLeGgyTv2gDdYTvI3AJzjy0jaZhWbiEHUxN4AM2zHyRuKWPE7Z4KIM5jRNTb2DC13dICdU8OkjuaoeKEMC3cUk6GO2jhFnLdQW23NFHgDmq7BTmt9pOBR8EoGKoAAIHL/qisDQAA
   </data>
  </layer>
- <layer name="herbe" width="35" height="25">
+ <layer name="herbe" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQkAIAwAwbj/CIKFk8YiIE5gkTv4/iMAAOC1x++Da56XVUEnCesqRimsDQAA
   </data>
  </layer>
- <layer name="Calque 6" width="35" height="25">
+ <layer name="Calque 6" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsRGAIBQE0ftNIAEYKIHYf4FeAYbM8IN9M5uvBAD/SkiHq7H7RGp+6O5M8HL54XYjwcvjh+neBC8AAGCtD9b3MQOsDQAA
   </data>
  </layer>
- <layer name="Calque 8" width="35" height="25">
+ <layer name="Calque 8" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQ2AMBAEwfsmwAE4MA7A/Rfo64J/aUfafCUAQEVHSKdr8feJdPnhdj3By/DD42aCl9cPn1sJXgAA9WyzI7ZOrA0AAA==
   </data>
@@ -117,57 +123,57 @@
    H4sIAAAAAAAAC+3OuwqDMBSAYR/MyTf0Uvd46QNYfRUV7FwFnVtHf8FBEEEkaZbzwzeEhJzjOHrzESBEhAdizTOuppAgRYYcT0u7rBV4oURlcY87+Yb/7/C++FaZXIRGTIZnSHqr0aDdzu7uzj0+N5aHD3oMf5x71hc/zLYXkSRJkiTpVgt6ai29rA0AAA==
   </data>
  </layer>
- <layer name="Calque 7" width="35" height="25">
+ <layer name="Calque 7" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQ3AIBTE0GOJQEEogIKw/4DcFvlCfpJ7SwAQ25Ok7Er6+0SqfnhdC/DS/TDcDPCy/PC5HeAFAIBbHJ/2YGWsDQAA
   </data>
  </layer>
- <layer name="Calque 9" width="35" height="25">
+ <layer name="Calque 9" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3RsQ2AMBBDUWeJQJGkAArCrAwdzwAnQaT/JLeWTycBAGaTk7Q4a/p6iVS8oTrt4ZY78IbNXbtzvOiM2nO6pzvXD34EAJjTAICe8P2sDQAA
   </data>
  </layer>
- <layer name="Calque 10" width="35" height="25">
+ <layer name="Calque 10" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsRWAIBAE0b0mkAAMlEDsv0C3BUm4YP57k48EAMCaEtLhauw+kZofujsTvFx+uN1I8PL4Ybo3wQsA4J8Pd7yHqqwNAAA=
   </data>
  </layer>
- <layer name="Calque 11" width="35" height="25">
+ <layer name="Calque 11" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsRGAIBQE0ftNIAEYKIHYf4FeA2bM8IN9M5uvBAAAViohHa7G7hOp+aG7M8HL5YfbjQQvjx+mexO8AMCfDxJPSVesDQAA
   </data>
  </layer>
- <layer name="Calque 12" width="35" height="25">
+ <layer name="Calque 12" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQ3AIBTE0GOJQEEogIKw/4DcFvlCfpJ7SwAA3OFJUnYl/X0iVT+8rgV46X4YbgZ4WX743A7wAgDRHQqKyvWsDQAA
   </data>
  </layer>
- <layer name="Calque 13" width="35" height="25">
+ <layer name="Calque 13" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsRGAIBQE0ftNIAEYKIHYf4FeCc4Q8IN9M5uvBADAmhLS4WrsPpGaH7o7E7xcfrjdSPDy+GG6N8ELAOCfD+npKHusDQAA
   </data>
  </layer>
- <layer name="Calque 14" width="35" height="25">
+ <layer name="Calque 14" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQ3AIBTE0GOJQEEogIKw/4DcFvlCfpJ7SwAA4GZPkrIr6e8TqfrhdS3AS/fDcDPAy/LD53aAFwBxHLTu2UesDQAA
   </data>
  </layer>
- <layer name="Calque 15" width="35" height="25">
+ <layer name="Calque 15" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OMRKAIBAEwb1PIAEYKIH4/we6sTnFBdNVk48EAABWKCEdrsbuE6n5obszwcvlh9uNBC+PH6Z7E7wAwN8H+VZeLKwNAAA=
   </data>
  </layer>
- <layer name="Calque 16" width="35" height="25">
+ <layer name="Calque 16" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3QsRGAMAxDUXkJoIAUIQWw/4CozAJgF//dqZZOEgAAwH+WkFZni+wl0u4Nh9MKbOnecDoj8j+63Hs7T9T9KNv8EfCVF1dcS8isDQAA
   </data>
  </layer>
- <layer name="Calque 21" width="35" height="25">
+ <layer name="Calque 21" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQ2AMBAEwfsmjAPswDgA+i+Q6+JfYkfafCUAAIB8LaTD9cg+kU4/DDcLvCw/XG4XeLn98Li3wAvwBx+vpW0grA0AAA==
   </data>
  </layer>
- <layer name="Calque 18" width="35" height="25">
+ <layer name="Calque 18" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsRGAIBQE0ftNIAEYKIHYf4FeYgkMP9g3s/lKAAAA+JWQDldj94nU/NDdmeDl8sPtRoKXxw/TvQlegJU+PrhpbawNAAA=
   </data>
@@ -217,7 +223,7 @@
    H4sIAAAAAAAAC+3OsQ3AIBTE0GOJQEEogIKw/4DcFvlCfpJ7SwAAAHE9ScqupL9PpOqH17UAL90Pw80AL8sPn9sBXoCbHF8YbDCsDQAA
   </data>
  </layer>
- <layer name="Calque 28" width="35" height="25">
+ <layer name="Calque 28" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OMRKAIAxE0eQSaqEWagHc/4BsmaGiApn5b+Y3aTZmAAAA/7O52a4On79/qkvdPuevuP+oV33NX6PE/aSyKs1fo8T9njuwmgocTlfIrA0AAA==
   </data>
@@ -252,7 +258,7 @@
    H4sIAAAAAAAAC+3PMQqAQAxE0eQSaqFbrBbq/Q/o1MsuIphU/8EQpgpjBgAAAHwzudmsLN7vmVb93JTi/R6p3V11d+UY9Ejt7lP3Uu5Bj5S5+03m7r89dHpih6wNAAA=
   </data>
  </layer>
- <layer name="Calque 35" width="35" height="25">
+ <layer name="Calque 35" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3QMQ6AMAwDQOcTwAAdgAH4/wPxWFmVKiioi0+yMnhJApiZmZmZPTcEMDJT9N4EmLnDwqQOu+gfVs6N2aPc/0n/cHCezBXl/mv5rfoHVetb5bfqH1Stb/X21htRgCBKrA0AAA==
   </data>
@@ -297,12 +303,12 @@
    H4sIAAAAAAAAC+3OsRUAEBTF0PwlUGD/Mb3aAgq556QPSJIkSdJfWkFPo16fwMzDSvt6Oe3d4o6sDQAA
   </data>
  </layer>
- <layer name="Calque 52" width="35" height="25">
+ <layer name="Calque 52" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2VbQqAIAyG9fhdRD1Z/ak7pMRgyNxMXEr4gCROfNc+1JjF4l84+wyOINhbeHsm7E9fDX8SHmnka/n6V/gBmrOS5x5iMzJGI2oCcEJtlvpaO161MXFEv2mxR41jkl6q9UW6l3twRo1rwP3PUfrvTcmP1jhr+ZPgejTZKHuwvL0X+TuprQdQdSjVpkdvRu9+gvcID0of74U5PkOTUl4CkbNeOayNs2bN3PXVTdCsDQAA
   </data>
  </layer>
- <layer name="Calque 56" width="35" height="25">
+ <layer name="Calque 56" width="35" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBTQE3QzYYp1YhGjJ+iisf3VA+y/UTCwoIYJP38UjIKRDrDVC8MJVOLxX8wg8ftgccdgBITChhZl+kC3iwYTAADxOd8vrA0AAA==
   </data>
