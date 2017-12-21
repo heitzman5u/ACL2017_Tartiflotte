@@ -10,9 +10,21 @@
  <tileset firstgid="642" source="watergrass.tsx"/>
  <tileset firstgid="660" source="solid.tsx"/>
  <tileset firstgid="685" source="exit.tsx"/>
+ <tileset firstgid="686" source="attack_boost.tsx"/>
+ <tileset firstgid="687" source="ghost.tsx"/>
  <layer name="exit" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OMREAAAgEoD/7V7GjFdwchAQkbHRdDwAAgE8GuDpIHawNAAA=
+  </data>
+ </layer>
+ <layer name="attack_boost" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OQREAAAgDoJ39s5jRGO4BCUhosvM9AAAAGhzjLBWjrA0AAA==
+  </data>
+ </layer>
+ <layer name="ghost" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDEaxnGmgXIMBgcssoGAWjYBSMglEwWAC++nG07hwFo2AUEAMAoJe6pawNAAA=
   </data>
  </layer>
  <layer name="monster" width="35" height="25">
@@ -22,7 +34,7 @@
  </layer>
  <layer name="flask" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGFqgkXGgXUBbMNz9NwpGwSgYBaNgFIyCUUAqGG0fjYKRCgB86YMCrA0AAA==
+   H4sIAAAAAAAAC+3WwQ0AAAQAMUa3uS2IaCe450XcUrldAADAJP/HVw1n5MWRrA0AAA==
   </data>
  </layer>
  <layer name="solid" width="35" height="25">
