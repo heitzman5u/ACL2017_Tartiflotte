@@ -23,6 +23,7 @@ public class GraphicsFactory {
 	private static Animation littleFlaskAnimation;
 	private static Animation exitAnimation;
 	private static Animation scratchAnimation;
+	private static Animation bloodAnimation;
 	private static Image monsterLifeBarImg;
 	private static Image monsterLifeImg;
 
@@ -146,8 +147,8 @@ public class GraphicsFactory {
 
 		for (int i = 0; i < 4; i++) {
 			Animation animation = new Animation();
-			for (int j = 0; j < 4; i++) {
-				animation.addFrame(spriteSheet.getSprite(i, j), 200);
+			for (int j = 0; j < 4; j++) {
+				animation.addFrame(spriteSheet.getSprite(j, i), 200);
 			}
 			bossAnimation[i] = animation;
 		}
@@ -155,14 +156,26 @@ public class GraphicsFactory {
 
 	public static void loadScratchAnimation() throws SlickException {
 		scratchAnimation = new Animation();
-		SpriteSheet spriteSheet = new SpriteSheet("griffure",
+		SpriteSheet spriteSheet = new SpriteSheet("scratch",
 				GraphicsFactory.class.getResourceAsStream("/monsters/images/scratch.png"), 60, 60);
 		scratchAnimation.addFrame(spriteSheet.getSprite(0, 0), 100);
+	}
+	
+	public static void loadBloodAnimation() throws SlickException {
+		bloodAnimation = new Animation();
+		SpriteSheet spriteSheet = new SpriteSheet("blood",
+				GraphicsFactory.class.getResourceAsStream("/monsters/images/blood.png"), 60, 60);
+		bloodAnimation.addFrame(spriteSheet.getSprite(0, 0), 200);
 	}
 
 	public static void loadMonsterLifeBarImages() throws SlickException {
 		monsterLifeImg = new Image("/res/monsters/images/life.jpg");
 		monsterLifeBarImg = new Image("/res/monsters/images/life_bar.png");
+	}
+	
+	public static void loadBossLifeBarImages() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static void loadHudHero() throws SlickException {
@@ -211,6 +224,12 @@ public class GraphicsFactory {
 		if (scratchAnimation == null)
 			throw new NotLoadedException();
 		return scratchAnimation;
+	}
+	
+	public static Animation getBloodAnimation() throws NotLoadedException {
+		if (bloodAnimation == null)
+			throw new NotLoadedException();
+		return bloodAnimation;
 	}
 
 	public static Image getMonsterLifeBarImage() throws NotLoadedException {

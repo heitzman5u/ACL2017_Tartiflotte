@@ -13,7 +13,7 @@ import exception.TartiException;
 import graphic.GraphicsFactory;
 
 public class Ghost extends Monster {
-	
+	private Timer timerAnimAttack;
 	
 	/**
 	 * Create a wolf at the given position
@@ -22,7 +22,8 @@ public class Ghost extends Monster {
 	 * @throws SlickException
 	 */
 	public Ghost(float x, float y) {
-		super(x, y, 1.0f , 600f, 60_000f, 10, 1, 1000);
+		super(x, y, 1.0f , 600f, 30_000f, 10, 1, 1000);
+		timerAnimAttack = new Timer();
 	}
 	
 	/**
@@ -66,12 +67,16 @@ public class Ghost extends Monster {
 		Animation[] animations = GraphicsFactory.getGhostAnimation();
 		// MONSTER ANIMATION
 		g.setColor(new Color(48,48,48));
-		g.fillOval(pos.x-20, pos.y, 40, 16);
+		g.fillOval(pos.x-16, pos.y, 32, 10);
 		g.drawAnimation(animations[direction + (moving ? 4 : 0)], pos.x-16, pos.y-30);
 		
 		// ATTACK ANIMATION
 		if (attack == true){
-			Animation attackAnim = GraphicsFactory.getScratchAnimation();
+			timerAnimAttack.start(100);
+		}
+		Animation attackAnim;
+		if (!timerAnimAttack.elapsed()){
+			attackAnim = GraphicsFactory.getBloodAnimation();
 			g.drawAnimation(attackAnim, world.getHero().getX()-30, world.getHero().getY()-30);
 		}
 		

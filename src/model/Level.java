@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
@@ -60,6 +61,7 @@ public class Level implements Serializable {
 		monsters.addAll(getGhostsInLevel());
 		levelNumber = number;
 		
+		bossInLevel(levelNumber);
 		
 //		try{
 //			deserialize();
@@ -85,8 +87,13 @@ public class Level implements Serializable {
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
-				(int) x / this.map.getTileWidth(), (int) y / this.map.getTileHeight(), this.map.getLayerIndex("logic"));
-		return tile != null; // null if no "logic" tile found there
+				(int) x / this.map.getTileWidth(), (int) y / this.map.getTileHeight(), this.map.getLayerIndex("solid"));
+        if(tile == null) return false; //no block collision detected
+        //pixel collision ?
+        Color color = tile.getColor(
+                (int) x % this.map.getTileWidth(), 
+                (int) y % this.map.getTileHeight());
+        return color.getAlpha() > 0;
 	}
 
 	/**
@@ -254,9 +261,12 @@ public class Level implements Serializable {
 	}
 	
 	private Boss bossInLevel(int level) {
-		if(level == 3 )
-			return new Boss(50, 50);
-		return null;
+		Boss b = null;
+		if(level == 3 ) {
+			b = new Boss(500,500);
+			monsters.add(b);
+		}
+		return b;
 	}
 	
 }
