@@ -23,7 +23,7 @@ public class Game {
 	
 	private int gameState;
 	
-	private int currentLevel;
+	//private int currentLevel;
 	private boolean loadingLevel;
 	
 	private World world;
@@ -34,7 +34,6 @@ public class Game {
 	private GameUI ui;
 			
 	private Game(){
-		this.currentLevel = 1;
 		this.loadingLevel = false;
 		this.playerController = null;
 		this.world = null;
@@ -42,8 +41,7 @@ public class Game {
 	}
 	
 	
-	public void setContext(int lvl, World w, HudMessage victory, PlayerController pc) throws TartiException{
-		this.currentLevel = lvl;
+	public void setContext(World w, HudMessage victory, PlayerController pc) throws TartiException{
 		this.loadingLevel = false;
 		this.playerController = pc;
 		this.world = w;
@@ -93,7 +91,7 @@ public class Game {
 	 */
 	public void update(int delta) throws SlickException, TartiException{
 		if(delta < 0) throw new InvalidArgumentException("delta >= 0");
-		world.update(delta, loadingLevel ? ++currentLevel : 0);
+		world.update(delta, loadingLevel);
 		if(loadingLevel){
 			gameState = Game.IN_GAME;
 			playerController.setHero(world.getHero());
