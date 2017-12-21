@@ -15,6 +15,7 @@ public enum PlayerCommand {
 	
 	ATTACK,
 	USE_FLASK,
+	USE_ATTACK_BOOST,
 	NEXT_LEVEL;
 	
 	

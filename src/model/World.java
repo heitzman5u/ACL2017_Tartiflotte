@@ -237,6 +237,11 @@ public class World {
 		level.getHero().pickFlask();
 	}
 	
+	public void pickAttackBoost(AttackBoost b) {
+		toBeRemoved.add(b);
+		level.getHero().pickAttackBoost();
+	}
+	
 	public void destroyObject(WorldObject o) {
 		toBeRemoved.add(o);
 	
