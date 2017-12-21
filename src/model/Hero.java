@@ -71,22 +71,22 @@ public class Hero extends Character {
 	 * For testing purpose
 	 * @param m
 	 */
-//	@Deprecated
-//	public void setMovement(Vector2f m){
-//		SafeMethod.forTesting();
-//		movement = m;
-//	}
-//	
-//	/**
-//	 * For testing purpose
-//	 * @return 
-//	 */
-//	@Deprecated
-//	public Vector2f getMovement(){
-//		SafeMethod.forTesting();
-//		return movement;
-//	}
-//	
+	@Deprecated
+	public void setMovement(Vector2f m){
+		//SafeMethod.forTesting();
+		movement = m;
+	}
+	
+	/**
+	 * For testing purpose
+	 * @return 
+	 */
+	@Deprecated
+	public Vector2f getMovement(){
+		//SafeMethod.forTesting();
+		return movement;
+	}
+	
 
 	public String toString(){
 		return "<"+pos.x+";"+pos.y+">";
