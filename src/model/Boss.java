@@ -21,7 +21,7 @@ public class Boss extends Monster{
 	private TrueTypeFont ttf;
 
 	public Boss(float x, float y) {
-		super(x, y, 3.0f, 600f, 80000f, 20, 2, 1000);
+		super(x, y, 3.0f, 40f, 80000f, 20, 2, 1000);
 		
 		Font font = new Font("Time New Roman", Font.PLAIN, 20);
 		ttf = new TrueTypeFont(font, true);

@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
@@ -59,6 +60,9 @@ public class Level implements Serializable {
 		flasks = flasksInLevel();
 		monsters = getMonstersInLevel();
 		monsters.addAll(getGhostsInLevel());
+		
+		loadMusic(number);
+		
 		levelNumber = number;
 		
 		bossInLevel(levelNumber);
@@ -83,7 +87,7 @@ public class Level implements Serializable {
 	public boolean collides(float x, float y) throws TartiException {
 		if (x < 0f || x >= (float) (map.getWidth() * map.getTileWidth()) || y < 0f
 				|| y >= (float) (map.getHeight() * map.getTileHeight())) {
-			throw new InvalidArgumentException();
+			return true;
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
@@ -189,6 +193,18 @@ public class Level implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	private void loadMusic(int level) {
+		try {
+			if(level == 3) {
+				Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers.ogg");
+				m.loop();
+			}
+		}
+		catch(SlickException | NullPointerException e) {
+			System.err.println("Unable to load the music");
+		}
 	}
 	
 
