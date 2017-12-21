@@ -54,7 +54,8 @@ public class Level implements Serializable {
 
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
-		exit = new Exit(new Point(840, 350), new Point(900, 370));
+		//exit = new Exit(new Point(840, 350), new Point(900, 370));
+		exit = getExitInLevel();
 		flasks = flasksInLevel();
 		monsters = monstersInLevel();
 		levelNumber = number;
@@ -142,6 +143,24 @@ public class Level implements Serializable {
 		}
 		return null;
 	}
+	
+	
+	private Exit getExitInLevel() throws SlickException, TartiException{
+		for (int x = 0; x < this.map.getWidth(); x++) {
+			for (int y = 0; y < this.map.getHeight(); y++) {
+				if (this.map.getTileImage(x, y, this.map.getLayerIndex("exit")) != null){
+					final int xe = x * this.map.getTileWidth();
+					final int ye = y * this.map.getTileHeight();
+					return new Exit(
+							new Point(xe, ye), 
+							new Point(xe + this.map.getTileWidth(), ye + this.map.getTileHeight())
+							);
+				}
+			}
+		}
+		return null;
+	}
+	
 
 	/**
 	 * @return width in tiles
