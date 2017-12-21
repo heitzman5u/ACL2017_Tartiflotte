@@ -13,9 +13,15 @@
  <tileset firstgid="782" source="monster.tsx"/>
  <tileset firstgid="783" source="hero.tsx"/>
  <tileset firstgid="784" source="exit.tsx"/>
+ <tileset firstgid="785" source="ghost.tsx"/>
  <layer name="exit" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OAQkAAAgDsIMF7J/WFCLClmAJAOzruh4AwC8Di4oG26wNAAA=
+  </data>
+ </layer>
+ <layer name="ghost" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAgDsCUowL9ZZIyjVdAEAABo2WkP+OoALlDkn6wNAAA=
   </data>
  </layer>
  <layer name="hero" width="35" height="25">
