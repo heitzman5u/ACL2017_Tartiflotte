@@ -18,6 +18,7 @@ public class GraphicsFactory {
 	private static Animation[] spellAnimation;
 	private static Animation[] heroAnimation;
 	private static Animation[] monsterAnimation;
+	private static Animation[] ghostAnimation;
 	private static Animation[] bossAnimation;
 	private static Animation littleFlaskAnimation;
 	private static Animation exitAnimation;
@@ -97,6 +98,29 @@ public class GraphicsFactory {
 		}
 		// --
 	}
+	
+	public static void loadGhostAnimation() throws SlickException {
+		ghostAnimation = new Animation[8];
+		SpriteSheet spriteSheet = new SpriteSheet("ghost",
+				GraphicsFactory.class.getResourceAsStream("/monsters/images/ghost.png"), 32, 32);
+		// STOP POSITIONS
+		int nbDirections = 4;
+		for (int i = 0; i < nbDirections; i++) {
+			Animation animation = new Animation();
+			animation.addFrame(spriteSheet.getSprite(0, i), 200);
+			ghostAnimation[i] = animation;
+		}
+
+		// MOVING POSITIONS
+		for (int j = 0; j < 4; j++) {
+			Animation animation = new Animation();
+			for (int i = 0; i < 3; i++) {
+				animation.addFrame(spriteSheet.getSprite(i, j), 200);
+			}
+			ghostAnimation[j + nbDirections] = animation;
+		}
+		// --
+	}
 
 	public static void loadLittleFlaskAnimation() throws SlickException {
 		littleFlaskAnimation = new Animation();
@@ -164,6 +188,12 @@ public class GraphicsFactory {
 			throw new NotLoadedException();
 		return monsterAnimation;
 	}
+	
+	public static Animation[] getGhostAnimation() throws NotLoadedException {
+		if (ghostAnimation == null)
+			throw new NotLoadedException();
+		return ghostAnimation;
+	}
 
 	public static Animation getLittleFlaskAnimation() throws NotLoadedException {
 		if (littleFlaskAnimation == null)
@@ -206,4 +236,6 @@ public class GraphicsFactory {
 			throw new NotLoadedException();
 		return bossAnimation;
 	}
+	
+	
 }

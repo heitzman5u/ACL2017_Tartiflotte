@@ -39,6 +39,7 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadSpellAnimation();
 			GraphicsFactory.loadHeroAnimation();
 			GraphicsFactory.loadWolfAnimation();
+			GraphicsFactory.loadGhostAnimation();
 			GraphicsFactory.loadLittleFlaskAnimation();
 			GraphicsFactory.loadExitAnimation();
 			GraphicsFactory.loadScratchAnimation();

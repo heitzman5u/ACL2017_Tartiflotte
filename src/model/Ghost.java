@@ -1,11 +1,16 @@
 package model;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import exception.InvalidArgumentException;
+import exception.NotLoadedException;
 import exception.NullArgumentException;
 import exception.TartiException;
+import graphic.GraphicsFactory;
 
 public class Ghost extends Monster {
 	
@@ -56,7 +61,26 @@ public class Ghost extends Monster {
 	
 	public void render(Graphics g) throws TartiException {
 		if(g == null) throw new NullArgumentException();
+
+			
+		Animation[] animations = GraphicsFactory.getGhostAnimation();
+		// MONSTER ANIMATION
+		g.setColor(new Color(48,48,48));
+		g.fillOval(pos.x-20, pos.y, 40, 16);
+		g.drawAnimation(animations[direction + (moving ? 4 : 0)], pos.x-16, pos.y-30);
 		
+		// ATTACK ANIMATION
+		if (attack == true){
+			Animation attackAnim = GraphicsFactory.getScratchAnimation();
+			g.drawAnimation(attackAnim, world.getHero().getX()-30, world.getHero().getY()-30);
+		}
+		
+		// LIFE BAR
+		lifeBarHUD();
+			
+		// --
+	
+	
 	}
 
 	public void update(int delta) throws TartiException {
@@ -65,6 +89,19 @@ public class Ghost extends Monster {
 			move(delta);
 		}
 		attack();
+	}
+	
+	private void lifeBarHUD() throws NotLoadedException{
+		Image lifeBarImg = GraphicsFactory.getMonsterLifeBarImage();
+		Image lifeImg = GraphicsFactory.getMonsterLifeImage();
+		
+		float lifeRatio = life/(float)fullLife;
+		float width = (float)lifeImg.getWidth();
+		float height = (float)lifeImg.getHeight();
+		float widthRatio = (float)lifeImg.getWidth() * lifeRatio;
+
+		lifeBarImg.draw(getX() - (width/2), getY() - 60, 1.0f);
+		lifeImg.draw(getX() - (width/2) +1, getY()+1 - 60, widthRatio, height);
 	}
 	
 }
