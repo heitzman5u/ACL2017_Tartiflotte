@@ -53,7 +53,7 @@ public class GameUI extends BasicGame {
 			//Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers");
 			//m.loop();
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
-			World w = new World(2);
+			World w = new World(1);
 			
 			Game.getInstance().setContext(w, victory, pc);
 		}catch(TartiException e){
