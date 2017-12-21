@@ -132,7 +132,7 @@ public class Level implements Serializable {
 		if(this.map.getLayerIndex("flask") == -1) return attBoost;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
-				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("attack_boost"));
 				if (tile != null) {
 					attBoost.add(new LifeFlask(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
 				}
