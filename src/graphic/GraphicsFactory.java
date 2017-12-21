@@ -26,6 +26,8 @@ public class GraphicsFactory {
 	private static Animation bloodAnimation;
 	private static Image monsterLifeBarImg;
 	private static Image monsterLifeImg;
+	private static Image bossLifeBarImg;
+	private static Image bossLifeImg;
 
 	private static HudHeroInfo hudHero;
 
@@ -173,9 +175,9 @@ public class GraphicsFactory {
 		monsterLifeBarImg = new Image("/res/monsters/images/life_bar.png");
 	}
 	
-	public static void loadBossLifeBarImages() {
-		// TODO Auto-generated method stub
-		
+	public static void loadBossLifeBarImages() throws SlickException {
+		bossLifeImg = new Image("/res/hero/images/life.jpg");
+		bossLifeBarImg = new Image ("/res/hero/images/life_bar.png");
 	}
 
 	public static void loadHudHero() throws SlickException {
@@ -242,6 +244,18 @@ public class GraphicsFactory {
 		if (monsterLifeImg == null)
 			throw new NotLoadedException();
 		return monsterLifeImg;
+	}
+	
+	public static Image getBossLifeBarImage() throws NotLoadedException {
+		if (bossLifeBarImg == null)
+			throw new NotLoadedException();
+		return bossLifeBarImg;
+	}
+
+	public static Image getBossLifeImage() throws NotLoadedException {
+		if (bossLifeImg == null)
+			throw new NotLoadedException();
+		return bossLifeImg;
 	}
 
 	public static HudHeroInfo getHudHero() throws NotLoadedException {
