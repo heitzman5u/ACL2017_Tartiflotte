@@ -74,7 +74,7 @@ public class GraphicsFactory {
 		// --
 	}
 
-	public static void loadMonsterAnimation() throws SlickException {
+	public static void loadWolfAnimation() throws SlickException {
 		monsterAnimation = new Animation[8];
 		SpriteSheet spriteSheet = new SpriteSheet("lycan",
 				GraphicsFactory.class.getResourceAsStream("/monsters/images/lycan.png"), 80, 80);
