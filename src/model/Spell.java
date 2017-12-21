@@ -44,7 +44,7 @@ public abstract class Spell extends WorldObject{
 		double approachedAngle=0, actualAngle=direction.getTheta();
 		double valAngInter=360/32, valAngAppr=360/16;
 		int i=0;
-		while(Math.abs(actualAngle-approachedAngle)>=valAngInter && approachedAngle<361){
+		while(Math.abs(actualAngle-approachedAngle)>=valAngInter && approachedAngle<=360){
 			approachedAngle+=valAngAppr;
 			i=(i+1)%16;
 		}
