@@ -15,6 +15,8 @@ import graphic.GraphicsFactory;
 public class Ghost extends Monster {
 	private Timer timerAnimAttack;
 	
+	private boolean meet;
+	
 	/**
 	 * Create a wolf at the given position
 	 * @param x abscissa
@@ -22,8 +24,9 @@ public class Ghost extends Monster {
 	 * @throws SlickException
 	 */
 	public Ghost(float x, float y) {
-		super(x, y, 1.0f , 600f, 30_000f, 10, 1, 1000);
+		super(x, y, 1.2f , 24f, 130f, 10, 1, 1000);
 		timerAnimAttack = new Timer();
+		meet = false;
 	}
 	
 	/**
@@ -51,9 +54,10 @@ public class Ghost extends Monster {
 		float yHero = world.trajectoryToHero(this).getY();
 		
 		//move only if the hero is within his view range, and no collisions will occur
-		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= viewDistance) 
-				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= attackDistance)){
+		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= Math.pow(viewDistance, 2) || meet == true) 
+				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= Math.pow(attackDistance, 2))){
 			moving = true;
+			meet = true;
 			pos.add(direction(xHero, yHero).scale(speed));	
 		} else {
 			moving = false;
@@ -62,7 +66,7 @@ public class Ghost extends Monster {
 	
 	public void render(Graphics g) throws TartiException {
 		if(g == null) throw new NullArgumentException();
-
+		if(world.trajectoryToHero(this).length() <= viewDistance){
 			
 		Animation[] animations = GraphicsFactory.getGhostAnimation();
 		// MONSTER ANIMATION
@@ -84,8 +88,8 @@ public class Ghost extends Monster {
 		lifeBarHUD();
 			
 		// --
-	
-	
+		}
+		
 	}
 
 	public void update(int delta) throws TartiException {
