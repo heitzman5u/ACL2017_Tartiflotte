@@ -16,14 +16,14 @@ public class EnemySpell extends Spell {
 		super(x, y, dir);
 		speed = 0.7f;
 		damage = 2;
-		range = 2f;
+		range = 3600f;
 	}
 	
 	public EnemySpell(float x, float y, float xCible, float yCible) {
 		super(x, y, xCible, yCible);
-		speed = 0.5f;
+		speed = 0.7f;
 		damage = 2;
-		range = 0.6f;
+		range = 3600f;
 	}
 	
 	public void update(int delta) throws TartiException {

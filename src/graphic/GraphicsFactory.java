@@ -151,7 +151,7 @@ public class GraphicsFactory {
 		for (int i = 0; i < 4; i++) {
 			Animation animation = new Animation();
 			for (int j = 0; j < 4; j++) {
-				animation.addFrame(spriteSheet.getSprite(j, i), 200);
+				animation.addFrame(spriteSheet.getSprite(j, i), 150);
 			}
 			bossAnimation[i] = animation;
 		}
