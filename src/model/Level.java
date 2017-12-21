@@ -202,7 +202,7 @@ public class Level implements Serializable {
 				m.loop();
 			}
 		}
-		catch(SlickException | NullPointerException e) {
+		catch(Exception e) {
 			System.err.println("Unable to load the music");
 		}
 	}
