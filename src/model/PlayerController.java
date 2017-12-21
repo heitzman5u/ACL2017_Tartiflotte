@@ -5,7 +5,6 @@ import java.util.Map;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.MouseListener;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import controller.PlayerCommand;
@@ -39,8 +38,10 @@ public class PlayerController implements KeyListener, MouseListener {
 		inputs.put(Input.KEY_D, new InputProperty(PlayerCommand.RIGHT));
 		
 		inputs.put(Input.KEY_F, new InputProperty(PlayerCommand.USE_FLASK));
+		inputs.put(Input.KEY_R, new InputProperty(PlayerCommand.USE_ATTACK_BOOST));
 		inputs.put(Input.KEY_M, new InputProperty(PlayerCommand.ATTACK));
 		inputs.put(Input.KEY_P, new InputProperty(PlayerCommand.NEXT_LEVEL));
+		
 		
 		hero=null;
 	}
@@ -118,12 +119,9 @@ public class PlayerController implements KeyListener, MouseListener {
 		if(arg0==0){
 			float xh=hero.getX(), yh=hero.getY();
 			Vector2f dir = new Vector2f(arg1-xh,arg2-yh);
-			try {
-				hero.spawnSpell(xh, yh, dir);
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+			hero.spawnSpell(xh, yh, dir);
+		
 		}
 	}
 

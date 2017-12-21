@@ -17,8 +17,16 @@ import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
 
-public class Boss extends Monster {
 
+public class Boss extends Monster{
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1480519936011295029L;
+	private long spellInterval;
+	
 	private TrueTypeFont ttf;
 
 	private enum state {
@@ -37,9 +45,9 @@ public class Boss extends Monster {
 
 	public Boss(float x, float y) {
 		super(x, y, 0.4f, 40f, 80000f, 20, 2, 1000);
-
 		stateNow = state.ENTER;
-
+		
+		spellInterval=2000;
 		Font font = new Font("Time New Roman", Font.PLAIN, 20);
 		ttf = new TrueTypeFont(font, true);
 		r = new Random();
@@ -52,14 +60,17 @@ public class Boss extends Monster {
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y, Vector2f dir){
-		Spell sp = new EnemySpell(x, y, dir);
-		sp.setWorld(world);
-		world.addSpell(sp);
+	public void spawnSpell(float x, float y, float xCible, float yCible) {
+		if(attackTimer.elapsed()){
+			Spell sp=new EnemySpell(x, y, xCible, yCible);
+			sp.setWorld(world);
+			world.addSpell(sp);
+			attackTimer.start(spellInterval);
+		}
 	}
 
 	private void displayName() {
-		ttf.drawString(widthMap / 2 - ttf.getWidth("Galdemiche") / 2, 720, "Galdemiche", Color.yellow);
+		ttf.drawString(widthMap/2-ttf.getWidth("Galdepin")/2, 720, "Galdepin",new Color(107,13,13));
 	}
 
 	/**
@@ -136,11 +147,22 @@ public class Boss extends Monster {
 		teleportation();
 		charged(delta);
 		bossEnter(delta);
-//		if(getLife() <= (int)fullLife / 2) {
-//			spawnSpell(getX(), getY(), world.trajectoryToHero(this));
-//		}
+		if(getLife() <= (int)fullLife / 2) {
+			Vector2f p = world.getHero().getPos();
+			spawnSpell(getX(), getY(), p.x, p.y);
+		}		
+	}
+	
+	public void receiveDamage(int dmg){
+		life -= dmg;
+		if(life <= 0){
+			setAlive(false);
+			Game.getInstance().win();
+			world.destroyObject(this);
+		}
 	}
 
+	
 	public void render(Graphics g) throws TartiException {
 		if (g == null)
 			throw new NullArgumentException();

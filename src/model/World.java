@@ -23,8 +23,8 @@ public class World {
 
 	private TiledMap map;
 	private Level level;
-
-	private final Collection<WorldObject> toBeRemoved;
+	final Collection<WorldObject> toBeRemoved;
+	private final Collection<WorldObject> toBeAdded;
 	private Collection<WorldObject> objects;
 
 	public World(int lvl) throws SlickException, TartiException {
@@ -35,12 +35,13 @@ public class World {
 		Exit e = level.getExit();
 		if(e != null) e.setWorld(this);
 		
-		for (LifeFlask f : level.getFlasks()) {
+		for (WorldObject f : level.getPickableObject()) {
 			f.setWorld(this);
 		}
-		objects.addAll(level.getFlasks());
+		objects.addAll(level.getPickableObject());
 		
 		toBeRemoved = new ArrayList<>();
+		toBeAdded = new ArrayList<>();
 		for (Monster m : level.getMonsters()) {
 			m.setWorld(this);
 		}
@@ -103,7 +104,7 @@ public class World {
 	 * 
 	 * @param s
 	 */
-	public void collideToHero(Spell s) {
+	public boolean collideToHero(Spell s) {
 		Hero h=level.getHero();
 		if (h.getPos().distance(s.getPos()) <= 25) {
 			h.receiveDamage(s.getDamage());
@@ -111,7 +112,9 @@ public class World {
 				h.setAlive(false);
 				
 			}
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -143,8 +146,8 @@ public class World {
 		if (delta < 0) {
 			throw new InvalidArgumentException("delta >= 0");
 		}
-
-		toBeRemoved.clear();
+		
+		
 		for(WorldObject o : objects)
 			o.update(delta);
 	
@@ -153,9 +156,15 @@ public class World {
 		Exit e = level.getExit();
 		if(e != null) e.update(delta);
 		
-		level.getFlasks().removeAll(toBeRemoved);
+		level.getPickableObject().removeAll(toBeRemoved);
 		level.getMonsters().removeAll(toBeRemoved);
 		objects.removeAll(toBeRemoved);
+		if(!toBeAdded.isEmpty())
+		{
+			objects.addAll(toBeAdded);
+		}
+		toBeAdded.clear();
+		toBeRemoved.clear();
 		
 		if (nextLevel) {
 			loadLevel(getCurrentLevel()+1);
@@ -175,13 +184,15 @@ public class World {
 		level.serialize();
 		level = new Level(number);
 		map = level.getMap();
+		
+		toBeAdded.clear();
 		toBeRemoved.clear();
 
 		Hero tmp = level.getHero();
 		tmp.setWorld(this);
 		Exit e = level.getExit();
 		if(e != null) e.setWorld(this);;
-		for (LifeFlask f : level.getFlasks()) {
+		for (WorldObject f : level.getPickableObject()) {
 			f.setWorld(this);
 		}
 		for (Monster m : level.getMonsters()) {
@@ -189,7 +200,7 @@ public class World {
 		}
 		
 		objects.addAll(level.getMonsters());
-		objects.addAll(level.getFlasks());
+		objects.addAll(level.getPickableObject());
 	}
 
 	/**
@@ -237,9 +248,13 @@ public class World {
 		level.getHero().pickFlask();
 	}
 	
+	public void pickAttackBoost(AttackBoost b) {
+		toBeRemoved.add(b);
+		level.getHero().pickAttackBoost();
+	}
+	
 	public void destroyObject(WorldObject o) {
 		toBeRemoved.add(o);
-	
 	}
 
 	public Hero getHero() {
@@ -251,7 +266,7 @@ public class World {
 	}
 	
 	public void addSpell(Spell s) {
-		objects.add(s);
+		toBeAdded.add(s);
 	}
 	
 	public int getCurrentLevel() {

@@ -14,14 +14,25 @@
  <tileset firstgid="783" source="hero.tsx"/>
  <tileset firstgid="784" source="exit.tsx"/>
  <tileset firstgid="785" source="ghost.tsx"/>
+ <tileset firstgid="786" source="attack_boost.tsx"/>
  <layer name="exit" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OAQkAAAgDsIMF7J/WFCLClmAJAOzruh4AwC8Di4oG26wNAAA=
   </data>
  </layer>
+ <layer name="attack_boost" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQkAAAgDsIMN7B/WFCLClmAJAPzVdT0AgB0DoFNNoqwNAAA=
+  </data>
+ </layer>
+ <layer name="flask" width="35" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VsQkAAAjAMMHZ/9/1Ax0FSS7o1gjgo8rrAgBg49dMGrmRytSsDQAA
+  </data>
+ </layer>
  <layer name="ghost" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQ0AAAgDsCUowL9ZZIyjVdAEAABo2WkP+OoALlDkn6wNAAA=
+   H4sIAAAAAAAAC+3UMQ0AAAjAMBIU4N8sCniBo1WwaxEAwJbK6wLgG19g0ud5Ua6sDQAA
   </data>
  </layer>
  <layer name="hero" width="35" height="25">
@@ -32,11 +43,6 @@
  <layer name="monster" width="35" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3VoQ0AAAjAMBI8/5+L5gFAtBfMLQJgqrwuAICfPJJNDcMIkgysDQAA
-  </data>
- </layer>
- <layer name="flask" width="35" height="25">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3VsQkAAAjAMMHZ/9/1Ax0FSS7o1gjgo8rrAgBg49dMGrmRytSsDQAA
   </data>
  </layer>
  <layer name="solid" width="35" height="25">

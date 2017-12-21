@@ -21,6 +21,10 @@ public class Game {
 	public static final int IN_GAME = 0;
 	public static final int LOOSE = -1;
 	
+	public static final int FIRST_LEVEL = 1;
+	public static final int LAST_LEVEL = 3;
+	
+	
 	private int gameState;
 	
 	//private int currentLevel;
@@ -80,7 +84,7 @@ public class Game {
 	 * However, we have to wait the execution of all updates before
 	 */
 	public void loadNextLevel(){
-		if(isWon()){
+		if(isWon() && world.getCurrentLevel() != LAST_LEVEL){
 			loadingLevel = true;
 		}
 	}

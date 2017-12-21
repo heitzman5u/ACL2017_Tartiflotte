@@ -48,14 +48,14 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadHudHero();
 			GraphicsFactory.loadBossAnimation();
 			GraphicsFactory.loadBossLifeBarImages();
-			
+			GraphicsFactory.loadAttackBoostImage();
 			
 			//Set the game
 			PlayerController pc = new PlayerController();
 			container.getInput().addKeyListener(pc);
 			container.getInput().addMouseListener(pc);
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
-			World w = new World(1);
+			World w = new World(Game.FIRST_LEVEL);
 			//Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers.ogg");
 			//m.loop();
 			
