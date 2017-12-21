@@ -12,7 +12,7 @@
  <tileset firstgid="685" source="exit.tsx"/>
  <layer name="exit" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OAQkAAAgDsGP/KnY0hYiwJVjCN13XAwAAYNsAKQ6hmKwNAAA=
+   H4sIAAAAAAAAC+3OMREAAAgEoD/7V7GjFdwchAQkbHRdDwAAgE8GuDpIHawNAAA=
   </data>
  </layer>
  <layer name="monster" width="35" height="25">
