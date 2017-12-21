@@ -10,15 +10,15 @@ import exception.TartiException;
 import graphic.GraphicsFactory;
 import test.SafeMethod;
 
-public class Spell extends WorldObject{
+public abstract class Spell extends WorldObject{
 
 	private static final long serialVersionUID = 5044107265511033106L;
 	
 	
-	private int damage;
-	private float range; // in seconds
-	private float speed;
-	private Vector2f direction;
+	protected int damage;
+	protected float range; // in seconds
+	protected float speed;
+	protected Vector2f direction;
 	
 	public Spell(float x, float y, Vector2f dir) {
 		super(x, y);

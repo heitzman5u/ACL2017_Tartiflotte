@@ -235,7 +235,7 @@ public class Hero extends Character {
 	 * @throws SlickException
 	 */
 	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
-		Spell sp=new Spell(x, y, dir);
+		Spell sp=new HeroSpell(x, y, dir);
 		sp.setWorld(world);
 		world.addSpell(sp);
 	}
