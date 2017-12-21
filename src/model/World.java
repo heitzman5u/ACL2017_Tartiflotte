@@ -61,9 +61,10 @@ public class World {
 	 * @param h
 	 *            Character (monster or hero)
 	 * @return true if the character is out of the map or collide to a wall
+	 * @throws TartiException 
 	 */
-	public boolean collideToWall(WorldObject h) {
-		if (h == null)
+	public boolean collideToWall(WorldObject h) throws TartiException {
+		/*if (h == null)
 			return false;
 		// out of map
 		if ((int) h.getX() < 0 || (int) h.getX() >= map.getWidth() * map.getTileWidth() || (int) h.getY() < 0
@@ -73,7 +74,8 @@ public class World {
 		// on a wall
 		Image tile = map.getTileImage((int) h.getX() / map.getTileWidth(), (int) h.getY() / map.getTileHeight(),
 				map.getLayerIndex("solid"));
-		return tile != null;
+		return tile != null;*/
+		return level.collides(h.getX(), h.getY());
 	}
 
 	/**

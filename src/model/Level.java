@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
@@ -85,8 +86,13 @@ public class Level implements Serializable {
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
-				(int) x / this.map.getTileWidth(), (int) y / this.map.getTileHeight(), this.map.getLayerIndex("logic"));
-		return tile != null; // null if no "logic" tile found there
+				(int) x / this.map.getTileWidth(), (int) y / this.map.getTileHeight(), this.map.getLayerIndex("solid"));
+        if(tile == null) return false; //no block collision detected
+        //pixel collision ?
+        Color color = tile.getColor(
+                (int) x % this.map.getTileWidth(), 
+                (int) y % this.map.getTileHeight());
+        return color.getAlpha() > 0;
 	}
 
 	/**
