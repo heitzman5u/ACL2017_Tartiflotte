@@ -54,10 +54,10 @@ public class Level implements Serializable {
 
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
-		//exit = new Exit(new Point(840, 350), new Point(900, 370));
 		exit = getExitInLevel();
 		flasks = flasksInLevel();
-		monsters = monstersInLevel();
+		monsters = getMonstersInLevel();
+		monsters.addAll(getGhostsInLevel());
 		levelNumber = number;
 		
 		
@@ -114,7 +114,7 @@ public class Level implements Serializable {
 	 * @return
 	 * @throws SlickException
 	 */
-	private Collection<Monster> monstersInLevel() throws SlickException {
+	private Collection<Monster> getMonstersInLevel() throws SlickException {
 		Image tile;
 		List<Monster> monsters = new ArrayList<Monster>();
 		if(this.map.getLayerIndex("monster") == -1) return monsters;
@@ -128,6 +128,23 @@ public class Level implements Serializable {
 		}
 		return monsters;
 	}
+	
+	
+	private Collection<Monster> getGhostsInLevel() throws SlickException{
+		Image tile;
+		List<Monster> monsters = new ArrayList<Monster>();
+		if(this.map.getLayerIndex("ghost") == -1) return monsters;
+		for (int x = 0; x < this.map.getWidth(); x++) {
+			for (int y = 0; y < this.map.getHeight(); y++) {
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("ghost"));
+				if (tile != null) {
+					monsters.add(new Ghost(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+				}
+			}
+		}
+		return monsters;
+	}
+	
 
 	private Hero getHeroInTmx() throws SlickException, TartiException {
 		for (int x = 0; x < this.map.getWidth(); x++) {

@@ -77,9 +77,10 @@ public class World {
 	}
 
 	/**
+	 * Hurt the life bar of monster on hit.
 	 * 
 	 * @param s
-	 * @return true if the spell collide a monster
+	 * @return m if the spell collide the monster m first
 	 */
 	public Monster collideToMonster(Spell s) {
 		for (Monster m : level.getMonsters()) {
@@ -93,6 +94,22 @@ public class World {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Hurt the life bar of the hero, on hit.
+	 * 
+	 * @param s
+	 */
+	public void collideToHero(Spell s) {
+		Hero h=level.getHero();
+		if (h.getPos().distance(s.getPos()) <= 25) {
+			h.receiveDamage(s.getDamage());
+			if (h.getLife() <= 0) {
+				h.setAlive(false);
+				
+			}
+		}
 	}
 
 	/**
