@@ -44,7 +44,7 @@ public class Boss extends Monster{
 	private state stateNow;
 
 	public Boss(float x, float y) {
-		super(x, y, 0.4f, 40f, 80000f, 20, 2, 1000);
+		super(x, y, 0.4f, 40f, 80000f, 100, 2, 1000);
 		stateNow = state.ENTER;
 		
 		spellInterval=2000;
