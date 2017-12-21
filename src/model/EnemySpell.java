@@ -14,9 +14,9 @@ public class EnemySpell extends Spell {
 
 	public EnemySpell(float x, float y, Vector2f dir) {
 		super(x, y, dir);
-		speed = 0.5f;
+		speed = 0.7f;
 		damage = 2;
-		range = 0.6f;
+		range = 2f;
 	}
 	
 	public EnemySpell(float x, float y, float xCible, float yCible) {
