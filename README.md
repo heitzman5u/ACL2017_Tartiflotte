@@ -18,8 +18,9 @@ Il vous faudra:
 
 Une fois en jeu:
 - Z Q S D permettent de se déplacer
-- (M permet d'attaquer un monstre proche ... non implémenté)
+- le clic gauche de la souris permet d'attaquer un monstre proche.
 - F permet d'utiliser une flasque de vie ramassée
+- R permet d'utiliser un boost d'attaque ramassé
 - P permet de charger le prochain niveau une fois la flèche atteinte
 
 Le jeu comporte uniquement 2 niveaux actuellement.
