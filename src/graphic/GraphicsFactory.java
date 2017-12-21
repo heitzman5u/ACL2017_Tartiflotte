@@ -24,6 +24,7 @@ public class GraphicsFactory {
 	private static Animation exitAnimation;
 	private static Animation scratchAnimation;
 	private static Animation bloodAnimation;
+	private static Image attackBoostImg;
 	private static Image monsterLifeBarImg;
 	private static Image monsterLifeImg;
 	private static Image bossLifeBarImg;
@@ -183,6 +184,10 @@ public class GraphicsFactory {
 	public static void loadHudHero() throws SlickException {
 		hudHero = new HudHeroInfo();
 	}
+	
+	public static void loadAttackBoostImage() throws SlickException {
+		attackBoostImg = new Image("/res/flask/images/attackBoost.png");
+	}
 
 	// -------------------------------------------------------------------------------------------
 
@@ -262,6 +267,12 @@ public class GraphicsFactory {
 		if (hudHero == null)
 			throw new NotLoadedException();
 		return hudHero;
+	}
+	
+	public static Image getAttackBoostImage() throws NotLoadedException {
+		if (attackBoostImg == null)
+			throw new NotLoadedException();
+		return attackBoostImg;
 	}
 	
 	public static Animation[] getBossAnimation() throws NotLoadedException {

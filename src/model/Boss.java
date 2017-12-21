@@ -21,7 +21,7 @@ public class Boss extends Monster{
 	private TrueTypeFont ttf;
 
 	public Boss(float x, float y) {
-		super(x, y, 3.0f, 40f, 80000f, 20, 2, 1000);
+		super(x, y, 3.0f, 40f, 80000f, 100, 2, 1000);
 		
 		Font font = new Font("Time New Roman", Font.PLAIN, 20);
 		ttf = new TrueTypeFont(font, true);
@@ -49,7 +49,7 @@ public class Boss extends Monster{
 	}
 	
 	private void displayName() {
-		ttf.drawString(1120/2-ttf.getWidth("Galdemiche")/2, 720, "Galdemiche", Color.yellow);
+		ttf.drawString(1120/2-ttf.getWidth("Galdepin")/2, 720, "Galdepin",new Color(107,13,13));
 	}
 	
 	/**

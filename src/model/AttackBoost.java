@@ -2,6 +2,7 @@ package model;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
@@ -39,8 +40,8 @@ public class AttackBoost extends WorldObject {
 	public void render(Graphics g) throws TartiException{
 		if(g == null) throw new NullArgumentException();
 		
-		Animation animation = GraphicsFactory.getLittleFlaskAnimation();
-		g.drawAnimation(animation, pos.x-WIDTH/2, pos.y-HEIGHT/2);
+		Image img = GraphicsFactory.getAttackBoostImage();
+		img.draw();
 	}
 	
 }
