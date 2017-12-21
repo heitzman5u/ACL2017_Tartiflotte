@@ -11,6 +11,7 @@ import exception.InvalidArgumentException;
 import exception.TartiException;
 import model.Monster;
 import model.Spell;
+import model.Wolf;
 import model.World;
 
 
@@ -73,7 +74,7 @@ public class TestSpell {
 		s.setSpeed(10f);
 		s.setRange(1f); //1 sec
 		
-		Monster m = new Monster(10f, 10f);
+		Monster m = new Wolf(10f, 10f);
 		m.setLife(0);
 		
 		World w = EasyMock.createMock(World.class);

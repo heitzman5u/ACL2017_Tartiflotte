@@ -96,6 +96,7 @@ public class Level implements Serializable {
 	private Collection<LifeFlask> flasksInLevel() throws SlickException {
 		Image tile;
 		List<LifeFlask> listFlask = new ArrayList<LifeFlask>();
+		if(this.map.getLayerIndex("flask") == -1) return listFlask;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
@@ -115,11 +116,12 @@ public class Level implements Serializable {
 	private Collection<Monster> monstersInLevel() throws SlickException {
 		Image tile;
 		List<Monster> monsters = new ArrayList<Monster>();
+		if(this.map.getLayerIndex("monster") == -1) return monsters;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("monster"));
 				if (tile != null) {
-					monsters.add(new Monster(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+					monsters.add(new Wolf(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
 				}
 			}
 		}
@@ -146,6 +148,7 @@ public class Level implements Serializable {
 	
 	
 	private Exit getExitInLevel() throws SlickException, TartiException{
+		if(this.map.getLayerIndex("exit") == -1 ) return null;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				if (this.map.getTileImage(x, y, this.map.getLayerIndex("exit")) != null){
@@ -196,6 +199,10 @@ public class Level implements Serializable {
 	
 	public Collection<Monster> getMonsters(){
 		return monsters;
+	}
+	
+	public int getCurrentLevel() {
+		return levelNumber;
 	}
 	
 	public void serialize(){

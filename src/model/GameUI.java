@@ -38,7 +38,7 @@ public class GameUI extends BasicGame {
 			//load graphics
 			GraphicsFactory.loadSpellAnimation();
 			GraphicsFactory.loadHeroAnimation();
-			GraphicsFactory.loadMonsterAnimation();
+			GraphicsFactory.loadWolfAnimation();
 			GraphicsFactory.loadLittleFlaskAnimation();
 			GraphicsFactory.loadExitAnimation();
 			GraphicsFactory.loadScratchAnimation();
@@ -53,10 +53,9 @@ public class GameUI extends BasicGame {
 			//Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers");
 			//m.loop();
 			HudMessage victory = new HudMessage("/hud/victory_achieved.png");
-			int level = 1;
-			World w = new World(level);
+			World w = new World(1);
 			
-			Game.getInstance().setContext(level, w, victory, pc);
+			Game.getInstance().setContext(w, victory, pc);
 		}catch(TartiException e){
 			throw new RuntimeException(e);
 		}
@@ -89,5 +88,6 @@ public class GameUI extends BasicGame {
             container.exit();
         }
     }
+	
 
 }

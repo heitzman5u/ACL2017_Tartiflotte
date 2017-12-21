@@ -14,7 +14,7 @@ import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
 import graphic.HudHeroInfo;
-import test.SafeMethod;
+//import test.SafeMethod;
 
 /**
  * Main character of the game ; character that the player control
@@ -73,7 +73,7 @@ public class Hero extends Character {
 	 */
 	@Deprecated
 	public void setMovement(Vector2f m){
-		SafeMethod.forTesting();
+		//SafeMethod.forTesting();
 		movement = m;
 	}
 	
@@ -83,7 +83,7 @@ public class Hero extends Character {
 	 */
 	@Deprecated
 	public Vector2f getMovement(){
-		SafeMethod.forTesting();
+		//SafeMethod.forTesting();
 		return movement;
 	}
 	
