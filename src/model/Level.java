@@ -86,7 +86,7 @@ public class Level implements Serializable {
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
-				(int) x / this.map.getTileWidth(), (int) y / this.map.getTileHeight(), this.map.getLayerIndex("logic"));
+				(int) x / this.map.getTileWidth(), (int) y / this.map.getTileHeight(), this.map.getLayerIndex("solid"));
         if(tile == null) return false; //no block collision detected
         //pixel collision ?
         Color color = tile.getColor(
