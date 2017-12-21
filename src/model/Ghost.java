@@ -8,7 +8,8 @@ import exception.NullArgumentException;
 import exception.TartiException;
 
 public class Ghost extends Monster {
-
+	
+	
 	/**
 	 * Create a wolf at the given position
 	 * @param x abscissa
