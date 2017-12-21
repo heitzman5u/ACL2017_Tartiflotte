@@ -254,7 +254,7 @@ public class Hero extends Character {
 	 * @throws SlickException
 	 */
 
-	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
+	public void spawnSpell(float x, float y, Vector2f dir){
 		if (alive == true){
 			Spell sp=new HeroSpell(x, y, dir);
 			if (!timerAttackBoost.elapsed()){
