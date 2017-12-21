@@ -12,7 +12,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
-import test.SafeMethod;
+//import test.SafeMethod;
 
 /**
  * Represents the elements which will be displayed on the graphic interface
@@ -32,7 +32,8 @@ public class World {
 		objects = new ArrayList<>();
 		map = level.getMap();
 		level.getHero().setWorld(this);
-		level.getExit().setWorld(this);
+		Exit e = level.getExit();
+		if(e != null) e.setWorld(this);
 		
 		for (LifeFlask f : level.getFlasks()) {
 			f.setWorld(this);
@@ -46,14 +47,14 @@ public class World {
 		objects.addAll(level.getMonsters());
 	}
 	
-	/**
-	 * For testing purpose
-	 */
-	@Deprecated
-	public World(){
-		SafeMethod.forTesting();
-		toBeRemoved = null;
-	}
+//	/**
+//	 * For testing purpose
+//	 */
+//	@Deprecated
+//	public World(){
+//		SafeMethod.forTesting();
+//		toBeRemoved = null;
+//	}
 
 	/**
 	 * 
@@ -107,7 +108,8 @@ public class World {
 		
 		for(WorldObject o : objects)
 			o.render(g);
-		level.getExit().render(g);
+		Exit e = level.getExit();
+		if(e != null) e.render(g);
 	}
 
 	/**
@@ -118,12 +120,9 @@ public class World {
 	 *            level to load (0 = no loading)
 	 * @throws TartiException
 	 */
-	public void update(int delta, int nextLevel) throws SlickException, TartiException {
+	public void update(int delta, boolean nextLevel) throws SlickException, TartiException {
 		if (delta < 0) {
 			throw new InvalidArgumentException("delta >= 0");
-		}
-		if (nextLevel < 0) {
-			throw new InvalidArgumentException("Loading a level with number < 0");
 		}
 
 		toBeRemoved.clear();
@@ -132,14 +131,15 @@ public class World {
 	
 
 		level.getHero().update(delta);
-		level.getExit().update(delta);
+		Exit e = level.getExit();
+		if(e != null) e.update(delta);
 		
 		level.getFlasks().removeAll(toBeRemoved);
 		level.getMonsters().removeAll(toBeRemoved);
 		objects.removeAll(toBeRemoved);
 		
-		if (nextLevel != 0) {
-			loadLevel(nextLevel);
+		if (nextLevel) {
+			loadLevel(getCurrentLevel()+1);
 		}
 	}
 
@@ -160,7 +160,8 @@ public class World {
 
 		Hero tmp = level.getHero();
 		tmp.setWorld(this);
-		level.getExit().setWorld(this);
+		Exit e = level.getExit();
+		if(e != null) e.setWorld(this);;
 		for (LifeFlask f : level.getFlasks()) {
 			f.setWorld(this);
 		}
@@ -233,4 +234,9 @@ public class World {
 	public void addSpell(Spell s) {
 		objects.add(s);
 	}
+	
+	public int getCurrentLevel() {
+		return level.getCurrentLevel();
+	}
+	
 }

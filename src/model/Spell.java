@@ -8,7 +8,7 @@ import exception.InvalidArgumentException;
 import exception.NullArgumentException;
 import exception.TartiException;
 import graphic.GraphicsFactory;
-import test.SafeMethod;
+//import test.SafeMethod;
 
 public class Spell extends WorldObject{
 
