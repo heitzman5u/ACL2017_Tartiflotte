@@ -60,6 +60,7 @@ public class Level implements Serializable {
 		monsters.addAll(getGhostsInLevel());
 		levelNumber = number;
 		
+		bossInLevel(levelNumber);
 		
 //		try{
 //			deserialize();
@@ -254,9 +255,12 @@ public class Level implements Serializable {
 	}
 	
 	private Boss bossInLevel(int level) {
-		if(level == 3 )
-			return new Boss(50, 50);
-		return null;
+		Boss b = null;
+		if(level == 3 ) {
+			b = new Boss(500,500);
+			monsters.add(b);
+		}
+		return b;
 	}
 	
 }

@@ -28,7 +28,7 @@ public class World {
 	private Collection<WorldObject> objects;
 
 	public World(int lvl) throws SlickException, TartiException {
-		level = new Level(lvl);
+		level = new Level(3);
 		objects = new ArrayList<>();
 		map = level.getMap();
 		level.getHero().setWorld(this);

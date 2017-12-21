@@ -122,8 +122,8 @@ public class GraphicsFactory {
 
 		for (int i = 0; i < 4; i++) {
 			Animation animation = new Animation();
-			for (int j = 0; j < 4; i++) {
-				animation.addFrame(spriteSheet.getSprite(i, j), 200);
+			for (int j = 0; j < 4; j++) {
+				animation.addFrame(spriteSheet.getSprite(j, i), 200);
 			}
 			bossAnimation[i] = animation;
 		}
@@ -139,6 +139,11 @@ public class GraphicsFactory {
 	public static void loadMonsterLifeBarImages() throws SlickException {
 		monsterLifeImg = new Image("/res/monsters/images/life.jpg");
 		monsterLifeBarImg = new Image("/res/monsters/images/life_bar.png");
+	}
+	
+	public static void loadBossLifeBarImages() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static void loadHudHero() throws SlickException {
