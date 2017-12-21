@@ -35,10 +35,10 @@ public class World {
 		Exit e = level.getExit();
 		if(e != null) e.setWorld(this);
 		
-		for (LifeFlask f : level.getFlasks()) {
+		for (WorldObject f : level.getPickableObject()) {
 			f.setWorld(this);
 		}
-		objects.addAll(level.getFlasks());
+		objects.addAll(level.getPickableObject());
 		
 		toBeRemoved = new ArrayList<>();
 		toBeAdded = new ArrayList<>();
@@ -156,7 +156,7 @@ public class World {
 		Exit e = level.getExit();
 		if(e != null) e.update(delta);
 		
-		level.getFlasks().removeAll(toBeRemoved);
+		level.getPickableObject().removeAll(toBeRemoved);
 		level.getMonsters().removeAll(toBeRemoved);
 		objects.removeAll(toBeRemoved);
 		if(!toBeAdded.isEmpty())
@@ -192,7 +192,7 @@ public class World {
 		tmp.setWorld(this);
 		Exit e = level.getExit();
 		if(e != null) e.setWorld(this);;
-		for (LifeFlask f : level.getFlasks()) {
+		for (WorldObject f : level.getPickableObject()) {
 			f.setWorld(this);
 		}
 		for (Monster m : level.getMonsters()) {
@@ -200,7 +200,7 @@ public class World {
 		}
 		
 		objects.addAll(level.getMonsters());
-		objects.addAll(level.getFlasks());
+		objects.addAll(level.getPickableObject());
 	}
 
 	/**
@@ -246,6 +246,11 @@ public class World {
 	public void pickFlask(LifeFlask f) {
 		toBeRemoved.add(f);
 		level.getHero().pickFlask();
+	}
+	
+	public void pickAttackBoost(AttackBoost b) {
+		toBeRemoved.add(b);
+		level.getHero().pickAttackBoost();
 	}
 	
 	public void destroyObject(WorldObject o) {

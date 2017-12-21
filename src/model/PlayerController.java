@@ -39,8 +39,10 @@ public class PlayerController implements KeyListener, MouseListener {
 		inputs.put(Input.KEY_D, new InputProperty(PlayerCommand.RIGHT));
 		
 		inputs.put(Input.KEY_F, new InputProperty(PlayerCommand.USE_FLASK));
+		inputs.put(Input.KEY_R, new InputProperty(PlayerCommand.USE_ATTACK_BOOST));
 		inputs.put(Input.KEY_M, new InputProperty(PlayerCommand.ATTACK));
 		inputs.put(Input.KEY_P, new InputProperty(PlayerCommand.NEXT_LEVEL));
+		
 		
 		hero=null;
 	}

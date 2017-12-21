@@ -41,6 +41,10 @@ public abstract class Spell extends WorldObject{
 	public int getDamage() {
 		return damage;
 	}
+
+	public void addDamage(int damage){
+		this.damage += damage; 
+	}
 	
 	private int calculateSpritePosition(){
 		double approachedAngle=0, actualAngle=direction.getTheta();

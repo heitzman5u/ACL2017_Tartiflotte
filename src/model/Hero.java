@@ -16,6 +16,7 @@ import graphic.GraphicsFactory;
 import graphic.HudHeroInfo;
 //import test.SafeMethod;
 
+
 /**
  * Main character of the game ; character that the player control
  * 
@@ -33,6 +34,8 @@ public class Hero extends Character {
 	private transient Vector2f movement;
 
 	private transient int nbFlasks;
+	private transient int nbAttackBoost;
+	private Timer timerAttackBoost;
 
 	/**
 	 * create a new Hero at the given position
@@ -49,6 +52,8 @@ public class Hero extends Character {
 		
 		movement = new Vector2f();
 		nbFlasks = 0;
+		nbAttackBoost = 0;
+		timerAttackBoost = new Timer();
 		life = 6;
 		try {
 			GraphicsFactory.getHudHero().setFullLife((float)FULL_LIFE);
@@ -105,6 +110,13 @@ public class Hero extends Character {
 			}
 		}
 	}
+	
+	public void useAttackBoost() {
+		if (nbAttackBoost > 0) {
+			nbAttackBoost--;
+			timerAttackBoost.start(2000);
+		}
+	}
 
 	/**
 	 * Get copy of the Hero, after this frame, if nothing blocks his path
@@ -149,7 +161,7 @@ public class Hero extends Character {
 			g.drawAnimation(animations[8], pos.x - 40, pos.y - 65);
 		}
 		HudHeroInfo hudLifeFlask = GraphicsFactory.getHudHero();
-		hudLifeFlask.update(nbFlasks, (float) life);
+		hudLifeFlask.update(nbAttackBoost, nbFlasks, (float) life);
 		hudLifeFlask.render(g);
 	}
 
@@ -177,6 +189,9 @@ public class Hero extends Character {
 		}
 		if (c == PlayerCommand.NEXT_LEVEL){
 			Game.getInstance().loadNextLevel();
+		}
+		if (c == PlayerCommand.USE_ATTACK_BOOST){
+			useAttackBoost();
 		}
 	}
 	
@@ -227,6 +242,10 @@ public class Hero extends Character {
 		nbFlasks++;
 	}
 	
+	public void pickAttackBoost() {
+		nbAttackBoost++;
+	}
+	
 	/**
 	 * create a spell and add it to the list in hero
 	 * 
@@ -234,10 +253,16 @@ public class Hero extends Character {
 	 * @param y
 	 * @throws SlickException
 	 */
-	public void spawnSpell(float x, float y, Vector2f dir) {
-		Spell sp=new HeroSpell(x, y, dir);
-		sp.setWorld(world);
-		world.addSpell(sp);
+
+	public void spawnSpell(float x, float y, Vector2f dir) throws SlickException {
+		if (alive == true){
+			Spell sp=new HeroSpell(x, y, dir);
+			if (!timerAttackBoost.elapsed()){
+				sp.addDamage(AttackBoost.BONUS_ATTACK_DAMAGE);
+			}
+			sp.setWorld(world);
+			world.addSpell(sp);
+		}
 	}
 
 }

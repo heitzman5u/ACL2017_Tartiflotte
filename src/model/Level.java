@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
@@ -35,7 +36,7 @@ public class Level implements Serializable {
 	private transient final TiledMap map;
 	private transient static boolean heroCreated = false;
 	
-	private transient final Collection<LifeFlask> flasks;
+	private transient final Collection<WorldObject> pickableObject;
 	private transient final Collection<Monster> monsters;
 
 	private transient final Exit exit;
@@ -56,9 +57,13 @@ public class Level implements Serializable {
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
 		exit = getExitInLevel();
-		flasks = flasksInLevel();
+		pickableObject = flasksInLevel();
+		pickableObject.addAll(getAttackBoostInLevel());
 		monsters = getMonstersInLevel();
 		monsters.addAll(getGhostsInLevel());
+		
+		loadMusic(number);
+		
 		levelNumber = number;
 		
 		bossInLevel(levelNumber);
@@ -83,7 +88,7 @@ public class Level implements Serializable {
 	public boolean collides(float x, float y) throws TartiException {
 		if (x < 0f || x >= (float) (map.getWidth() * map.getTileWidth()) || y < 0f
 				|| y >= (float) (map.getHeight() * map.getTileHeight())) {
-			throw new InvalidArgumentException();
+			return true;
 		}
 
 		Image tile = this.map.getTileImage( // tile wich corresponds with the hero's position
@@ -101,9 +106,9 @@ public class Level implements Serializable {
 	 *
 	 * @throws SlickException
 	 */
-	private Collection<LifeFlask> flasksInLevel() throws SlickException {
+	private Collection<WorldObject> flasksInLevel() throws SlickException {
 		Image tile;
-		List<LifeFlask> listFlask = new ArrayList<LifeFlask>();
+		List<WorldObject> listFlask = new ArrayList<WorldObject>();
 		if(this.map.getLayerIndex("flask") == -1) return listFlask;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
@@ -114,6 +119,26 @@ public class Level implements Serializable {
 			}
 		}
 		return listFlask;
+	}
+	
+	/**
+	 * return list of LifeFlask in the map.tmx
+	 *
+	 * @throws SlickException
+	 */
+	private Collection<WorldObject> getAttackBoostInLevel() throws SlickException {
+		Image tile;
+		List<WorldObject> attBoost = new ArrayList<WorldObject>();
+		if(this.map.getLayerIndex("flask") == -1) return attBoost;
+		for (int x = 0; x < this.map.getWidth(); x++) {
+			for (int y = 0; y < this.map.getHeight(); y++) {
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
+				if (tile != null) {
+					attBoost.add(new LifeFlask(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+				}
+			}
+		}
+		return attBoost;
 	}
 	
 	/**
@@ -191,6 +216,18 @@ public class Level implements Serializable {
 		return null;
 	}
 	
+	private void loadMusic(int level) {
+		try {
+			if(level == 3) {
+				Music m = new Music(getClass().getResourceAsStream("/musics/abyss_watchers.ogg"), "abyss_watchers.ogg");
+				m.loop();
+			}
+		}
+		catch(Exception e) {
+			System.err.println("Unable to load the music");
+		}
+	}
+	
 
 	/**
 	 * @return width in tiles
@@ -218,8 +255,8 @@ public class Level implements Serializable {
 		return exit;
 	}
 	
-	public Collection<LifeFlask> getFlasks(){
-		return flasks;
+	public Collection<WorldObject> getPickableObject(){
+		return pickableObject;
 	}
 	
 	public Collection<Monster> getMonsters(){

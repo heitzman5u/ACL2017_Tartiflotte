@@ -65,7 +65,7 @@ public abstract class Monster extends Character {
 		float yHero = world.trajectoryToHero(this).getY();
 
 		//attack only if within the range
-		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= attackDistance) 
+		if (((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= Math.pow(attackDistance, 2)) 
 				&& attackTimer.elapsed()){
 			attack = true;
 			world.getHero().receiveDamage(attackPower);

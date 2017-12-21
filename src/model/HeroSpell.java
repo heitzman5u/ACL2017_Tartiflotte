@@ -40,5 +40,4 @@ public class HeroSpell extends Spell {
 			world.destroyObject(this);
 		}
 	}
-
 }

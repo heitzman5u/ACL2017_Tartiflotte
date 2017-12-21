@@ -21,7 +21,7 @@ public class Wolf extends Monster {
 	 * @throws SlickException
 	 */
 	public Wolf(float x, float y) {
-		super(x, y, 2.0f , 600f, 80_000f, 10, 3, 1000);
+		super(x, y, 2.0f , 24f, 283f, 10, 3, 1000);
 	}
 	
 	/**
@@ -54,8 +54,8 @@ public class Wolf extends Monster {
 		float yHero = world.trajectoryToHero(this).getY();
 		
 		//move only if the hero is within his view range, and no collisions will occur
-		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= viewDistance) 
-				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= attackDistance)){
+		if(((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) <= Math.pow(viewDistance,2)) 
+				&& ((Math.pow(Math.abs(xHero), 2.0) + Math.pow(Math.abs(yHero), 2.0)) >= Math.pow(attackDistance, 2))){
 			moving = true;
 			pos.add(direction(xHero, yHero).scale(speed));	
 		} else {

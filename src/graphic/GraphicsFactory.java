@@ -24,8 +24,11 @@ public class GraphicsFactory {
 	private static Animation exitAnimation;
 	private static Animation scratchAnimation;
 	private static Animation bloodAnimation;
+	private static Image attackBoostImg;
 	private static Image monsterLifeBarImg;
 	private static Image monsterLifeImg;
+	private static Image bossLifeBarImg;
+	private static Image bossLifeImg;
 
 	private static HudHeroInfo hudHero;
 
@@ -173,13 +176,17 @@ public class GraphicsFactory {
 		monsterLifeBarImg = new Image("/res/monsters/images/life_bar.png");
 	}
 	
-	public static void loadBossLifeBarImages() {
-		// TODO Auto-generated method stub
-		
+	public static void loadBossLifeBarImages() throws SlickException {
+		bossLifeImg = new Image("/res/hero/images/life.jpg");
+		bossLifeBarImg = new Image ("/res/hero/images/life_bar.png");
 	}
 
 	public static void loadHudHero() throws SlickException {
 		hudHero = new HudHeroInfo();
+	}
+	
+	public static void loadAttackBoostImage() throws SlickException {
+		attackBoostImg = new Image("/res/flask/images/attackBoost.png");
 	}
 
 	// -------------------------------------------------------------------------------------------
@@ -243,11 +250,29 @@ public class GraphicsFactory {
 			throw new NotLoadedException();
 		return monsterLifeImg;
 	}
+	
+	public static Image getBossLifeBarImage() throws NotLoadedException {
+		if (bossLifeBarImg == null)
+			throw new NotLoadedException();
+		return bossLifeBarImg;
+	}
+
+	public static Image getBossLifeImage() throws NotLoadedException {
+		if (bossLifeImg == null)
+			throw new NotLoadedException();
+		return bossLifeImg;
+	}
 
 	public static HudHeroInfo getHudHero() throws NotLoadedException {
 		if (hudHero == null)
 			throw new NotLoadedException();
 		return hudHero;
+	}
+	
+	public static Image getAttackBoostImage() throws NotLoadedException {
+		if (attackBoostImg == null)
+			throw new NotLoadedException();
+		return attackBoostImg;
 	}
 	
 	public static Animation[] getBossAnimation() throws NotLoadedException {
