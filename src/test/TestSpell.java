@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import exception.InvalidArgumentException;
 import exception.TartiException;
+import model.HeroSpell;
 import model.Monster;
 import model.Spell;
 import model.Wolf;
@@ -24,7 +25,7 @@ public class TestSpell {
 
 	@Test
 	public void testUpdateRight() throws TartiException{
-		Spell s = new Spell(10f, 10f, new Vector2f(1f, 0f));
+		Spell s = new HeroSpell(10f, 10f, new Vector2f(1f, 0f));
 		s.setSpeed(10f);
 		s.setRange(1f); //1 sec
 		
@@ -43,7 +44,7 @@ public class TestSpell {
 
 	@Test(expected=InvalidArgumentException.class)
 	public void testInvalidTimeLap() throws TartiException{
-		Spell s = new Spell(10f, 10f, new Vector2f(1f, 0));
+		Spell s = new HeroSpell(10f, 10f, new Vector2f(1f, 0));
 		
 		s.update(-10);
 		fail("Invalid delta time but update still executed");
@@ -52,7 +53,7 @@ public class TestSpell {
 	
 	@Test
 	public void testCollisionWall() throws TartiException{
-		Spell s = new Spell(10f, 10f, new Vector2f(1f, 0f));
+		Spell s = new HeroSpell(10f, 10f, new Vector2f(1f, 0f));
 		s.setSpeed(10f);
 		s.setRange(1f); //1 sec
 		
@@ -70,7 +71,7 @@ public class TestSpell {
 	
 	@Test
 	public void testCollisionMonster() throws TartiException{
-		Spell s = new Spell(10f, 10f, new Vector2f(1f, 0f));
+		Spell s = new HeroSpell(10f, 10f, new Vector2f(1f, 0f));
 		s.setSpeed(10f);
 		s.setRange(1f); //1 sec
 		
