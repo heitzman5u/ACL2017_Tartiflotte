@@ -19,7 +19,7 @@ public class AttackBoost extends WorldObject {
 	private static float WIDTH = 32f;
 	private static float HEIGHT = 32f;
 	
-	protected AttackBoost(float x, float y) {
+	public AttackBoost(float x, float y) {
 		super(x, y);
 	}
 	
@@ -41,7 +41,7 @@ public class AttackBoost extends WorldObject {
 		if(g == null) throw new NullArgumentException();
 		
 		Image img = GraphicsFactory.getAttackBoostImage();
-		img.draw();
+		img.draw(getX()-WIDTH/2, getY()-HEIGHT/2);
 	}
 	
 }

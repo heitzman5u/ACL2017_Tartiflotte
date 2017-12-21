@@ -129,12 +129,12 @@ public class Level implements Serializable {
 	private Collection<WorldObject> getAttackBoostInLevel() throws SlickException {
 		Image tile;
 		List<WorldObject> attBoost = new ArrayList<WorldObject>();
-		if(this.map.getLayerIndex("flask") == -1) return attBoost;
+		if(this.map.getLayerIndex("attack_boost") == -1) return attBoost;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
 				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("attack_boost"));
 				if (tile != null) {
-					attBoost.add(new LifeFlask(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+					attBoost.add(new AttackBoost(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
 				}
 			}
 		}
