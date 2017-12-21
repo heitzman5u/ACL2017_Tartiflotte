@@ -48,7 +48,7 @@ public class GameUI extends BasicGame {
 			GraphicsFactory.loadHudHero();
 			GraphicsFactory.loadBossAnimation();
 			GraphicsFactory.loadBossLifeBarImages();
-			
+			GraphicsFactory.loadAttackBoostImage();
 			
 			//Set the game
 			PlayerController pc = new PlayerController();

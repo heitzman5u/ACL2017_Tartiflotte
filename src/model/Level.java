@@ -36,7 +36,7 @@ public class Level implements Serializable {
 	private transient final TiledMap map;
 	private transient static boolean heroCreated = false;
 	
-	private transient final Collection<LifeFlask> flasks;
+	private transient final Collection<WorldObject> pickableObject;
 	private transient final Collection<Monster> monsters;
 
 	private transient final Exit exit;
@@ -57,7 +57,8 @@ public class Level implements Serializable {
 		map = new TiledMap(file, tilesetLoc);
 		hero = getHeroInTmx();
 		exit = getExitInLevel();
-		flasks = flasksInLevel();
+		pickableObject = flasksInLevel();
+		pickableObject.addAll(getAttackBoostInLevel());
 		monsters = getMonstersInLevel();
 		monsters.addAll(getGhostsInLevel());
 		
@@ -105,9 +106,9 @@ public class Level implements Serializable {
 	 *
 	 * @throws SlickException
 	 */
-	private Collection<LifeFlask> flasksInLevel() throws SlickException {
+	private Collection<WorldObject> flasksInLevel() throws SlickException {
 		Image tile;
-		List<LifeFlask> listFlask = new ArrayList<LifeFlask>();
+		List<WorldObject> listFlask = new ArrayList<WorldObject>();
 		if(this.map.getLayerIndex("flask") == -1) return listFlask;
 		for (int x = 0; x < this.map.getWidth(); x++) {
 			for (int y = 0; y < this.map.getHeight(); y++) {
@@ -118,6 +119,26 @@ public class Level implements Serializable {
 			}
 		}
 		return listFlask;
+	}
+	
+	/**
+	 * return list of LifeFlask in the map.tmx
+	 *
+	 * @throws SlickException
+	 */
+	private Collection<WorldObject> getAttackBoostInLevel() throws SlickException {
+		Image tile;
+		List<WorldObject> attBoost = new ArrayList<WorldObject>();
+		if(this.map.getLayerIndex("flask") == -1) return attBoost;
+		for (int x = 0; x < this.map.getWidth(); x++) {
+			for (int y = 0; y < this.map.getHeight(); y++) {
+				tile = this.map.getTileImage(x, y, this.map.getLayerIndex("flask"));
+				if (tile != null) {
+					attBoost.add(new LifeFlask(x * this.map.getTileWidth(), y * this.map.getTileHeight()));
+				}
+			}
+		}
+		return attBoost;
 	}
 	
 	/**
@@ -234,8 +255,8 @@ public class Level implements Serializable {
 		return exit;
 	}
 	
-	public Collection<LifeFlask> getFlasks(){
-		return flasks;
+	public Collection<WorldObject> getPickableObject(){
+		return pickableObject;
 	}
 	
 	public Collection<Monster> getMonsters(){
