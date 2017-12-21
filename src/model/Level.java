@@ -60,6 +60,7 @@ public class Level implements Serializable {
 		monsters = monstersInLevel();
 		levelNumber = number;
 		
+		
 //		try{
 //			deserialize();
 //		} catch (IOException | ClassNotFoundException e){
@@ -233,6 +234,12 @@ public class Level implements Serializable {
 
 	public void destroyMonster(Monster m) {
 		monsters.remove(m);
+	}
+	
+	private Boss bossInLevel(int level) {
+		if(level == 3 )
+			return new Boss(50, 50);
+		return null;
 	}
 	
 }
