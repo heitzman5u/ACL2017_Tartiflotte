@@ -24,7 +24,7 @@
  </layer>
  <layer name="ghost" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAVDEaxnGmgXIMBgcssoGAWjYBSMglEwWAC++nG07hwFo2AUEAMAoJe6pawNAAA=
+   H4sIAAAAAAAAC2NgGAUDDdYz0UcPrcBgcssoGAWjYBSMglEwWAC++nG07hwFo2AUEAMAxxNLB6wNAAA=
   </data>
  </layer>
  <layer name="monster" width="35" height="25">

@@ -32,7 +32,7 @@
  </layer>
  <layer name="ghost" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3UMQ0AAAjAMBIU4N8sCniBo1WwaxEAwJbK6wLgG19g0ud5Ua6sDQAA
+   H4sIAAAAAAAAC+3UsQkAQAgEQcEK7L/Zj18QNJ9JNr/gIgBgr/IvN3YDOr/A5AF6vr5KrA0AAA==
   </data>
  </layer>
  <layer name="hero" width="35" height="25">
@@ -42,7 +42,7 @@
  </layer>
  <layer name="monster" width="35" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3VoQ0AAAjAMBI8/5+L5gFAtBfMLQJgqrwuAICfPJJNDcMIkgysDQAA
+   H4sIAAAAAAAAC+3TsQ0AMAjAMCR2/j+3cx8AJOwLsiQC4Fc5XQC3eRD28iedHiLY2EasDQAA
   </data>
  </layer>
  <layer name="solid" width="35" height="25">
