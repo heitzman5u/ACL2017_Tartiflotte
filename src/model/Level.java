@@ -57,7 +57,7 @@ public class Level implements Serializable {
 		exit = getExitInLevel();
 		flasks = flasksInLevel();
 		monsters = getMonstersInLevel();
-		//monsters.addAll(getGhostsInLevel());
+		monsters.addAll(getGhostsInLevel());
 		levelNumber = number;
 		
 //		try{
@@ -129,7 +129,7 @@ public class Level implements Serializable {
 	}
 	
 	
-	/*private Collection<Monster> getGhostsInLevel() throws SlickException{
+	private Collection<Monster> getGhostsInLevel() throws SlickException{
 		Image tile;
 		List<Monster> monsters = new ArrayList<Monster>();
 		if(this.map.getLayerIndex("ghost") == -1) return monsters;
@@ -142,7 +142,7 @@ public class Level implements Serializable {
 			}
 		}
 		return monsters;
-	}*/
+	}
 	
 
 	private Hero getHeroInTmx() throws SlickException, TartiException {

@@ -15,17 +15,17 @@ import graphic.GraphicsFactory;
 public class Wolf extends Monster {	
 
 	/**
-	 * Create a monster at the given position
+	 * Create a wolf at the given position
 	 * @param x abscissa
 	 * @param y ordinate
 	 * @throws SlickException
 	 */
 	public Wolf(float x, float y) {
-		super(x, y, 2.0f , 600f, 80_000f, 10, 1, 1000);
+		super(x, y, 2.0f , 600f, 80_000f, 10, 3, 1000);
 	}
 	
 	/**
-	 * Create a copy of a monster
+	 * Create a copy of a wolf
 	 * @param monster copied
 	 */
 	private Wolf(Wolf other){
